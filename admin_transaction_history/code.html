@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Nairapot Admin - Transactions</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@600;700&amp;family=Manrope:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed": "#052100",
+                        "secondary-fixed-dim": "#84db60",
+                        "secondary-fixed": "#9ff979",
+                        "on-primary": "#ffffff",
+                        "on-surface-variant": "#404940",
+                        "tertiary": "#735c00",
+                        "outline-variant": "#bfc9bd",
+                        "primary-fixed-dim": "#88d898",
+                        "on-surface": "#1a1c1e",
+                        "error-container": "#ffdad6",
+                        "background": "#f9f9fc",
+                        "tertiary-container": "#cca830",
+                        "on-secondary-container": "#257400",
+                        "surface-variant": "#e2e2e5",
+                        "surface-dim": "#dadadc",
+                        "secondary": "#226d00",
+                        "on-primary-container": "#85d595",
+                        "tertiary-fixed": "#ffe088",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-container": "#4f3e00",
+                        "inverse-on-surface": "#f0f0f3",
+                        "on-tertiary-fixed": "#241a00",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-low": "#f3f3f6",
+                        "outline": "#707a6f",
+                        "on-primary-fixed-variant": "#005225",
+                        "surface-bright": "#f9f9fc",
+                        "surface-container": "#eeeef0",
+                        "on-primary-fixed": "#00210b",
+                        "on-background": "#1a1c1e",
+                        "surface-tint": "#196c37",
+                        "surface-container-highest": "#e2e2e5",
+                        "primary": "#00441d",
+                        "on-error": "#ffffff",
+                        "surface": "#f9f9fc",
+                        "surface-container-high": "#e8e8ea",
+                        "primary-container": "#005e2b",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed-dim": "#e9c349",
+                        "on-secondary": "#ffffff",
+                        "inverse-primary": "#88d898",
+                        "secondary-container": "#9ff979",
+                        "on-tertiary-fixed-variant": "#574500",
+                        "primary-fixed": "#a3f5b2",
+                        "on-secondary-fixed-variant": "#185200",
+                        "inverse-surface": "#2f3133",
+                        "on-error-container": "#93000a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "md": "24px",
+                        "margin-desktop": "48px",
+                        "lg": "40px",
+                        "gutter": "24px",
+                        "xs": "4px",
+                        "xl": "64px",
+                        "margin-mobile": "16px",
+                        "sm": "12px",
+                        "base": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Hanken Grotesk"],
+                        "body-md": ["Manrope"],
+                        "title-md": ["Hanken Grotesk"],
+                        "body-lg": ["Manrope"],
+                        "label-sm": ["Manrope"],
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "display-lg": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "title-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased overflow-x-hidden min-h-screen flex">
+<!-- SideNavBar -->
+<nav class="hidden md:flex bg-surface h-screen w-64 fixed left-0 top-0 shadow-sm border-r border-outline-variant z-20 flex-col p-md">
+<div class="mb-lg">
+<h1 class="font-headline-lg text-headline-lg font-bold text-primary mb-1">Nairapot Admin</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Growth &amp; Community</p>
+</div>
+<div class="flex-1 space-y-sm">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-primary transition-colors hover:bg-surface-container-high rounded-lg font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>Overview</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-primary transition-colors hover:bg-surface-container-high rounded-lg font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span>Manage Pots</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-primary transition-colors hover:bg-surface-container-high rounded-lg font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span>Users</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 bg-secondary-container text-on-secondary-container rounded-lg font-bold font-body-md text-body-md transition-all duration-200 active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="swap_horiz">swap_horiz</span>
+<span>Transactions</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-primary transition-colors hover:bg-surface-container-high rounded-lg font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span>Settings</span>
+</a>
+</div>
+<div class="mt-auto">
+<button class="w-full bg-primary text-on-primary py-3 rounded-lg font-label-sm text-label-sm hover:bg-primary-container transition-colors shadow-[0_2px_4px_rgba(0,94,43,0.08)] hover:-translate-y-[2px]">
+                Export Reports
+            </button>
+</div>
+</nav>
+<!-- Main Content Area -->
+<div class="flex-1 md:ml-64 flex flex-col min-h-screen w-full relative">
+<!-- TopNavBar -->
+<header class="bg-surface fixed top-0 right-0 left-0 md:left-64 h-16 border-b border-outline-variant z-10">
+<div class="flex justify-between items-center px-md h-full w-full">
+<!-- Mobile Menu Button -->
+<button class="md:hidden p-2 text-on-surface-variant">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h2 class="hidden md:block font-title-md text-title-md text-primary">Admin Dashboard</h2>
+<div class="flex items-center gap-4 ml-auto">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
+<input class="pl-10 pr-4 py-2 border border-outline-variant rounded-full text-sm focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary w-64 bg-surface-container-lowest" placeholder="Search..." type="text"/>
+</div>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-low rounded-full transition-all duration-200 hover:shadow-md relative">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-1 right-1 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-low rounded-full transition-all duration-200 hover:shadow-md hidden sm:block">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+</button>
+<div class="h-8 w-8 rounded-full bg-surface-container-high overflow-hidden ml-2 border border-outline-variant">
+<img alt="Admin profile photo" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2tAhDpvwbXht6OX03bysfQDlIgsWrkAyI-4vpz0dVcA-cApj71z79mZboysOhI-ef33foUE6Er2Ra4vRQMZ91aadYp9_IEblyeaeyjnSx-JPuRDAkLGr7wPhpUYtLLdQK9uwTK8LEVebm4pYpYvo2fy0JrIZmp0Bn7JgsdlnyakkSvdBsB9jH02o-xNyK7RhPx-lItMImlL1jx_yU18rK36TNaFllYJq6oMH9tAnbBNzmDv90bZZWURrVkkargqjBMkRo5GKgW2wB"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Page Content -->
+<main class="flex-1 mt-16 p-margin-mobile md:p-margin-desktop bg-background">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-lg gap-4">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-on-background mb-2">Transaction History</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Monitor and manage all platform financial activities.</p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 bg-surface-container-lowest border border-outline-variant text-on-surface px-4 py-2 rounded-lg font-label-sm text-label-sm hover:bg-surface-container-low transition-colors shadow-[0_2px_4px_rgba(0,94,43,0.08)]">
+<span class="material-symbols-outlined text-sm">filter_list</span>
+                        Filter
+                    </button>
+<button class="flex items-center gap-2 bg-primary text-on-primary px-4 py-2 rounded-lg font-label-sm text-label-sm hover:bg-primary-container transition-colors shadow-[0_2px_4px_rgba(0,94,43,0.08)] hover:-translate-y-[2px]">
+<span class="material-symbols-outlined text-sm">download</span>
+                        Export
+                    </button>
+</div>
+</div>
+<!-- Summary Cards (Bento Style) -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter mb-xl">
+<!-- Card 1: Total Volume -->
+<div class="bg-surface-container-lowest border border-[#E0EADF] rounded-xl p-md shadow-[0_4px_12px_rgba(0,94,43,0.04)] relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-32 h-32 bg-secondary-container rounded-bl-full opacity-20 -mr-10 -mt-10 transition-transform group-hover:scale-110"></div>
+<div class="flex justify-between items-start mb-4">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-1 uppercase tracking-wider">Total Volume</p>
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-background">₦ 45,230,000</h3>
+</div>
+<div class="p-2 bg-primary-container rounded-lg text-on-primary-container">
+<span class="material-symbols-outlined">monitoring</span>
+</div>
+</div>
+<div class="flex items-center text-secondary text-sm font-semibold">
+<span class="material-symbols-outlined text-sm mr-1">trending_up</span>
+<span>+12.5% this week</span>
+</div>
+</div>
+<!-- Card 2: Pending Withdrawals -->
+<div class="bg-surface-container-lowest border border-[#E0EADF] rounded-xl p-md shadow-[0_4px_12px_rgba(0,94,43,0.04)] relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-32 h-32 bg-tertiary-container rounded-bl-full opacity-20 -mr-10 -mt-10 transition-transform group-hover:scale-110"></div>
+<div class="flex justify-between items-start mb-4">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-1 uppercase tracking-wider">Pending Withdrawals</p>
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-background">₦ 1,850,000</h3>
+</div>
+<div class="p-2 bg-tertiary-fixed rounded-lg text-on-tertiary-container">
+<span class="material-symbols-outlined">hourglass_top</span>
+</div>
+</div>
+<div class="flex items-center text-tertiary text-sm font-semibold">
+<span class="material-symbols-outlined text-sm mr-1">pending_actions</span>
+<span>42 requests waiting</span>
+</div>
+</div>
+<!-- Card 3: Processing Fees -->
+<div class="bg-surface-container-lowest border border-[#E0EADF] rounded-xl p-md shadow-[0_4px_12px_rgba(0,94,43,0.04)] relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary-container rounded-bl-full opacity-10 -mr-10 -mt-10 transition-transform group-hover:scale-110"></div>
+<div class="flex justify-between items-start mb-4">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-1 uppercase tracking-wider">Processing Fees</p>
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-background">₦ 452,300</h3>
+</div>
+<div class="p-2 bg-secondary rounded-lg text-on-secondary">
+<span class="material-symbols-outlined">account_balance</span>
+</div>
+</div>
+<div class="flex items-center text-on-surface-variant text-sm font-semibold">
+<span>Revenue generated this month</span>
+</div>
+</div>
+</div>
+<!-- Main Table Section -->
+<div class="bg-surface-container-lowest border border-[#E0EADF] rounded-xl shadow-[0_4px_12px_rgba(0,94,43,0.04)] overflow-hidden">
+<!-- Table Controls -->
+<div class="p-md border-b border-[#E0EADF] flex flex-col sm:flex-row justify-between items-center gap-4 bg-surface-bright">
+<div class="relative w-full sm:w-80">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
+<input class="w-full pl-10 pr-4 py-2 border border-outline-variant rounded-lg text-sm focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary bg-surface-container-lowest" placeholder="Search user, ID, or amount..." type="text"/>
+</div>
+<div class="flex gap-2 w-full sm:w-auto">
+<select class="border border-outline-variant rounded-lg px-3 py-2 text-sm text-on-surface bg-surface-container-lowest focus:outline-none focus:border-secondary">
+<option>All Types</option>
+<option>Pot Contribution</option>
+<option>Wallet Top-up</option>
+<option>Prize Payout</option>
+<option>Withdrawal</option>
+</select>
+<select class="border border-outline-variant rounded-lg px-3 py-2 text-sm text-on-surface bg-surface-container-lowest focus:outline-none focus:border-secondary">
+<option>All Statuses</option>
+<option>Success</option>
+<option>Pending</option>
+<option>Failed</option>
+</select>
+</div>
+</div>
+<!-- Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">
+<th class="p-4 font-semibold">Transaction ID</th>
+<th class="p-4 font-semibold">User</th>
+<th class="p-4 font-semibold">Type</th>
+<th class="p-4 font-semibold">Amount (NGN)</th>
+<th class="p-4 font-semibold">Date &amp; Time</th>
+<th class="p-4 font-semibold">Status</th>
+<th class="p-4 font-semibold text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="text-sm font-body-md divide-y divide-[#E0EADF]">
+<!-- Row 1: Success -->
+<tr class="hover:bg-surface-container-lowest/50 transition-colors">
+<td class="p-4 font-mono text-xs text-on-surface-variant">#TRX-8924A</td>
+<td class="p-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full overflow-hidden bg-surface-variant">
+<img alt="Profile photo of John Doe" class="w-full h-full object-cover" data-alt="A close-up studio portrait of a young professional African man smiling warmly. The lighting is soft and bright, emphasizing an optimistic, light-mode fintech aesthetic. He wears a casual but neat green shirt, complementing a vibrant, growth-focused color palette. The background is pure white." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKt7Di_Q5fXx-RYlEH8bLKjQ4dnRr8MPTL-UYOBLi6iTaHpmXtwwqHeZPsdfOIk7V3JjKbNk-QqKlAPVu4nfqZlZGXVne4l1T3vNFfZxiPC3AdYchf3HPHsSqfk1RIdCb5Zbo6OrlETOkDR9EVCjXwH1-sIEwCMW1iyMr9E_QbJGxoCyd-nb7UTIxBjp4HNIXZ7FUnJKkB8tfDIW4QWghQ-ESG_iEQuUJcgUyT_sz4NaRCmnWASPnX3mMWjqjU7GsPsDm4gC497nwS"/>
+</div>
+<div>
+<p class="font-semibold text-on-surface">Oluwaseun Adeyemi</p>
+<p class="text-xs text-on-surface-variant">seun@example.com</p>
+</div>
+</div>
+</td>
+<td class="p-4 text-on-surface">Pot Contribution</td>
+<td class="p-4 font-semibold text-on-surface">₦ 50,000</td>
+<td class="p-4 text-on-surface-variant text-xs">Oct 24, 2023<br/>14:32:01</td>
+<td class="p-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-secondary-container text-on-secondary-container">
+                                        Success
+                                    </span>
+</td>
+<td class="p-4 text-right">
+<button class="text-on-surface-variant hover:text-primary transition-colors p-1">
+<span class="material-symbols-outlined text-sm">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 2: Pending -->
+<tr class="hover:bg-surface-container-lowest/50 transition-colors">
+<td class="p-4 font-mono text-xs text-on-surface-variant">#TRX-8923B</td>
+<td class="p-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full overflow-hidden bg-surface-variant">
+<img alt="Profile photo of Jane Doe" class="w-full h-full object-cover" data-alt="A clean, professional headshot of a young woman with a confident expression. The photo is lit with high-key lighting, fitting a modern light-mode corporate aesthetic. Subtle gold and deep green accents appear in the blurred background, reinforcing a sense of financial value and momentum." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfan4-gnQ0spU9DMsdvob7g16S0ry6lV-ovoDA4DxSRqfXhJgV5T9oFy49ZtVMjO1TsAewqSwBu6UBoSQLuWPUM72PMEW9RfPKpsoHbxAmozNdVs6fJ5iiuFbwJV3IYBohaypPqAuOC2bMZvLRfDR5HEfRbdujRMbx1LCvOWlJsdwcyBvcURjbjQfp4graf45SxYzskbCoI3m2CKquJVoBEkYXCJJGxwTr4JxjVRpi2U3dH84irQRoYyefiufBuxcsYLxwpPq_j9lp"/>
+</div>
+<div>
+<p class="font-semibold text-on-surface">Chidinma Okafor</p>
+<p class="text-xs text-on-surface-variant">chidi@example.com</p>
+</div>
+</div>
+</td>
+<td class="p-4 text-on-surface">Withdrawal Request</td>
+<td class="p-4 font-semibold text-on-surface">₦ 150,000</td>
+<td class="p-4 text-on-surface-variant text-xs">Oct 24, 2023<br/>12:15:44</td>
+<td class="p-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-tertiary-fixed text-on-tertiary-container">
+                                        Pending
+                                    </span>
+</td>
+<td class="p-4 text-right">
+<button class="text-on-surface-variant hover:text-primary transition-colors p-1">
+<span class="material-symbols-outlined text-sm">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 3: Success -->
+<tr class="hover:bg-surface-container-lowest/50 transition-colors">
+<td class="p-4 font-mono text-xs text-on-surface-variant">#TRX-8922C</td>
+<td class="p-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full overflow-hidden bg-surface-variant flex items-center justify-center text-primary-container font-bold text-xs">
+                                            EA
+                                        </div>
+<div>
+<p class="font-semibold text-on-surface">Emeka Anyanwu</p>
+<p class="text-xs text-on-surface-variant">emeka@example.com</p>
+</div>
+</div>
+</td>
+<td class="p-4 text-on-surface">Wallet Top-up</td>
+<td class="p-4 font-semibold text-on-surface">₦ 20,000</td>
+<td class="p-4 text-on-surface-variant text-xs">Oct 24, 2023<br/>09:45:12</td>
+<td class="p-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-secondary-container text-on-secondary-container">
+                                        Success
+                                    </span>
+</td>
+<td class="p-4 text-right">
+<button class="text-on-surface-variant hover:text-primary transition-colors p-1">
+<span class="material-symbols-outlined text-sm">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 4: Failed -->
+<tr class="hover:bg-surface-container-lowest/50 transition-colors">
+<td class="p-4 font-mono text-xs text-on-surface-variant">#TRX-8921D</td>
+<td class="p-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full overflow-hidden bg-surface-variant">
+<img alt="Profile photo" class="w-full h-full object-cover" data-alt="A candid style portrait of a man in his thirties looking slightly off-camera. The background is a minimalist office setting bathed in natural, bright daylight. The visual tone is optimistic and clear, aligning perfectly with a modern, high-trust fintech application interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYmQ6v4rtwenAeWhXxT-Lm1lMM7SfjbBedRs393PvPA_JsJJKn6nC8ova0xfthmNCGHBAkYl1V7lLH1AR7mT7LpGCM1jbbYS-DkRmh4TnLH6BRzI1uBQ0aZ-Gn9mKTc0gNHSF-pdtrKe8HhOs7XNbaS7bKAXrdIPfMSnPre0sF5RJfMZ5LFSP-6M98Km9a_w1srK53YpWzDbtbY8oKNTraJWjhoQ8IVrFj3GqLkdQUe6xBiFqQpjmdcjQsmaiBdvA4TwTT3ykFWv8O"/>
+</div>
+<div>
+<p class="font-semibold text-on-surface">Ngozi Eze</p>
+<p class="text-xs text-on-surface-variant">ngozi@example.com</p>
+</div>
+</div>
+</td>
+<td class="p-4 text-on-surface">Prize Payout</td>
+<td class="p-4 font-semibold text-on-surface">₦ 500,000</td>
+<td class="p-4 text-on-surface-variant text-xs">Oct 23, 2023<br/>18:20:00</td>
+<td class="p-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-error-container text-on-error-container">
+                                        Failed
+                                    </span>
+</td>
+<td class="p-4 text-right">
+<button class="text-on-surface-variant hover:text-primary transition-colors p-1">
+<span class="material-symbols-outlined text-sm">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="p-4 border-t border-[#E0EADF] bg-surface-bright flex items-center justify-between">
+<p class="text-sm text-on-surface-variant">Showing <span class="font-semibold text-on-surface">1</span> to <span class="font-semibold text-on-surface">4</span> of <span class="font-semibold text-on-surface">2,451</span> results</p>
+<div class="flex gap-1">
+<button class="p-1 rounded border border-outline-variant text-on-surface-variant hover:bg-surface-container-low disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined text-sm">chevron_left</span>
+</button>
+<button class="px-3 py-1 rounded border border-secondary bg-secondary-container text-on-secondary-container text-sm font-semibold">1</button>
+<button class="px-3 py-1 rounded border border-outline-variant text-on-surface-variant hover:bg-surface-container-low text-sm">2</button>
+<button class="px-3 py-1 rounded border border-outline-variant text-on-surface-variant hover:bg-surface-container-low text-sm">3</button>
+<span class="px-2 py-1 text-on-surface-variant">...</span>
+<button class="p-1 rounded border border-outline-variant text-on-surface-variant hover:bg-surface-container-low">
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

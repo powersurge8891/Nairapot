@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Nairapot - Winner Reveal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600&amp;family=Hanken+Grotesk:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-primary": "#88d898",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-dim": "#dadadc",
+                    "on-surface": "#1a1c1e",
+                    "surface-container-low": "#f3f3f6",
+                    "outline": "#707a6f",
+                    "on-error-container": "#93000a",
+                    "surface-tint": "#196c37",
+                    "primary-container": "#005e2b",
+                    "surface-container-highest": "#e2e2e5",
+                    "inverse-on-surface": "#f0f0f3",
+                    "error": "#ba1a1a",
+                    "primary-fixed": "#a3f5b2",
+                    "on-tertiary": "#ffffff",
+                    "on-background": "#1a1c1e",
+                    "on-secondary-container": "#257400",
+                    "on-tertiary-fixed-variant": "#574500",
+                    "on-secondary-fixed": "#052100",
+                    "surface-container-high": "#e8e8ea",
+                    "on-primary-fixed-variant": "#005225",
+                    "primary-fixed-dim": "#88d898",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary-fixed": "#241a00",
+                    "on-primary-fixed": "#00210b",
+                    "error-container": "#ffdad6",
+                    "on-secondary-fixed-variant": "#185200",
+                    "surface-bright": "#f9f9fc",
+                    "tertiary-fixed-dim": "#e9c349",
+                    "secondary-fixed": "#9ff979",
+                    "on-primary-container": "#85d595",
+                    "surface-container": "#eeeef0",
+                    "on-surface-variant": "#404940",
+                    "tertiary-fixed": "#ffe088",
+                    "on-primary": "#ffffff",
+                    "surface-variant": "#e2e2e5",
+                    "outline-variant": "#bfc9bd",
+                    "background": "#f9f9fc",
+                    "secondary-fixed-dim": "#84db60",
+                    "on-error": "#ffffff",
+                    "inverse-surface": "#2f3133",
+                    "tertiary": "#735c00",
+                    "tertiary-container": "#cca830",
+                    "surface": "#f9f9fc",
+                    "on-tertiary-container": "#4f3e00",
+                    "primary": "#00441d",
+                    "secondary": "#226d00",
+                    "secondary-container": "#9ff979"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "md": "24px",
+                    "margin-mobile": "16px",
+                    "xs": "4px",
+                    "xl": "64px",
+                    "gutter": "24px",
+                    "margin-desktop": "48px",
+                    "sm": "12px",
+                    "base": "8px",
+                    "lg": "40px"
+            },
+            "fontFamily": {
+                    "label-sm": ["Manrope"],
+                    "headline-lg-mobile": ["Hanken Grotesk"],
+                    "headline-lg": ["Hanken Grotesk"],
+                    "title-md": ["Hanken Grotesk"],
+                    "display-lg": ["Hanken Grotesk"],
+                    "body-lg": ["Manrope"],
+                    "body-md": ["Manrope"]
+            },
+            "fontSize": {
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          }
+        }
+      }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased overflow-x-hidden">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-on-surface shadow-sm docked full-width top-0 sticky z-50">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop h-16">
+<div class="flex items-center gap-md">
+<button class="md:hidden text-primary dark:text-primary-fixed hover:bg-surface-container-low dark:hover:bg-surface-variant p-2 rounded-full transition-all duration-200 active:scale-95">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="font-display-lg text-display-lg font-bold text-primary dark:text-inverse-primary text-[24px]">Nairapot</div>
+<!-- Desktop Nav -->
+<nav class="hidden md:flex gap-md ml-lg">
+<a class="text-on-surface-variant dark:text-surface-variant font-label-sm text-label-sm hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Home</a>
+<a class="text-primary dark:text-primary-fixed font-label-sm text-label-sm font-bold border-b-2 border-primary pb-1" href="#">Pots</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-label-sm text-label-sm hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Savings</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-label-sm text-label-sm hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Rewards</a>
+</nav>
+</div>
+<div class="flex items-center gap-sm text-primary dark:text-primary-fixed">
+<button class="hover:bg-surface-container-low dark:hover:bg-surface-variant p-2 rounded-full transition-all duration-200 active:scale-95">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="hover:bg-surface-container-low dark:hover:bg-surface-variant p-2 rounded-full transition-all duration-200 active:scale-95">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="w-full max-w-[1280px] mx-auto px-margin-mobile md:px-margin-desktop py-lg md:py-xl flex flex-col items-center justify-center min-h-[calc(100vh-64px)] relative">
+<!-- Background Effects (Confetti/Rays simulated with CSS) -->
+<div class="absolute inset-0 pointer-events-none overflow-hidden z-0 flex items-center justify-center">
+<div class="w-[800px] h-[800px] bg-gradient-to-tr from-secondary-container via-tertiary-fixed to-surface-container-lowest opacity-20 rounded-full blur-3xl mix-blend-multiply"></div>
+<div class="absolute top-1/4 left-1/4 w-[300px] h-[300px] bg-tertiary-container opacity-30 rounded-full blur-2xl"></div>
+<div class="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-primary-container opacity-10 rounded-full blur-3xl"></div>
+</div>
+<div class="relative z-10 w-full max-w-4xl mx-auto flex flex-col items-center text-center">
+<!-- Success Message Header -->
+<div class="mb-lg space-y-sm">
+<div class="inline-flex items-center gap-xs px-3 py-1 bg-tertiary-container/20 text-tertiary rounded-full font-label-sm text-label-sm uppercase tracking-wider border border-tertiary-container/30">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+                    Verified Win
+                </div>
+<h1 class="font-display-lg text-display-lg md:text-[64px] leading-tight text-primary mt-sm drop-shadow-sm">
+                    WE HAVE A WINNER!
+                </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">
+                    The Mega Tech Pot has officially closed. Drumroll, please...
+                </p>
+</div>
+<!-- Celebration Hero Card -->
+<div class="w-full max-w-md bg-surface-container-lowest rounded-[24px] p-8 shadow-2xl border-4 border-tertiary-container relative transform hover:-translate-y-2 transition-transform duration-500 mb-xl">
+<!-- Gold Accent Header -->
+<div class="absolute top-0 left-0 w-full h-24 bg-gradient-to-b from-tertiary-fixed to-transparent rounded-t-[20px] opacity-50"></div>
+<div class="relative flex flex-col items-center">
+<!-- Winner Avatar -->
+<div class="w-32 h-32 rounded-full border-4 border-surface-container-lowest shadow-lg overflow-hidden relative z-10 mb-md bg-surface-container-highest">
+<img alt="Portrait of a smiling young man in a well-lit studio" class="w-full h-full object-cover" data-alt="A portrait of a joyful young man with a bright smile, representing a fintech user who just won a prize. The lighting is soft and studio-quality, highlighting his expression against a clean, modern background. The overall tone is optimistic and celebratory, fitting a vibrant modern corporate aesthetic with subtle high-key lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJaZvNlFBXiTjQX80iT7cBHHI867VMVAYv8_C6uOp0MpqdjxnJwh5kpS4TokeE85FW7SVBD4bPfGhCvWULHK_dcz4rBjgHQs1dcJsRt1Ius1PxgcSy8Xof6YgCt7KBBZCyp5XJEFMn2AGxsHwkBM_3LwlYpvhDtTWYaqFA1rzQ3FcV-oUrhjkLOOSVba0Dsnpf7mD6fS68uzId20q2vnYOiiIPxXY55k_Q-2t9vhkBzZXWdLpGjMuRK3H-BfndRXVeAm8TnwBDjjua"/>
+<!-- Crown Icon Overlay -->
+<div class="absolute -top-3 -right-3 bg-tertiary text-on-tertiary w-10 h-10 rounded-full flex items-center justify-center shadow-md rotate-12">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">crown</span>
+</div>
+</div>
+<!-- Winner Details -->
+<h2 class="font-title-md text-title-md text-on-surface mb-xs">Tunde Ogunsina</h2>
+<p class="font-body-md text-body-md text-primary font-medium mb-lg">@tunde_o</p>
+<!-- Prize Highlight -->
+<div class="w-full bg-surface-bright rounded-xl p-md border border-outline-variant flex flex-col items-center text-center">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wide mb-xs">Won the Grand Prize</span>
+<div class="flex items-center gap-sm mt-xs">
+<span class="material-symbols-outlined text-primary text-[32px]" style="font-variation-settings: 'FILL' 1;">smartphone</span>
+<span class="font-headline-lg-mobile text-headline-lg-mobile text-primary">iPhone 15 Pro</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Call to Action Actions -->
+<div class="flex flex-col sm:flex-row gap-md w-full justify-center items-center z-10">
+<button class="w-full sm:w-auto px-8 py-4 bg-tertiary-container text-on-tertiary-container font-label-sm text-label-sm rounded-full shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200 active:scale-95 flex items-center justify-center gap-xs">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">celebration</span>
+                    Congratulate Tunde
+                </button>
+<button class="w-full sm:w-auto px-8 py-4 bg-primary text-on-primary font-label-sm text-label-sm rounded-full shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200 active:scale-95 flex items-center justify-center gap-xs">
+<span class="material-symbols-outlined text-[20px]">group_add</span>
+                    Join Next Pot
+                </button>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden bg-surface-container dark:bg-inverse-surface shadow-lg fixed bottom-0 w-full z-50 border-t border-outline-variant rounded-t-xl h-20 flex justify-around items-center py-2 px-4">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-transform duration-300 active:scale-90" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm text-[10px] mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-secondary-container dark:bg-secondary text-on-secondary-container dark:text-on-secondary rounded-full px-4 py-1 transition-transform duration-300 active:scale-90" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">group</span>
+<span class="font-label-sm text-[10px] mt-1">Pots</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-transform duration-300 active:scale-90" href="#">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<span class="font-label-sm text-[10px] mt-1">Savings</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-transform duration-300 active:scale-90" href="#">
+<span class="material-symbols-outlined">workspace_premium</span>
+<span class="font-label-sm text-[10px] mt-1">Rewards</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-transform duration-300 active:scale-90" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-sm text-[10px] mt-1">Profile</span>
+</a>
+</nav>
+</body></html>

@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Nairapot - Own Your Dream for a Fraction</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;family=Manrope:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed": "#9ff979",
+                        "on-primary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "inverse-surface": "#2f3133",
+                        "primary-fixed-dim": "#88d898",
+                        "on-primary-container": "#85d595",
+                        "inverse-primary": "#88d898",
+                        "surface-container": "#eeeef0",
+                        "on-surface-variant": "#404940",
+                        "secondary-container": "#9ff979",
+                        "surface-bright": "#f9f9fc",
+                        "on-secondary-fixed-variant": "#185200",
+                        "on-error": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "tertiary": "#735c00",
+                        "primary": "#00441d",
+                        "surface-dim": "#dadadc",
+                        "tertiary-container": "#cca830",
+                        "surface-container-high": "#e8e8ea",
+                        "tertiary-fixed": "#ffe088",
+                        "error": "#ba1a1a",
+                        "outline": "#707a6f",
+                        "background": "#f9f9fc",
+                        "secondary": "#226d00",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface": "#1a1c1e",
+                        "on-secondary-fixed": "#052100",
+                        "secondary-fixed-dim": "#84db60",
+                        "on-secondary-container": "#257400",
+                        "primary-fixed": "#a3f5b2",
+                        "on-background": "#1a1c1e",
+                        "inverse-on-surface": "#f0f0f3",
+                        "surface-container-low": "#f3f3f6",
+                        "on-primary-fixed": "#00210b",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-fixed-variant": "#574500",
+                        "primary-container": "#005e2b",
+                        "surface-tint": "#196c37",
+                        "surface": "#f9f9fc",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-container": "#4f3e00",
+                        "outline-variant": "#bfc9bd",
+                        "on-primary-fixed-variant": "#005225",
+                        "on-tertiary-fixed": "#241a00",
+                        "tertiary-fixed-dim": "#e9c349",
+                        "surface-container-highest": "#e2e2e5",
+                        "surface-variant": "#e2e2e5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "md": "24px",
+                        "xl": "64px",
+                        "lg": "40px",
+                        "margin-mobile": "16px",
+                        "base": "8px",
+                        "margin-desktop": "48px",
+                        "xs": "4px",
+                        "sm": "12px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Manrope"],
+                        "display-lg": ["Hanken Grotesk"],
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "body-md": ["Manrope"],
+                        "title-md": ["Hanken Grotesk"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "label-sm": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "title-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "600" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased pt-[88px]">
+
+<!-- TopNavBar (Shared Component) -->
+<nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-desktop py-4 bg-surface/90 backdrop-blur-md shadow-sm border-b border-outline-variant">
+    <div class="flex items-center gap-base">
+        <!-- Brand Logo -->
+        <a class="text-title-md font-title-md font-bold text-primary flex items-center gap-2" href="index.html">
+            <img src="Nairapot.png" alt="Nairapot logo" class="h-8"/>
+            Nairapot
+        </a>
+    </div>
+    <div class="hidden md:flex items-center gap-gutter">
+        <a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors py-2" href="#how-it-works">How it Works</a>
+        <a class="font-label-sm text-label-sm text-primary font-bold border-b-2 border-primary pb-1" href="browse_pots_nairapot.html">Active Pots</a>
+        <a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors py-2" href="winners_gallery_nairapot.html">Winners</a>
+        <a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors py-2" href="#community">Community</a>
+    </div>
+    <div class="flex items-center gap-sm">
+        <a class="hidden md:inline-flex items-center justify-center font-label-sm text-label-sm text-primary hover:bg-surface-container-low transition-all px-4 py-2 rounded-lg" href="login_to_nairapot.html">Login</a>
+        <a class="inline-flex items-center justify-center font-label-sm text-label-sm bg-primary text-on-primary px-6 py-2.5 rounded-lg hover:shadow-md transition-all active:scale-95 duration-150 ease-in-out" href="my_dashboard_nairapot.html">Join a Pot</a>
+    </div>
+</nav>
+<!-- Hero Section -->
+<section class="relative pt-xl pb-32 px-margin-mobile md:px-margin-desktop overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-br from-primary-fixed/20 to-surface-bright -z-10"></div>
+<div class="max-w-[1280px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-xl items-center">
+<div class="flex flex-col gap-lg z-10">
+<div class="inline-flex items-center gap-2 bg-secondary-fixed/20 text-on-secondary-fixed-variant px-4 py-1.5 rounded-full w-fit">
+<span class="material-symbols-outlined fill text-[18px] text-tertiary-container">stars</span>
+<span class="font-label-sm text-label-sm">Community-Powered Prosperity</span>
+</div>
+<h1 class="font-display-lg text-display-lg text-on-surface">
+                    Own Your Dream for a <span class="text-primary">Fraction.</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
+                    Why pay full price when we can achieve it together? Contribute as little as 5,000 Naira to a community pool and win high-value items like an iPhone 15 Pro, MacBooks, or even cash pots. 
+                </p>
+<div class="flex flex-wrap items-center gap-sm">
+<a class="inline-flex items-center justify-center gap-2 bg-primary text-on-primary font-label-sm text-label-sm px-8 py-4 rounded-xl hover:shadow-lg hover:-translate-y-0.5 transition-all active:scale-95 duration-150 ease-in-out" href="#active-pots">
+                        Explore Active Pots
+                        <span class="material-symbols-outlined">arrow_forward</span>
+</a>
+<a class="inline-flex items-center justify-center font-label-sm text-label-sm text-primary px-8 py-4 rounded-xl hover:bg-surface-container-low transition-all" href="#how-it-works">
+                        See How it Works
+                    </a>
+</div>
+<div class="flex items-center gap-4 mt-4 pt-6 border-t border-outline-variant/50">
+<div class="flex -space-x-3">
+<img alt="User" class="w-10 h-10 rounded-full border-2 border-surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYbpd2ZnRm4TS-ugn8lbAfhMxZpXQyQWyaI9geHCjFfnsqv28_g0u3hsb8J2riF_7GdERiC1kw3bgYjSXt_ClUY-ObBi4yqiRBEU7PMcy0yvjp22f7CWlGQU-iXH6gRTt4emd_K9nw6W2cb1k_7g4rw81obvFOJCQ-Cu3pKrJypvXUcOGFS2MZ43n_pXCMA5aNVEEZEfD9IrXSLeiobA7iwsa6hb4c6d_KthzNgWcpjzcAPz6dX4GJSruGwDV4ZM54-5Q7N5Na3mG8"/>
+<img alt="User" class="w-10 h-10 rounded-full border-2 border-surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFcBabU2TjsrtTs6MyGlJ5GsWfaeC_-o9Homrb05y6L6A5whg1hr257CVINLx9-g40cLPLGDLWNVPb6zgfWVnDz1ktui3y2bnFD7DWLfSMhrXEJw9hNBAEALa-DmubZVtomGDL6JRHDi-00uvCcDRDUenwNQEClDX38KwAe9D8D3zuusT1uva8Y2UqWLLPgJqr54P02hraDmEJ4kbAylcDefDVJZdEO3wtSjR9XnQ5a6fgmg0DjrDJtd82gtrseZGYkPpQPLxSfDGg"/>
+<img alt="User" class="w-10 h-10 rounded-full border-2 border-surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2UODlYPbqYG5C7MVw5f8nHVJdw_EbSz7pYqx-xgU9gTTLN6nEbxq_jtLp4mB0J-UmRaLv1Jmchy6A41GCUR76lMTkLhbfrqyzvfLmbnXy5ZB6O9yFSfTETd0cfNHdOxbhCSBBrenAQVSD_Uh2ihb9MIwj1Z7GyHu-T28W8b4pL9v7PO1zexjugtJLC9y1imtrlov93YhuxsBJVD3JI7q8FwhZVlTkg_L2GgSvqq2PXTEhKoXPH7hNyyYLFcXqrCAst6DAlnQfxJ8o"/>
+<div class="w-10 h-10 rounded-full border-2 border-surface bg-surface-container-high flex items-center justify-center font-label-sm text-label-sm text-on-surface-variant">+5k</div>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface">Join 5,000+ active members</span>
+<div class="flex items-center gap-1 text-tertiary-container">
+<span class="material-symbols-outlined fill text-[14px]">star</span>
+<span class="material-symbols-outlined fill text-[14px]">star</span>
+<span class="material-symbols-outlined fill text-[14px]">star</span>
+<span class="material-symbols-outlined fill text-[14px]">star</span>
+<span class="material-symbols-outlined fill text-[14px]">star</span>
+</div>
+</div>
+</div>
+</div>
+<div class="relative z-10 w-full aspect-square md:aspect-[4/3] rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(0,94,43,0.15)] border border-[#E0EADF]">
+<img alt="Community winning" class="w-full h-full object-cover" data-alt="A diverse group of young professionals in a bright, modern co-working space, smiling enthusiastically while looking at a smartphone. The scene is illuminated by soft, natural daylight creating a high-key, optimistic aesthetic. The environment features subtle green and gold accents to match a modern fintech brand identity. The mood is collaborative, victorious, and energetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxwDGNes3vJbMshmuCnGvBLqJylvOcDWuB-eo4bzsl8nrIL9Obg6RxMpEvpaxVckk9TKlSxWiJdDscTM1IV6GpdU4u3Gzsu9WTRwa63XXKcQ6oJEwuoGHc4rcheogyxKHbyYOLYD-MT8BCqxNoV0hgCXdYunZtyZwVTHWFW8Vv8Rx-CG3AmKnShYZjOXwF-LE8WvT57IJ2uNjiLqDMZs18c-0tzeBK7z5Z7dHTv1iFzxzqtR15KB6D6f5we4dZKRWA_rXNd7Z43M17"/>
+<!-- Floating Element -->
+<div class="absolute bottom-lg -left-4 md:left-lg bg-surface/90 backdrop-blur-md p-4 rounded-xl border border-outline-variant shadow-lg flex items-center gap-3">
+<div class="w-12 h-12 rounded-full bg-tertiary-container/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-tertiary-container fill">emoji_events</span>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Just Won!</p>
+<p class="font-title-md text-title-md text-on-surface font-bold">iPhone 15 Pro Max</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- How it Works Section -->
+<section class="py-xl px-margin-mobile md:px-margin-desktop bg-surface-container-lowest" id="how-it-works">
+<div class="max-w-[1280px] mx-auto">
+<div class="text-center mb-16">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-4">Three Steps to Your Dream Item</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">It's simple, transparent, and built on the power of community contribution.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-md relative">
+<!-- Connecting Line (Desktop) -->
+<div class="hidden md:block absolute top-[120px] left-[15%] right-[15%] h-[2px] bg-gradient-to-r from-primary-fixed via-secondary-fixed to-primary-fixed z-0 opacity-50"></div>
+<!-- Step 1 -->
+<div class="flex flex-col items-center text-center relative z-10">
+<div class="w-48 h-48 rounded-full bg-surface-container border border-[#E0EADF] shadow-[0_10px_30px_rgba(0,94,43,0.05)] flex items-center justify-center mb-6 overflow-hidden relative group">
+<div class="absolute inset-0 bg-primary/5 group-hover:bg-primary/10 transition-colors"></div>
+<span class="material-symbols-outlined text-[64px] text-primary">shopping_bag</span>
+<div class="absolute top-4 left-4 w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center font-title-md font-bold">1</div>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface mb-2">Choose an Item</h3>
+<p class="font-body-md text-body-md text-on-surface-variant px-4">Browse our active pots for high-value electronics, gadgets, or cash pools that you want to win.</p>
+</div>
+<!-- Step 2 -->
+<div class="flex flex-col items-center text-center relative z-10 pt-8 md:pt-0">
+<div class="w-48 h-48 rounded-full bg-surface-container border border-[#E0EADF] shadow-[0_10px_30px_rgba(0,94,43,0.05)] flex items-center justify-center mb-6 overflow-hidden relative group">
+<div class="absolute inset-0 bg-secondary-fixed/10 group-hover:bg-secondary-fixed/20 transition-colors"></div>
+<span class="material-symbols-outlined text-[64px] text-secondary">payments</span>
+<div class="absolute top-4 left-4 w-8 h-8 rounded-full bg-secondary text-on-secondary flex items-center justify-center font-title-md font-bold">2</div>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface mb-2">Buy Your Spot</h3>
+<p class="font-body-md text-body-md text-on-surface-variant px-4">Contribute a fraction of the cost (e.g., 5,000 NGN) to secure your ticket in the pot.</p>
+</div>
+<!-- Step 3 -->
+<div class="flex flex-col items-center text-center relative z-10 pt-8 md:pt-0">
+<div class="w-48 h-48 rounded-full bg-surface-container border border-[#E0EADF] shadow-[0_10px_30px_rgba(0,94,43,0.05)] flex items-center justify-center mb-6 overflow-hidden relative group">
+<div class="absolute inset-0 bg-tertiary-container/10 group-hover:bg-tertiary-container/20 transition-colors"></div>
+<span class="material-symbols-outlined text-[64px] text-tertiary">celebration</span>
+<div class="absolute top-4 left-4 w-8 h-8 rounded-full bg-tertiary-container text-on-tertiary-container flex items-center justify-center font-title-md font-bold">3</div>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface mb-2">One Person Wins</h3>
+<p class="font-body-md text-body-md text-on-surface-variant px-4">Once the pot fills up, our provably fair system selects a winner to receive the item immediately.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Active Pots Grid -->
+<section class="py-xl px-margin-mobile md:px-margin-desktop bg-surface" id="active-pots">
+<div class="max-w-[1280px] mx-auto">
+<div class="flex flex-col md:flex-row justify-between items-end mb-10 gap-4">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-2">Active Pots</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Join these pots before they fill up completely.</p>
+</div>
+<a class="inline-flex items-center gap-2 font-label-sm text-label-sm text-primary hover:text-primary-container transition-colors group" href="#">
+                    View All Pots
+                    <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-md">
+<!-- Pot Card 1 -->
+<div class="bg-surface-container-lowest rounded-2xl border border-[#E0EADF] shadow-[0_8px_24px_rgba(0,94,43,0.04)] overflow-hidden flex flex-col transition-transform hover:-translate-y-1 duration-300">
+<div class="relative h-48 bg-surface-container p-4 flex items-center justify-center">
+<div class="absolute top-4 right-4 bg-surface/90 backdrop-blur px-3 py-1 rounded-full border border-outline-variant font-label-sm text-label-sm text-on-surface flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-error">local_fire_department</span>
+                            Filling Fast
+                        </div>
+<img alt="iPhone 15 Pro" class="h-full object-contain mix-blend-multiply" data-alt="A sleek, modern iPhone 15 Pro displayed on a minimalist pristine white pedestal against a soft light grey background. Professional product photography with high-end studio lighting highlighting the titanium edges. The overall aesthetic is premium, clean, and aspirational, fitting a modern tech platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrcvwAEjphXKJqm8w20FhXpOCe3f2claryDaOgPw4wgUlcrRrLBU_Z0Prba2J2RsoGQ3g7bxOMVmikwZstkojmR1M8KZmRr5AvD7XI-LBtRGG_ONN2lSBU6vvE8qMVFRrDZhMiG9LMlYWL1QS5-gScBL_FoSslr1q8OtdWkerCzIRTnsT_og8Gy2KXjuyHFiCTbRmIXivY1keS2ST7ovA3yYcMBmuksMGkcJVvuaxWEWBPrT8EndfRP9JyX18kza5K3Kh-v8YGjzs6"/>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<!-- Item Name -->
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-title-md text-title-md text-on-surface font-bold">iPhone 15 Pro</h3>
+<span class="font-label-sm text-label-sm bg-secondary-fixed/20 text-on-secondary-fixed-variant px-2 py-1 rounded">Electronics</span>
+</div>
+<!-- Description -->
+<p class="font-body-md text-body-md text-on-surface-variant mb-6 line-clamp-2">Brand new 256GB Natural Titanium.</p>
+<div class="mt-auto">
+<!-- Ticket Price -->
+<div class="flex justify-between items-end mb-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Ticket Price</span>
+<span class="font-title-md text-title-md text-primary font-bold">₦5,000</span>
+</div>
+<!-- Total Spots -->
+<div class="mb-4">
+<div class="flex justify-between font-label-sm text-label-sm mb-1">
+<span class="text-on-surface">150 / 200 spots</span>
+<span class="text-secondary font-bold">75%</span>
+</div>
+<div class="w-full h-2 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-primary to-secondary-fixed w-[75%] rounded-full"></div>
+</div>
+</div>
+<a href="pot_details.html" class="w-full inline-flex items-center justify-center py-3 bg-primary text-on-primary font-label-sm text-label-sm rounded-lg hover:shadow-md hover:-translate-y-[2px] transition-all active:scale-[0.98]">
+                                Secure a Spot
+                            </a>
+</div>
+</div>
+</div>
+<!-- Pot Card 2 -->
+<div class="bg-surface-container-lowest rounded-2xl border border-[#E0EADF] shadow-[0_8px_24px_rgba(0,94,43,0.04)] overflow-hidden flex flex-col transition-transform hover:-translate-y-1 duration-300">
+<div class="relative h-48 bg-surface-container p-4 flex items-center justify-center">
+<img alt="MacBook Pro" class="h-full object-contain mix-blend-multiply" data-alt="A pristine Apple MacBook Pro slightly open, resting on a clean, light-colored desk surface. Soft, bright, indirect natural lighting reflects elegantly off the metallic chassis. The composition is modern, uncluttered, and highly professional, perfectly suited for an aspirational tech reward." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDq2GFo-gErEnU1z6xwYlNkXewvfk3qFovKq07Kpw21hB1knSY4xWQZBfKP9MkP3G4VWl0tmYG_jkyhJ5qDjz4W4VOaVUSOqM4CROitL3wr54WDJRCrZ5bk9Kd4vMP0mXUlQpOpRfS37k5Ccg9QA-S21L1PKXIVslOL0qwtajtqt35eqEiVkYjeCsA8gktwCUf5d5Xb80NG2-kwOnPXboGCpgwxMh84p9jRrH4g5Q1gSBL_5m4Yq8BCUPKZhpB6GAmr5UMqarRwva0E"/>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<!-- Item Name -->
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-title-md text-title-md text-on-surface font-bold">MacBook Pro M3</h3>
+<span class="font-label-sm text-label-sm bg-secondary-fixed/20 text-on-secondary-fixed-variant px-2 py-1 rounded">Laptops</span>
+</div>
+<!-- Description -->
+<p class="font-body-md text-body-md text-on-surface-variant mb-6 line-clamp-2">14-inch, M3 chip, 16GB RAM, Space Black.</p>
+<div class="mt-auto">
+<!-- Ticket Price -->
+<div class="flex justify-between items-end mb-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Ticket Price</span>
+<span class="font-title-md text-title-md text-primary font-bold">₦15,000</span>
+</div>
+<!-- Total Spots -->
+<div class="mb-4">
+<div class="flex justify-between font-label-sm text-label-sm mb-1">
+<span class="text-on-surface">42 / 100 spots</span>
+<span class="text-primary font-bold">42%</span>
+</div>
+<div class="w-full h-2 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-primary to-secondary-fixed w-[42%] rounded-full"></div>
+</div>
+</div>
+<a href="pot_details.html" class="w-full inline-flex items-center justify-center py-3 bg-primary text-on-primary font-label-sm text-label-sm rounded-lg hover:shadow-md hover:-translate-y-[2px] transition-all active:scale-[0.98]">
+                                Secure a Spot
+                            </a>
+</div>
+</div>
+</div>
+<!-- Pot Card 3 -->
+<div class="bg-surface-container-lowest rounded-2xl border border-[#E0EADF] shadow-[0_8px_24px_rgba(0,94,43,0.04)] overflow-hidden flex flex-col transition-transform hover:-translate-y-1 duration-300">
+<div class="relative h-48 bg-surface-container p-4 flex items-center justify-center">
+<img alt="PlayStation 5" class="h-full object-contain mix-blend-multiply" data-alt="A Sony PlayStation 5 console standing upright with a DualSense controller next to it, set against a stark, bright white background. Clean, high-key studio lighting emphasizes the sleek curves of the console. The visual style is premium gaming, modern, and highly desirable." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqPtH5K6mfZH_DJEzEvrAOzwK1_gXjuznKSYiHTkkPghpCqNhFThVO_87DgwCFMJKWXkFRdvvf8rMKNFCtFt9JusIjwPjFe-vpNNYLorFhLbjsRt9psabn0QspEwdfMPOIOf40_McQ_Sja5gtCQiHhzxkZrgeLnJo3vzhteXIL1A5Ceh4lF0yfPmKue2pdQTTiXZRccEZPAvB1DdXpqx1x5wC6PvEROpYbNFQaPRf-p4i2_XOwEsEFxNlvz7eyA3rgx0DJAvM3AXbD"/>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<!-- Item Name -->
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-title-md text-title-md text-on-surface font-bold">PlayStation 5 Slim</h3>
+<span class="font-label-sm text-label-sm bg-secondary-fixed/20 text-on-secondary-fixed-variant px-2 py-1 rounded">Gaming</span>
+</div>
+<!-- Description -->
+<p class="font-body-md text-body-md text-on-surface-variant mb-6 line-clamp-2">Disc edition + Extra DualSense Controller.</p>
+<div class="mt-auto">
+<!-- Ticket Price -->
+<div class="flex justify-between items-end mb-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Ticket Price</span>
+<span class="font-title-md text-title-md text-primary font-bold">₦3,000</span>
+</div>
+<!-- Total Spots -->
+<div class="mb-4">
+<div class="flex justify-between font-label-sm text-label-sm mb-1">
+<span class="text-on-surface">290 / 300 spots</span>
+<span class="text-secondary font-bold">96%</span>
+</div>
+<div class="w-full h-2 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-primary to-secondary-fixed w-[96%] rounded-full"></div>
+</div>
+</div>
+<a href="pot_details.html" class="w-full inline-flex items-center justify-center py-3 bg-primary text-on-primary font-label-sm text-label-sm rounded-lg hover:shadow-md hover:-translate-y-[2px] transition-all active:scale-[0.98]">
+                                Secure a Spot
+                            </a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer (Shared Component) -->
+<footer id="community" class="bg-primary text-on-primary mt-20">
+<div class="w-full px-margin-desktop py-xl flex flex-col md:flex-row justify-between items-start gap-lg max-w-[1280px] mx-auto">
+<div class="flex flex-col gap-4 max-w-sm">
+<a class="text-headline-lg font-headline-lg text-on-primary flex items-center gap-2" href="#">
+<span class="material-symbols-outlined fill text-tertiary-fixed">account_balance_wallet</span>
+                    Nairapot
+                </a>
+<p class="font-body-md text-body-md text-primary-fixed-dim/80">
+                    Empowering communities through collective growth. Own your dreams for a fraction.
+                </p>
+<p class="font-label-sm text-label-sm text-primary-fixed-dim mt-4">
+                    © 2024 Nairapot. Empowering communities through collective growth.
+                </p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-8 w-full md:w-auto">
+<div class="flex flex-col gap-3">
+<span class="font-label-sm text-label-sm text-secondary-fixed font-bold mb-2">Platform</span>
+<a class="font-body-md text-body-md text-primary-fixed-dim/80 hover:text-primary-fixed hover:underline transition-all" href="#">Active Pots</a>
+<a class="font-body-md text-body-md text-primary-fixed-dim/80 hover:text-primary-fixed hover:underline transition-all" href="#">Winners</a>
+<a class="font-body-md text-body-md text-primary-fixed-dim/80 hover:text-primary-fixed hover:underline transition-all" href="#">How it Works</a>
+</div>
+<div class="flex flex-col gap-3">
+<span class="font-label-sm text-label-sm text-secondary-fixed font-bold mb-2">Support</span>
+<a class="font-body-md text-body-md text-primary-fixed-dim/80 hover:text-primary-fixed hover:underline transition-all" href="#">FAQs</a>
+<a class="font-body-md text-body-md text-primary-fixed-dim/80 hover:text-primary-fixed hover:underline transition-all" href="#">Contact Support</a>
+<a class="font-body-md text-body-md text-primary-fixed-dim/80 hover:text-primary-fixed hover:underline transition-all" href="#">Partnerships</a>
+</div>
+<div class="flex flex-col gap-3">
+<span class="font-label-sm text-label-sm text-secondary-fixed font-bold mb-2">Legal</span>
+<a class="font-body-md text-body-md text-primary-fixed-dim/80 hover:text-primary-fixed hover:underline transition-all" href="#">Terms of Service</a>
+<a class="font-body-md text-body-md text-primary-fixed-dim/80 hover:text-primary-fixed hover:underline transition-all" href="#">Privacy Policy</a>
+</div>
+</div>
+</div>
+</footer>
+</body></html>

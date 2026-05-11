@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>iPhone 15 Pro - Nairapot</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@600;700&amp;family=Manrope:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "tertiary-fixed": "#ffe088",
+                "on-tertiary": "#ffffff",
+                "on-error": "#ffffff",
+                "surface-dim": "#dadadc",
+                "surface-container-highest": "#e2e2e5",
+                "error-container": "#ffdad6",
+                "on-tertiary-fixed": "#241a00",
+                "primary-container": "#005e2b",
+                "background": "#f9f9fc",
+                "on-secondary-container": "#257400",
+                "on-tertiary-container": "#4f3e00",
+                "surface-container": "#eeeef0",
+                "surface-bright": "#f9f9fc",
+                "tertiary": "#735c00",
+                "inverse-surface": "#2f3133",
+                "surface": "#f9f9fc",
+                "error": "#ba1a1a",
+                "primary-fixed": "#a3f5b2",
+                "primary-fixed-dim": "#88d898",
+                "on-surface": "#1a1c1e",
+                "surface-container-high": "#e8e8ea",
+                "secondary-container": "#9ff979",
+                "on-background": "#1a1c1e",
+                "surface-tint": "#196c37",
+                "surface-container-lowest": "#ffffff",
+                "on-primary-fixed-variant": "#005225",
+                "on-secondary-fixed": "#052100",
+                "secondary": "#226d00",
+                "secondary-fixed-dim": "#84db60",
+                "surface-container-low": "#f3f3f6",
+                "on-primary-container": "#85d595",
+                "on-tertiary-fixed-variant": "#574500",
+                "surface-variant": "#e2e2e5",
+                "inverse-primary": "#88d898",
+                "on-primary-fixed": "#00210b",
+                "tertiary-fixed-dim": "#e9c349",
+                "on-secondary-fixed-variant": "#185200",
+                "tertiary-container": "#cca830",
+                "outline": "#707a6f",
+                "inverse-on-surface": "#f0f0f3",
+                "on-primary": "#ffffff",
+                "on-error-container": "#93000a",
+                "primary": "#00441d",
+                "on-surface-variant": "#404940",
+                "on-secondary": "#ffffff",
+                "secondary-fixed": "#9ff979",
+                "outline-variant": "#bfc9bd"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+            },
+            "spacing": {
+                "lg": "40px",
+                "margin-mobile": "16px",
+                "gutter": "24px",
+                "margin-desktop": "48px",
+                "xl": "64px",
+                "xs": "4px",
+                "sm": "12px",
+                "md": "24px",
+                "base": "8px"
+            },
+            "fontFamily": {
+                "headline-lg-mobile": ["Hanken Grotesk"],
+                "body-md": ["Manrope"],
+                "title-md": ["Hanken Grotesk"],
+                "label-sm": ["Manrope"],
+                "headline-lg": ["Hanken Grotesk"],
+                "body-lg": ["Manrope"],
+                "display-lg": ["Hanken Grotesk"]
+            },
+            "fontSize": {
+                "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .nav-active {
+            border-bottom: 2px solid #00441d;
+            padding-bottom: 0.25rem;
+            font-weight: 700;
+            color: #00441d;
+        }
+    </style>
+</head>
+<body class="bg-surface font-body-md text-on-surface">
+<!-- TopNavBar -->
+<nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-desktop py-4 bg-surface/90 backdrop-blur-md border-b border-outline-variant shadow-sm">
+<div class="flex items-center gap-base">
+<a class="text-title-md font-title-md font-bold text-primary" href="index.html">Nairapot</a>
+</div>
+<div class="hidden md:flex items-center gap-lg">
+<a class="text-primary font-bold border-b-2 border-primary pb-1 font-label-sm text-label-sm" href="browse_pots_nairapot.html">Active Pots</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-sm text-label-sm" href="index.html#how-it-works">How it Works</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-sm text-label-sm" href="winners_gallery_nairapot.html">Winners</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-sm text-label-sm" href="index.html#community">Community</a>
+</div>
+<div class="flex items-center gap-md">
+<button class="text-primary font-label-sm text-label-sm hover:bg-surface-container-low transition-all px-4 py-2 rounded-lg">Login</button>
+<button class="bg-primary text-on-primary font-label-sm text-label-sm px-6 py-2 rounded-xl shadow-md active:scale-95 transition-all">Join a Pot</button>
+</div>
+</nav>
+<main class="pt-24 pb-xl px-margin-mobile md:px-margin-desktop max-w-[1280px] mx-auto">
+<!-- Breadcrumb -->
+<nav class="flex items-center gap-xs mb-base text-on-surface-variant font-label-sm text-label-sm">
+<a class="hover:text-primary" href="index.html">Home</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<a class="hover:text-primary" href="browse_pots_nairapot.html">Active Pots</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-primary font-bold">iPhone 15 Pro Pot</span>
+</nav>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-lg mt-md">
+<!-- Left Column: Product Imagery & Details -->
+<div class="lg:col-span-8">
+<!-- Main Product Image -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md mb-md shadow-sm overflow-hidden flex items-center justify-center min-h-[400px] md:min-h-[500px]">
+<img class="max-w-full h-auto object-contain transform hover:scale-105 transition-transform duration-500" data-alt="A professional studio product shot of a Titanium iPhone 15 Pro resting on a minimalist white surface. The lighting is crisp and high-key, emphasizing the refined texture of the titanium frame. Soft ambient shadows cast a realistic depth against the bright, clean background. The aesthetic is modern and premium, using a neutral color palette with hints of the Nairapot green brand accents in the surrounding environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSAltFk8OtGmFsNTeSTBvJo0tvP5ViKuIVywY8CjZudJ4ke3XI2Q0_qsVuDVBWUF6bqkbFW_7i0P70kfTFPUA4zw3ZE6wOoHsrF2POl2RAlyyNWpLoSWRHTlp3VunLBCnScW-IDSkHY6T_GkUxDG3970b8Yj7-AQH8ZkjBUdwqgI9hDDG04INPFE2Lsgs9eXSsY16yFa7YehIhHZUMnXB-jPnLno33PlHdCtbcKiR4sKnS6RSC_hjxBV9_Lw73Ka8QtZTsFHTsxmS2"/>
+</div>
+<!-- Pot Progress & Identity -->
+<div class="mb-lg">
+<div class="flex justify-between items-end mb-sm">
+<div>
+<span class="inline-block px-3 py-1 bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm rounded-full mb-base">POT #AP-204</span>
+<h1 class="font-headline-lg text-headline-lg text-primary">iPhone 15 Pro (128GB Titanium)</h1>
+</div>
+<div class="text-right">
+<p class="font-label-sm text-label-sm text-on-surface-variant">Pot Closing In</p>
+<p class="font-title-md text-title-md text-secondary font-bold">14:22:05</p>
+</div>
+</div>
+<div class="bg-surface-container-high h-4 rounded-full overflow-hidden mb-base">
+<div class="h-full bg-gradient-to-r from-primary to-secondary w-[65%] rounded-full"></div>
+</div>
+<div class="flex justify-between text-on-surface-variant font-label-sm text-label-sm">
+<span>650 units joined</span>
+<span>1,000 units total</span>
+</div>
+</div>
+<!-- Specs Bento Grid -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-md">
+<div class="p-md bg-surface-container-low border border-outline-variant rounded-xl flex flex-col items-center text-center group hover:bg-surface-container-high transition-all">
+<span class="material-symbols-outlined text-primary mb-base text-[32px]">photo_camera</span>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Main Camera</p>
+<p class="font-body-md text-body-md font-bold">48MP Pro</p>
+</div>
+<div class="p-md bg-surface-container-low border border-outline-variant rounded-xl flex flex-col items-center text-center group hover:bg-surface-container-high transition-all">
+<span class="material-symbols-outlined text-primary mb-base text-[32px]">memory</span>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Processor</p>
+<p class="font-body-md text-body-md font-bold">A17 Pro Chip</p>
+</div>
+<div class="p-md bg-surface-container-low border border-outline-variant rounded-xl flex flex-col items-center text-center group hover:bg-surface-container-high transition-all">
+<span class="material-symbols-outlined text-primary mb-base text-[32px]">smartphone</span>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Display</p>
+<p class="font-body-md text-body-md font-bold">6.1" OLED</p>
+</div>
+<div class="p-md bg-surface-container-low border border-outline-variant rounded-xl flex flex-col items-center text-center group hover:bg-surface-container-high transition-all">
+<span class="material-symbols-outlined text-primary mb-base text-[32px]">battery_charging_full</span>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Battery</p>
+<p class="font-body-md text-body-md font-bold">Up to 23h</p>
+</div>
+</div>
+<!-- Community Snippet -->
+<div class="mt-lg p-md border border-outline-variant rounded-xl flex flex-col md:flex-row items-center gap-md">
+<div class="flex -space-x-3">
+<img class="w-10 h-10 rounded-full border-2 border-surface" data-alt="Close-up portrait of a young professional smiling at the camera, soft natural lighting, modern studio background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyu3T2xh1dDMiBRgQNUIsM1zM_XmwqgaIK0GU1h0-OkOVLZyEBAQAlIZRzMhSkBrTEY1QYbYh-4wZhHxgZRAtWglHlu_GImAYyYjOg11b4gSIjyrjenYD8OnILS6EETjCWBKffcp5Jsu5UZ2jSR7nzoa0FZaPDLjYDY1_4tZviuwvb3GOUcZ2K0vV0nKaleRBT0Uwytb2gTX85RKJpxYD4XOXncJPONKSsNoJuUKy3vgd5IEGAQAtpkuarci6HQymA4ceCBHNGa9il"/>
+<img class="w-10 h-10 rounded-full border-2 border-surface" data-alt="Close-up portrait of a man in his early 30s with a warm expression, outdoor lighting, blurred urban background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAieGAYamaD87p-dItd5686EIUWSoXZSYxj33lru5zH6e372c0fwya22tiNDwqU_pyD8YTs0NskGClcjah8GzxNLu3svPIXHA0chKYuqFpRtEfP1g-iCP0KdfCH_xAUilwR4ExDq0qrU1AlvrlMs3P-oEsVm2g-Jwns6W4F8HPbNrEBgmrMKHf2owCVz5_8ixteqGPVHArtjvW9XB8_kMpzV5VSzGR5I7iPJ5apWr4pNCzc2mwd7yhSUawz3Iydoj47w_kehhs1FJl0"/>
+<img class="w-10 h-10 rounded-full border-2 border-surface" data-alt="Close-up portrait of a cheerful woman with vibrant energy, bright soft lighting, modern corporate office background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuASXk3ggNtYNCJxLj1OlSH4Ue7yXnE8MmbigqyDyt8vvyfBWHADK1Nxloj8hvjTahL63HmzPjjJEROHyrHCnbUACvyKDErDQhgEcHLeav6I8I2Y7UXXbvl_-zgFUTweohVwbscD0Tdohgun4PRTtrMG1M288ahBDL3TWV4mw9WRy8QMlWJMB510FcfEoFyc2wY_A3J_kTsW6pfIx90lCbrwzrnf_RCyiB4Z9_VrArB2OsGHXw4Rs0uQdXVSAL_2KyXLmkUkA4h2CpNB"/>
+<div class="w-10 h-10 rounded-full border-2 border-surface bg-primary flex items-center justify-center text-on-primary font-label-sm text-label-sm">
+                            +42
+                        </div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                        Join 650 others in this pot. <span class="text-primary font-bold">Tunde, Sarah, and 42 more joined recently.</span>
+</p>
+</div><div class="mt-lg p-md border border-outline-variant rounded-xl bg-surface-container-lowest shadow-sm">
+<h3 class="font-title-md text-title-md text-primary mb-md">Community Comments</h3>
+<!-- Input Section -->
+<div class="flex gap-md mb-lg">
+<img alt="Your avatar" class="w-10 h-10 rounded-full border-2 border-surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyu3T2xh1dDMiBRgQNUIsM1zM_XmwqgaIK0GU1h0-OkOVLZyEBAQAlIZRzMhSkBrTEY1QYbYh-4wZhHxgZRAtWglHlu_GImAYyYjOg11b4gSIjyrjenYD8OnILS6EETjCWBKffcp5Jsu5UZ2jSR7nzoa0FZaPDLjYDY1_4tZviuwvb3GOUcZ2K0vV0nKaleRBT0Uwytb2gTX85RKJpxYD4XOXncJPONKSsNoJuUKy3vgd5IEGAQAtpkuarci6HQymA4ceCBHNGa9il"/>
+<div class="flex-1 flex flex-col sm:flex-row gap-base">
+<input class="flex-1 bg-surface border border-outline-variant rounded-lg px-4 py-2 focus:ring-2 focus:ring-primary focus:border-transparent text-body-md outline-none" placeholder="Drop a short comment..." type="text"/>
+<button class="bg-primary text-on-primary font-label-sm text-label-sm px-6 py-2 rounded-lg hover:bg-primary-container transition-all active:scale-95 shadow-sm">
+        Post
+      </button>
+</div>
+</div>
+<!-- Comments Feed -->
+<div class="space-y-md">
+<!-- Comment 1 -->
+<div class="flex gap-md">
+<img alt="User avatar" class="w-10 h-10 rounded-full border border-outline-variant" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAieGAYamaD87p-dItd5686EIUWSoXZSYxj33lru5zH6e372c0fwya22tiNDwqU_pyD8YTs0NskGClcjah8GzxNLu3svPIXHA0chKYuqFpRtEfP1g-iCP0KdfCH_xAUilwR4ExDq0qrU1AlvrlMs3P-oEsVm2g-Jwns6W4F8HPbNrEBgmrMKHf2owCVz5_8ixteqGPVHArtjvW9XB8_kMpzV5VSzGR5I7iPJ5apWr4pNCzc2mwd7yhSUawz3Iydoj47w_kehhs1FJl0"/>
+<div class="flex-1">
+<p class="font-body-md font-bold text-on-surface">Tunde Ogunsina</p>
+<p class="text-body-md text-on-surface-variant">Let's go! Hope we hit the goal soon. This iPhone looks clean. 🔥</p>
+</div>
+</div>
+<!-- Comment 2 -->
+<div class="flex gap-md">
+<img alt="User avatar" class="w-10 h-10 rounded-full border border-outline-variant" src="https://lh3.googleusercontent.com/aida-public/AB6AXuASXk3ggNtYNCJxLj1OlSH4Ue7yXnE8MmbigqyDyt8vvyfBWHADK1Nxloj8hvjTahL63HmzPjjJEROHyrHCnbUACvyKDErDQhgEcHLeav6I8I2Y7UXXbvl_-zgFUTweohVwbscD0Tdohgun4PRTtrMG1M288ahBDL3TWV4mw9WRy8QMlWJMB510FcfEoFyc2wY_A3J_kTsW6pfIx90lCbrwzrnf_RCyiB4Z9_VrArB2OsGHXw4Rs0uQdXVSAL_2KyXLmkUkA4h2CpNB"/>
+<div class="flex-1">
+<p class="font-body-md font-bold text-on-surface">Sarah Johnson</p>
+<p class="text-body-md text-on-surface-variant">Already secured 5 spots! Fingers crossed. Good luck everyone!</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Join Pot Card -->
+<div class="lg:col-span-4">
+<div class="sticky top-28 bg-surface-container-lowest border border-outline-variant rounded-xl p-md shadow-lg">
+<h2 class="font-title-md text-title-md text-primary mb-md">Join the Pot</h2>
+<div class="space-y-md">
+<!-- Unit Price -->
+<div class="flex justify-between items-center p-base bg-surface-container-low rounded-lg">
+<span class="text-on-surface-variant font-label-sm text-label-sm uppercase">Unit Price</span>
+<span class="text-primary font-bold font-title-md text-title-md">₦5,000</span>
+</div>
+<!-- Stepper Section -->
+<div class="space-y-base">
+<div class="flex justify-between text-on-surface font-label-sm text-label-sm">
+<span>Number of Spots</span>
+<span class="text-primary">Max 50</span>
+</div>
+<div class="flex items-center justify-between border border-outline-variant rounded-xl p-xs bg-surface">
+<button id="decreaseSpotsBtn" class="w-12 h-12 flex items-center justify-center text-primary hover:bg-surface-container hover:rounded-lg transition-all active:scale-90" type="button">
+<span class="material-symbols-outlined">remove</span>
+</button>
+<div class="text-center">
+<span id="spotsCount" class="font-headline-lg text-headline-lg text-primary">10</span>
+<span class="block font-label-sm text-label-sm text-on-surface-variant -mt-1">spots</span>
+</div>
+<button id="increaseSpotsBtn" class="w-12 h-12 flex items-center justify-center text-primary hover:bg-surface-container hover:rounded-lg transition-all active:scale-90" type="button">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</div>
+<!-- Total Calculation -->
+<div class="border-t border-outline-variant pt-md">
+<div class="flex justify-between mb-base">
+<span class="text-on-surface-variant font-body-md text-body-md">Subtotal (<span id="spotsCountLabel">10</span> x ₦<span id="unitPriceLabel">5,000</span>)</span>
+<span id="subtotalAmount" class="text-on-surface font-body-md text-body-md">₦50,000</span>
+</div>
+<div class="flex justify-between mb-md">
+<span class="text-on-surface-variant font-body-md text-body-md">Transaction Fee</span>
+<span class="text-on-surface font-body-md text-body-md">₦150</span>
+</div>
+<div class="flex justify-between items-center bg-secondary-container/20 p-md rounded-xl border border-secondary/20">
+<span class="font-title-md text-title-md text-primary font-bold">Total Cost</span>
+<span id="totalCostAmount" class="font-title-md text-title-md text-primary font-bold">₦50,150</span>
+</div>
+</div>
+<!-- Wallet Info -->
+<div class="p-md bg-surface-container-high rounded-xl flex items-center gap-md">
+<div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+</div>
+<div>
+<p class="text-on-surface-variant font-label-sm text-label-sm">Wallet Balance</p>
+<p class="font-body-md text-body-md font-bold">₦128,400.00</p>
+</div>
+<button class="ml-auto text-primary font-bold font-label-sm text-label-sm hover:underline">Top Up</button>
+</div>
+<!-- Action Button -->
+<button class="w-full py-4 bg-primary text-on-primary font-title-md text-title-md rounded-xl shadow-lg hover:bg-primary-container transition-all active:scale-95 flex items-center justify-center gap-base">
+                            Secure Your Spots
+                            <span class="material-symbols-outlined">rocket_launch</span>
+</button>
+<div class="flex items-center justify-center gap-xs text-on-surface-variant font-label-sm text-label-sm opacity-70">
+<span class="material-symbols-outlined text-[16px]">verified_user</span>
+                            Secure community growth via Nairapot
+                        </div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full px-margin-desktop py-xl flex flex-col md:flex-row justify-between items-start gap-lg bg-primary text-on-primary">
+<div class="flex flex-col gap-md max-w-sm">
+<span class="text-headline-lg font-headline-lg text-on-primary">Nairapot</span>
+<p class="font-body-md text-body-md text-primary-fixed-dim/80">© 2024 Nairapot. Empowering communities through collective growth.</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-xl">
+<div class="flex flex-col gap-base">
+<span class="font-bold text-secondary-fixed mb-xs uppercase font-label-sm text-label-sm tracking-widest">Platform</span>
+<a class="text-primary-fixed-dim/80 hover:text-primary-fixed transition-colors hover:underline" href="#">Active Pots</a>
+<a class="text-primary-fixed-dim/80 hover:text-primary-fixed transition-colors hover:underline" href="#">How it Works</a>
+<a class="text-primary-fixed-dim/80 hover:text-primary-fixed transition-colors hover:underline" href="#">Partnerships</a>
+</div>
+<div class="flex flex-col gap-base">
+<span class="font-bold text-secondary-fixed mb-xs uppercase font-label-sm text-label-sm tracking-widest">Support</span>
+<a class="text-primary-fixed-dim/80 hover:text-primary-fixed transition-colors hover:underline" href="#">Contact Support</a>
+<a class="text-primary-fixed-dim/80 hover:text-primary-fixed transition-colors hover:underline" href="#">FAQs</a>
+<a class="text-primary-fixed-dim/80 hover:text-primary-fixed transition-colors hover:underline" href="#">Community</a>
+</div>
+<div class="flex flex-col gap-base">
+<span class="font-bold text-secondary-fixed mb-xs uppercase font-label-sm text-label-sm tracking-widest">Legal</span>
+<a class="text-primary-fixed-dim/80 hover:text-primary-fixed transition-colors hover:underline" href="#">Terms of Service</a>
+<a class="text-primary-fixed-dim/80 hover:text-primary-fixed transition-colors hover:underline" href="#">Privacy Policy</a>
+</div>
+</div>
+</footer>
+<script>
+  const unitPrice = 5000;
+  const transactionFee = 150;
+  const minSpots = 1;
+  const maxSpots = 50;
+
+  const spotsCountEl = document.getElementById('spotsCount');
+  const spotsCountLabelEl = document.getElementById('spotsCountLabel');
+  const subtotalAmountEl = document.getElementById('subtotalAmount');
+  const totalCostAmountEl = document.getElementById('totalCostAmount');
+  const decreaseSpotsBtn = document.getElementById('decreaseSpotsBtn');
+  const increaseSpotsBtn = document.getElementById('increaseSpotsBtn');
+
+  function formatCurrency(value) {
+    return '₦' + value.toLocaleString('en-NG');
+  }
+
+  function updateTotals(count) {
+    const subtotal = count * unitPrice;
+    spotsCountEl.textContent = count;
+    spotsCountLabelEl.textContent = count;
+    subtotalAmountEl.textContent = formatCurrency(subtotal);
+    totalCostAmountEl.textContent = formatCurrency(subtotal + transactionFee);
+    decreaseSpotsBtn.disabled = count <= minSpots;
+    increaseSpotsBtn.disabled = count >= maxSpots;
+    decreaseSpotsBtn.classList.toggle('opacity-40', count <= minSpots);
+    increaseSpotsBtn.classList.toggle('opacity-40', count >= maxSpots);
+  }
+
+  decreaseSpotsBtn.addEventListener('click', () => {
+    const current = Number(spotsCountEl.textContent || '0');
+    if (current > minSpots) {
+      updateTotals(current - 1);
+    }
+  });
+
+  increaseSpotsBtn.addEventListener('click', () => {
+    const current = Number(spotsCountEl.textContent || '0');
+    if (current < maxSpots) {
+      updateTotals(current + 1);
+    }
+  });
+
+  updateTotals(Number(spotsCountEl.textContent || '10'));
+</script>
+</body></html>

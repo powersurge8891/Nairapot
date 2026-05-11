@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600&amp;family=Hanken+Grotesk:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #f9f9fc;
+        }
+        .custom-shadow {
+            box-shadow: 0 4px 20px rgba(0, 94, 43, 0.08);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-tint": "#196c37",
+                      "on-secondary": "#ffffff",
+                      "error-container": "#ffdad6",
+                      "on-tertiary": "#ffffff",
+                      "on-surface-variant": "#404940",
+                      "on-tertiary-container": "#4f3e00",
+                      "surface-container-lowest": "#ffffff",
+                      "background": "#f9f9fc",
+                      "tertiary-container": "#cca830",
+                      "primary-container": "#005e2b",
+                      "on-tertiary-fixed": "#241a00",
+                      "on-error-container": "#93000a",
+                      "surface": "#f9f9fc",
+                      "primary-fixed": "#a3f5b2",
+                      "primary": "#00441d",
+                      "surface-variant": "#e2e2e5",
+                      "surface-container-low": "#f3f3f6",
+                      "on-surface": "#1a1c1e",
+                      "on-secondary-container": "#257400",
+                      "inverse-on-surface": "#f0f0f3",
+                      "error": "#ba1a1a",
+                      "outline": "#707a6f",
+                      "surface-container": "#eeeef0",
+                      "surface-bright": "#f9f9fc",
+                      "primary-fixed-dim": "#88d898",
+                      "on-tertiary-fixed-variant": "#574500",
+                      "inverse-primary": "#88d898",
+                      "outline-variant": "#bfc9bd",
+                      "on-error": "#ffffff",
+                      "inverse-surface": "#2f3133",
+                      "secondary-fixed-dim": "#84db60",
+                      "on-secondary-fixed-variant": "#185200",
+                      "on-primary-container": "#85d595",
+                      "on-background": "#1a1c1e",
+                      "on-secondary-fixed": "#052100",
+                      "tertiary": "#735c00",
+                      "tertiary-fixed-dim": "#e9c349",
+                      "on-primary": "#ffffff",
+                      "surface-dim": "#dadadc",
+                      "secondary-container": "#9ff979",
+                      "surface-container-highest": "#e2e2e5",
+                      "surface-container-high": "#e8e8ea",
+                      "secondary": "#226d00",
+                      "on-primary-fixed-variant": "#005225",
+                      "on-primary-fixed": "#00210b",
+                      "tertiary-fixed": "#ffe088",
+                      "secondary-fixed": "#9ff979"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "sm": "12px",
+                      "xs": "4px",
+                      "base": "8px",
+                      "lg": "40px",
+                      "md": "24px",
+                      "margin-mobile": "16px",
+                      "xl": "64px",
+                      "gutter": "24px",
+                      "margin-desktop": "48px"
+              },
+              "fontFamily": {
+                      "label-sm": ["Manrope"],
+                      "headline-lg-mobile": ["Hanken Grotesk"],
+                      "title-md": ["Hanken Grotesk"],
+                      "headline-lg": ["Hanken Grotesk"],
+                      "body-md": ["Manrope"],
+                      "body-lg": ["Manrope"],
+                      "display-lg": ["Hanken Grotesk"]
+              },
+              "fontSize": {
+                      "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                      "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+              }
+            },
+          },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md">
+<!-- SideNavBar Shell -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-surface-container-low dark:bg-inverse-surface shadow-sm flex flex-col p-md border-r border-outline-variant z-50">
+<div class="mb-xl">
+<h1 class="font-headline-lg text-headline-lg font-bold text-primary dark:text-primary-fixed-dim">Nairapot Admin</h1>
+<p class="font-body-md text-on-surface-variant">Growth &amp; Community</p>
+</div>
+<nav class="flex-grow flex flex-col gap-2">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-primary transition-colors hover:bg-surface-container-high dark:hover:bg-surface-variant transition-all duration-200 active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>Overview</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 bg-secondary-container text-on-secondary-container rounded-lg font-bold transition-all duration-200 active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span>Manage Pots</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-primary transition-colors hover:bg-surface-container-high dark:hover:bg-surface-variant transition-all duration-200 active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span>Users</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-primary transition-colors hover:bg-surface-container-high dark:hover:bg-surface-variant transition-all duration-200 active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="swap_horiz">swap_horiz</span>
+<span>Transactions</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-primary transition-colors hover:bg-surface-container-high dark:hover:bg-surface-variant transition-all duration-200 active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span>Settings</span>
+</a>
+</nav>
+<div class="mt-auto pt-md border-t border-outline-variant">
+<button class="w-full bg-primary text-on-primary py-sm rounded-lg font-bold hover:shadow-md transition-all active:scale-95">
+                Export Reports
+            </button>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-64 min-h-screen">
+<!-- TopNavBar Shell -->
+<header class="fixed top-0 right-0 left-64 h-16 bg-surface dark:bg-surface border-b border-outline-variant flex justify-between items-center px-md z-40">
+<div class="flex items-center gap-4">
+<h2 class="font-display-lg text-title-md text-primary dark:text-primary-fixed-dim">Admin Dashboard</h2>
+</div>
+<div class="flex items-center gap-md">
+<div class="relative hidden lg:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant" data-icon="search">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container-lowest border border-outline-variant rounded-full text-sm focus:outline-none focus:border-secondary w-64" placeholder="Search pots or users..." type="text"/>
+</div>
+<div class="flex items-center gap-sm">
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-surface-container-low rounded-full p-2 transition-all" data-icon="notifications">notifications</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-surface-container-low rounded-full p-2 transition-all" data-icon="help_outline">help_outline</button>
+<div class="h-8 w-8 rounded-full overflow-hidden bg-surface-variant ml-2 border border-outline-variant">
+<img alt="Administrator" class="h-full w-full object-cover" data-alt="A professional headshot of a modern corporate administrator with a confident smile, wearing a dark blazer, set against a clean, soft-focus office background with warm green accents reflecting the brand colors." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3ermPydPxE2gfeyZTAu9_LLAbos4Kh4mtpzt4r_UhlUB1BAVMdZXAEQzO8AqVfVHulIjoE1bsx7GMk0hK_3qg1a2grMHQngPyGVn67Grf9uqPZyqJkPBOoqZZZBUJlL0eo7NBWTF9x-KlBGyG3oKGkhElb063YVsR4gTWVkrwldbC8kX7ibuL8mr99iRWYZhrnfyTvujsP4N1HgKmBc9BjIIGWDbZ0kbhbzvhx-0n5qBEifpcqZqcGeghSeNpVWCB2A-q9GmK5_DV"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Page Content -->
+<section class="pt-24 px-md pb-xl max-w-[1280px] mx-auto">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-xl gap-md">
+<div>
+<h3 class="font-headline-lg text-headline-lg text-primary">Manage Pots</h3>
+<p class="font-body-md text-on-surface-variant">Monitor and control active community investment pots.</p>
+</div>
+<button class="bg-secondary text-on-secondary px-md py-sm rounded-xl font-bold flex items-center gap-2 hover:shadow-lg transition-all active:scale-95">
+<span class="material-symbols-outlined" data-icon="add_circle">add_circle</span>
+                    Create New Pot
+                </button>
+</div>
+<!-- Stats Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-md mb-xl">
+<div class="bg-surface-container-lowest p-md rounded-xl border border-outline-variant custom-shadow">
+<div class="flex justify-between items-start">
+<div>
+<p class="text-label-sm font-label-sm text-on-surface-variant uppercase">Total Active Value</p>
+<h4 class="text-headline-lg font-headline-lg text-primary">₦24,500,000</h4>
+</div>
+<span class="bg-secondary-container text-on-secondary-container px-2 py-1 rounded text-xs font-bold">+12%</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-md rounded-xl border border-outline-variant custom-shadow">
+<div>
+<p class="text-label-sm font-label-sm text-on-surface-variant uppercase">Live Pots</p>
+<h4 class="text-headline-lg font-headline-lg text-primary">14</h4>
+</div>
+<div class="mt-2 flex -space-x-2">
+<div class="w-8 h-8 rounded-full border-2 border-surface bg-primary-fixed-dim"></div>
+<div class="w-8 h-8 rounded-full border-2 border-surface bg-secondary-fixed"></div>
+<div class="w-8 h-8 rounded-full border-2 border-surface bg-tertiary-fixed"></div>
+<div class="flex items-center justify-center w-8 h-8 rounded-full border-2 border-surface bg-surface-variant text-[10px] font-bold">+120</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-md rounded-xl border border-outline-variant custom-shadow">
+<div>
+<p class="text-label-sm font-label-sm text-on-surface-variant uppercase">Success Rate</p>
+<h4 class="text-headline-lg font-headline-lg text-secondary">98.2%</h4>
+</div>
+<div class="mt-4 w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-primary to-secondary" style="width: 98%;"></div>
+</div>
+</div>
+</div>
+<!-- Pots Table Container -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant custom-shadow overflow-hidden">
+<div class="p-md border-b border-outline-variant flex justify-between items-center">
+<h5 class="font-title-md text-title-md text-on-surface">Active Pots Overview</h5>
+<div class="flex gap-2">
+<button class="flex items-center gap-1 text-sm font-semibold text-on-surface-variant border border-outline-variant px-3 py-1.5 rounded-lg hover:bg-surface-container-low transition-all">
+<span class="material-symbols-outlined text-sm" data-icon="filter_list">filter_list</span>
+                            Filter
+                        </button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low text-on-surface-variant font-label-sm text-xs uppercase tracking-wider">
+<th class="px-md py-4 font-semibold">Pot Name &amp; ID</th>
+<th class="px-md py-4 font-semibold">Prize Value</th>
+<th class="px-md py-4 font-semibold">Unit Price</th>
+<th class="px-md py-4 font-semibold">Filled %</th>
+<th class="px-md py-4 font-semibold">Time Left</th>
+<th class="px-md py-4 font-semibold">Status</th>
+<th class="px-md py-4 font-semibold text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-md py-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined" data-icon="savings">savings</span>
+</div>
+<div>
+<p class="font-bold text-on-surface">Lagos Elite Alpha</p>
+<p class="text-xs text-on-surface-variant">#POT-2401-A</p>
+</div>
+</div>
+</td>
+<td class="px-md py-4 font-bold text-primary">₦5,000,000</td>
+<td class="px-md py-4 text-on-surface">₦5,000</td>
+<td class="px-md py-4">
+<div class="w-32">
+<div class="flex justify-between text-[10px] mb-1 font-bold">
+<span>85%</span>
+<span>425/500</span>
+</div>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full">
+<div class="bg-secondary h-full rounded-full" style="width: 85%;"></div>
+</div>
+</div>
+</td>
+<td class="px-md py-4">
+<div class="flex items-center gap-1 text-on-surface">
+<span class="material-symbols-outlined text-sm" data-icon="schedule">schedule</span>
+<span class="text-sm font-semibold">04h : 22m</span>
+</div>
+</td>
+<td class="px-md py-4">
+<span class="bg-secondary-container text-on-secondary-container px-2 py-1 rounded-full text-[10px] font-bold uppercase">Trending</span>
+</td>
+<td class="px-md py-4 text-right">
+<button class="text-primary font-bold text-sm hover:underline decoration-2 underline-offset-4">View Details</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-md py-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-tertiary-container flex items-center justify-center text-on-tertiary-container">
+<span class="material-symbols-outlined" data-icon="auto_awesome" data-weight="fill" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</div>
+<div>
+<p class="font-bold text-on-surface">Gold Harvest Pot</p>
+<p class="text-xs text-on-surface-variant">#POT-2401-B</p>
+</div>
+</div>
+</td>
+<td class="px-md py-4 font-bold text-primary">₦12,500,000</td>
+<td class="px-md py-4 text-on-surface">₦25,000</td>
+<td class="px-md py-4">
+<div class="w-32">
+<div class="flex justify-between text-[10px] mb-1 font-bold">
+<span>42%</span>
+<span>210/500</span>
+</div>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full">
+<div class="bg-tertiary h-full rounded-full" style="width: 42%;"></div>
+</div>
+</div>
+</td>
+<td class="px-md py-4">
+<div class="flex items-center gap-1 text-on-surface">
+<span class="material-symbols-outlined text-sm" data-icon="schedule">schedule</span>
+<span class="text-sm font-semibold">18h : 10m</span>
+</div>
+</td>
+<td class="px-md py-4">
+<span class="bg-surface-container-highest text-on-surface-variant px-2 py-1 rounded-full text-[10px] font-bold uppercase">Stable</span>
+</td>
+<td class="px-md py-4 text-right">
+<button class="text-primary font-bold text-sm hover:underline decoration-2 underline-offset-4">View Details</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-md py-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined" data-icon="rocket_launch">rocket_launch</span>
+</div>
+<div>
+<p class="font-bold text-on-surface">Quick Win Sprinter</p>
+<p class="text-xs text-on-surface-variant">#POT-2401-C</p>
+</div>
+</div>
+</td>
+<td class="px-md py-4 font-bold text-primary">₦2,500,000</td>
+<td class="px-md py-4 text-on-surface">₦1,000</td>
+<td class="px-md py-4">
+<div class="w-32">
+<div class="flex justify-between text-[10px] mb-1 font-bold text-error">
+<span>94%</span>
+<span>2350/2500</span>
+</div>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full">
+<div class="bg-error h-full rounded-full" style="width: 94%;"></div>
+</div>
+</div>
+</td>
+<td class="px-md py-4">
+<div class="flex items-center gap-1 text-error animate-pulse">
+<span class="material-symbols-outlined text-sm" data-icon="timer">timer</span>
+<span class="text-sm font-bold">00h : 14m</span>
+</div>
+</td>
+<td class="px-md py-4">
+<span class="bg-error-container text-on-error-container px-2 py-1 rounded-full text-[10px] font-bold uppercase">Closing</span>
+</td>
+<td class="px-md py-4 text-right">
+<button class="text-primary font-bold text-sm hover:underline decoration-2 underline-offset-4">View Details</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-md py-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined" data-icon="groups">groups</span>
+</div>
+<div>
+<p class="font-bold text-on-surface">Abuja Growth Hub</p>
+<p class="text-xs text-on-surface-variant">#POT-2401-D</p>
+</div>
+</div>
+</td>
+<td class="px-md py-4 font-bold text-primary">₦7,000,000</td>
+<td class="px-md py-4 text-on-surface">₦7,000</td>
+<td class="px-md py-4">
+<div class="w-32">
+<div class="flex justify-between text-[10px] mb-1 font-bold">
+<span>15%</span>
+<span>150/1000</span>
+</div>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full">
+<div class="bg-secondary h-full rounded-full" style="width: 15%;"></div>
+</div>
+</div>
+</td>
+<td class="px-md py-4">
+<div class="flex items-center gap-1 text-on-surface">
+<span class="material-symbols-outlined text-sm" data-icon="calendar_today">calendar_today</span>
+<span class="text-sm font-semibold">2d : 05h</span>
+</div>
+</td>
+<td class="px-md py-4">
+<span class="bg-surface-container-highest text-on-surface-variant px-2 py-1 rounded-full text-[10px] font-bold uppercase">New</span>
+</td>
+<td class="px-md py-4 text-right">
+<button class="text-primary font-bold text-sm hover:underline decoration-2 underline-offset-4">View Details</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-md bg-surface-container-low border-t border-outline-variant flex justify-between items-center text-on-surface-variant">
+<p class="text-xs font-semibold">Showing 4 of 14 active pots</p>
+<div class="flex gap-1">
+<button class="p-1 hover:bg-surface-container-highest rounded transition-all material-symbols-outlined text-sm" data-icon="chevron_left">chevron_left</button>
+<button class="px-3 py-1 bg-primary text-on-primary rounded text-xs font-bold">1</button>
+<button class="px-3 py-1 hover:bg-surface-container-highest rounded text-xs font-bold">2</button>
+<button class="px-3 py-1 hover:bg-surface-container-highest rounded text-xs font-bold">3</button>
+<button class="p-1 hover:bg-surface-container-highest rounded transition-all material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</button>
+</div>
+</div>
+</div>
+<!-- Promotion Bento Grid -->
+<div class="mt-xl grid grid-cols-1 md:grid-cols-2 gap-md">
+<div class="relative overflow-hidden rounded-xl h-48 group border border-outline-variant custom-shadow">
+<img alt="Community Growth" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A diverse group of happy professionals in a modern, brightly lit co-working space in Lagos, celebrating together with high-fives. The scene is filled with natural light, clean white walls, and lush green plants, embodying a vibrant, growth-oriented fintech brand aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqNwoXkdHRkcZ-JEWegfi_aG4yQi4csU6cojq4HHkx2yLDc1e4hDQ4uvHdmWj58cD6zdGgKv7l5dieVzdXloJY6ISJknny4LFJLD9bXR5Xi1ciUOmySwasG1xCTjgvYhn5wQHV2bIi_hoGEgVlUNRlYtSJyWAXlZGOUGFkeOw254LaHQYlZZ8fughZN1yJ22RhHymBlyf176GiVzV2Z1cWQUxRszTFiackq1AZfDun9FX2oB7iYJoB2XmYVXHFFbEqqWx7UqKHSXLu"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/90 to-transparent p-md flex flex-col justify-end">
+<h6 class="text-on-primary font-bold text-xl">Boost Community Engagement</h6>
+<p class="text-primary-fixed text-sm">Review recently completed pots and highlight winners to drive participation.</p>
+</div>
+</div>
+<div class="bg-tertiary-container text-on-tertiary-container rounded-xl p-md flex flex-col justify-between border border-outline-variant custom-shadow relative overflow-hidden">
+<div class="z-10">
+<h6 class="font-bold text-xl mb-2">Revenue Forecast</h6>
+<p class="text-on-tertiary-fixed-variant text-sm">Based on current filling rates, platform commissions are projected to reach ₦1.2M by end of week.</p>
+</div>
+<div class="mt-4 flex items-center justify-between z-10">
+<button class="bg-on-tertiary-container text-tertiary-container px-4 py-2 rounded-lg font-bold text-xs uppercase tracking-wider hover:bg-opacity-90 transition-all">Details</button>
+<span class="material-symbols-outlined text-4xl opacity-20" data-icon="trending_up">trending_up</span>
+</div>
+<!-- Decorative element -->
+<div class="absolute -right-10 -bottom-10 w-40 h-40 bg-on-tertiary-container/10 rounded-full blur-2xl"></div>
+</div>
+</div>
+</section>
+</main>
+<!-- Contextual FAB (Only for Home/Management Dashboard) -->
+<button class="fixed bottom-8 right-8 w-14 h-14 bg-secondary text-on-secondary rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-50">
+<span class="material-symbols-outlined text-2xl" data-icon="add">add</span>
+</button>
+</body></html>

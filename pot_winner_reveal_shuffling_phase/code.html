@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Nairapot - Winner Selection</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;family=Manrope:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-primary": "#88d898",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-dim": "#dadadc",
+                        "on-surface": "#1a1c1e",
+                        "surface-container-low": "#f3f3f6",
+                        "outline": "#707a6f",
+                        "on-error-container": "#93000a",
+                        "surface-tint": "#196c37",
+                        "primary-container": "#005e2b",
+                        "surface-container-highest": "#e2e2e5",
+                        "inverse-on-surface": "#f0f0f3",
+                        "error": "#ba1a1a",
+                        "primary-fixed": "#a3f5b2",
+                        "on-tertiary": "#ffffff",
+                        "on-background": "#1a1c1e",
+                        "on-secondary-container": "#257400",
+                        "on-tertiary-fixed-variant": "#574500",
+                        "on-secondary-fixed": "#052100",
+                        "surface-container-high": "#e8e8ea",
+                        "on-primary-fixed-variant": "#005225",
+                        "primary-fixed-dim": "#88d898",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed": "#241a00",
+                        "on-primary-fixed": "#00210b",
+                        "error-container": "#ffdad6",
+                        "on-secondary-fixed-variant": "#185200",
+                        "surface-bright": "#f9f9fc",
+                        "tertiary-fixed-dim": "#e9c349",
+                        "secondary-fixed": "#9ff979",
+                        "on-primary-container": "#85d595",
+                        "surface-container": "#eeeef0",
+                        "on-surface-variant": "#404940",
+                        "tertiary-fixed": "#ffe088",
+                        "on-primary": "#ffffff",
+                        "surface-variant": "#e2e2e5",
+                        "outline-variant": "#bfc9bd",
+                        "background": "#f9f9fc",
+                        "secondary-fixed-dim": "#84db60",
+                        "on-error": "#ffffff",
+                        "inverse-surface": "#2f3133",
+                        "tertiary": "#735c00",
+                        "tertiary-container": "#cca830",
+                        "surface": "#f9f9fc",
+                        "on-tertiary-container": "#4f3e00",
+                        "primary": "#00441d",
+                        "secondary": "#226d00",
+                        "secondary-container": "#9ff979"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "md": "24px",
+                        "margin-mobile": "16px",
+                        "xs": "4px",
+                        "xl": "64px",
+                        "gutter": "24px",
+                        "margin-desktop": "48px",
+                        "sm": "12px",
+                        "base": "8px",
+                        "lg": "40px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Manrope"],
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "title-md": ["Hanken Grotesk"],
+                        "display-lg": ["Hanken Grotesk"],
+                        "body-lg": ["Manrope"],
+                        "body-md": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "600" }],
+                        "title-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-on-surface flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop h-16 shadow-sm docked full-width top-0 z-50">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed cursor-pointer transition-all duration-200 active:scale-95" data-icon="menu">menu</span>
+<span class="font-display-lg text-display-lg font-bold text-primary dark:text-inverse-primary hidden md:block">Nairapot</span>
+</div>
+<!-- Desktop Nav items -->
+<nav class="hidden md:flex gap-lg items-center">
+<a class="text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-variant px-3 py-2 rounded-lg transition-all duration-200 active:scale-95 font-label-sm text-label-sm" href="#">Home</a>
+<a class="text-primary dark:text-primary-fixed font-bold font-label-sm text-label-sm px-3 py-2 rounded-lg" href="#">Pots</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-variant px-3 py-2 rounded-lg transition-all duration-200 active:scale-95 font-label-sm text-label-sm" href="#">Savings</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-variant px-3 py-2 rounded-lg transition-all duration-200 active:scale-95 font-label-sm text-label-sm" href="#">Rewards</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-variant px-3 py-2 rounded-lg transition-all duration-200 active:scale-95 font-label-sm text-label-sm" href="#">Profile</a>
+</nav>
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed cursor-pointer transition-all duration-200 active:scale-95 hover:bg-surface-container-low dark:hover:bg-surface-variant p-2 rounded-full" data-icon="notifications">notifications</span>
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed cursor-pointer transition-all duration-200 active:scale-95 hover:bg-surface-container-low dark:hover:bg-surface-variant p-2 rounded-full" data-icon="account_circle">account_circle</span>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-grow flex flex-col md:flex-row relative overflow-hidden bg-gradient-to-b from-surface to-surface-container-lowest pb-24 md:pb-0">
+<!-- Center Stage: The Draw -->
+<div class="flex-grow flex flex-col items-center justify-center p-margin-mobile md:p-margin-desktop relative z-10">
+<!-- Stakes Header -->
+<div class="bg-surface-container-lowest rounded-xl p-sm shadow-[0_4px_24px_rgba(0,94,43,0.08)] border border-outline-variant flex items-center gap-md mb-lg">
+<div class="w-16 h-16 rounded-lg overflow-hidden bg-surface-container-low">
+<img alt="iPhone 15 Pro" class="w-full h-full object-cover" data-alt="A sleek, modern iPhone 15 Pro resting on a clean white surface. High-key lighting illuminates the titanium edges, giving it a premium, highly desirable tech aesthetic. The overall mood is aspirational and modern, fitting seamlessly into a clean, light-mode fintech interface with subtle green accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZj-14mLEY25ESGFxOZ5Jb1c-KXo8OnMjB68wsSmZMYcGMXx_z42FUim28EPYFdu37VmRwWRjput9mjnIOJDEt8RoeaYsf1q-3e27G8AXwEDEJ1UGaJBpa-j7PcRyTVM5CPjnjZ-ITzqF1GBK2pb3FYteBwe8oW4WKWRzbBduNyL5qbshQoChmc448jrr7mfBecbq11uQGBF8c7Vyb-qP2l1Ma1ZPQALYBV0hLZeQcYJM-TGfeuAoO1ibz25f8a9HNRaW8nxqvjrbs"/>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Drawing Now For</p>
+<h2 class="font-title-md text-title-md text-primary">Apple iPhone 15 Pro Max</h2>
+<div class="flex items-center gap-xs mt-xs text-secondary">
+<span class="material-symbols-outlined text-[16px]" data-icon="group">group</span>
+<span class="font-label-sm text-label-sm">1,000/1,000 Participants Locked In</span>
+</div>
+</div>
+</div>
+<!-- The Shuffling Pot -->
+<div class="relative w-72 h-72 md:w-96 md:h-96 rounded-full bg-gradient-to-br from-primary-container to-secondary-container shadow-[0_0_60px_rgba(34,109,0,0.3)] flex items-center justify-center border-4 border-tertiary-container overflow-hidden">
+<!-- Inner glow/shadow -->
+<div class="absolute inset-0 rounded-full shadow-inner pointer-events-none"></div>
+<!-- Simulated fast-moving content -->
+<div class="absolute w-[150%] h-[150%] flex items-center justify-center opacity-80 blur-sm mix-blend-overlay" style="background: repeating-conic-gradient(from 0deg, transparent 0deg 10deg, rgba(255,255,255,0.2) 10deg 20deg);">
+</div>
+<div class="absolute w-full h-full flex flex-col items-center justify-center gap-sm">
+<span class="material-symbols-outlined text-[64px] text-tertiary-fixed" data-icon="casino">casino</span>
+<p class="font-headline-lg text-headline-lg text-on-primary text-center leading-tight">Shuffling<br/>Pot...</p>
+</div>
+</div>
+<!-- Status Text -->
+<div class="mt-lg text-center">
+<p class="font-title-md text-title-md text-primary animate-pulse">Searching for Winner...</p>
+<p class="font-body-md text-body-md text-on-surface-variant mt-xs">Hold tight, the algorithm is selecting a lucky Nairapot member!</p>
+</div>
+</div>
+<!-- Sidebar: Live Reactions (Desktop) / Bottom Sheet (Mobile) -->
+<aside class="w-full md:w-80 bg-surface-container-lowest border-t md:border-t-0 md:border-l border-outline-variant p-margin-mobile md:p-margin-desktop flex flex-col z-20">
+<h3 class="font-title-md text-title-md text-primary mb-md flex items-center gap-sm">
+<span class="material-symbols-outlined text-secondary" data-icon="forum">forum</span>
+                Live Reactions
+            </h3>
+<div class="flex-grow flex flex-col gap-sm overflow-y-auto">
+<!-- Chat Bubbles -->
+<div class="flex gap-sm">
+<img alt="User Avatar" class="w-8 h-8 rounded-full" data-alt="A small circular avatar of a smiling young woman with curly hair against a bright yellow background. The lighting is soft and cheerful, fitting a modern community-focused financial app. The image feels authentic and high-energy." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBiRbIyTalmoUjqMXt_UC4vbo7kI6dLuJmMlXhiquwOsVMsXxbzTI3_0x5dqsBVSYTkZWTeKYQXINph4CtFAPefidaEuhZHzAGomPOFSPCga3A5fkIg0-nzXNF488c3BvfWjbxvAIxO5IbMhDzc4ZQeLYuKHigatf4TNmn-aZiQ-04qjgRIjTY6etA6AMSq3T8GjEqILCt8V_H0VGnyHS79fCkvZ-sDhKznN-ovCHm2-CC__ENmES2VfMsnDcS93Qg1PuDMCM-rRnZ8"/>
+<div class="bg-surface-container-low p-sm rounded-lg rounded-tl-none">
+<p class="font-label-sm text-label-sm text-primary mb-xs">Sarah J.</p>
+<p class="font-body-md text-body-md text-on-surface">Fingers crossed!! 🤞</p>
+</div>
+</div>
+<div class="flex gap-sm">
+<img alt="User Avatar" class="w-8 h-8 rounded-full" data-alt="A small circular avatar of a man with glasses and a beard, smiling warmly. The background is a soft, muted green, aligning with the app's secondary color palette. The portrait is high quality and approachable." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4NduxAikLolHVwCQhw-WovbBYa6xabXsg2ctqIHPPAZGaSQRiT97SLtUQ-b650bRpe1Nt-AHmxLtRxDAHx2fvcKvY31iRXWLVyJXI3I9NRcGky1efgUc98QaizfurNRog0RDWUNvrgac79wgXwTJsrnyaL2UJjeeuTfkZhoy4zZoHCxOvV5szbaDeuqx_6X03ei8dUDFRfmdesx-uhkME2HlDKhJqTpBaFUH-21QXWbrRAHU3EjAglrL3xBq1q6dGQuJ38NQ1Z1VG"/>
+<div class="bg-surface-container-low p-sm rounded-lg rounded-tl-none">
+<p class="font-label-sm text-label-sm text-primary mb-xs">Michael T.</p>
+<p class="font-body-md text-body-md text-on-surface">Let's goooo! Need this upgrade!</p>
+</div>
+</div>
+<div class="flex gap-sm">
+<img alt="User Avatar" class="w-8 h-8 rounded-full" data-alt="A small circular avatar of a woman with long dark hair, looking excitedly at the camera. The background is a clean white. The lighting highlights her smile, fitting the optimistic mood of the platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDT81xR3US4gK4jnCPk6jQCJJ1npDE8WP952fixhO8_BuxBwyNPKbka5EFGw1OLVFMt46-gGkx4ufz_2Db6C5ikR8Yzpz2IXH1a-wbhus8odIlXlp2Mf8dFT3QT62UpF0o7cuzoqqjXbqeiJTf9pQlxHbpG9g6uhnftuYcWeK4lLxsY9uMir7vmWTNBuu-UwNxi4fZ6Mt3bahNXRM7ikFNllK-cuK5j8--NxciAhIxfg1fKSuVFhNjF3ptfNf1oNQE6uqw4pmsxBG_v"/>
+<div class="bg-surface-container-low p-sm rounded-lg rounded-tl-none">
+<p class="font-label-sm text-label-sm text-primary mb-xs">Aisha B.</p>
+<p class="font-body-md text-body-md text-on-surface">Good luck everyone! 🍀</p>
+</div>
+</div>
+</div>
+<!-- Chat Input (Simulated) -->
+<div class="mt-md pt-md border-t border-outline-variant">
+<div class="flex items-center gap-sm bg-surface-container-low rounded-full px-sm py-xs border border-outline-variant">
+<span class="material-symbols-outlined text-outline" data-icon="mood">mood</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-md w-full py-1 text-on-surface" disabled="" placeholder="Cheer them on..." type="text"/>
+<button class="bg-primary text-on-primary rounded-full p-1 flex items-center justify-center h-8 w-8">
+<span class="material-symbols-outlined text-[16px]" data-icon="send">send</span>
+</button>
+</div>
+</div>
+</aside>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden bg-surface-container dark:bg-inverse-surface border-t border-outline-variant shadow-lg fixed bottom-0 left-0 w-full flex justify-around items-center py-2 px-4 h-20 z-50 rounded-t-xl">
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-transform duration-300 active:scale-90">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-secondary-container dark:bg-secondary text-on-secondary-container dark:text-on-secondary rounded-full px-4 py-1 transition-transform duration-300 active:scale-90">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-label-sm text-label-sm">Pots</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-transform duration-300 active:scale-90">
+<span class="material-symbols-outlined" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span class="font-label-sm text-label-sm">Savings</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-transform duration-300 active:scale-90">
+<span class="material-symbols-outlined" data-icon="workspace_premium">workspace_premium</span>
+<span class="font-label-sm text-label-sm">Rewards</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-transform duration-300 active:scale-90">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-sm text-label-sm">Profile</span>
+</div>
+</nav>
+</body></html>
