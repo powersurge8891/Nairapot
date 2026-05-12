@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Nairapot Admin - Dashboard</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;800&amp;family=Manrope:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed": "#9ff979",
+                        "on-primary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "inverse-surface": "#2f3133",
+                        "primary-fixed-dim": "#88d898",
+                        "on-primary-container": "#85d595",
+                        "on-error": "#ffffff",
+                        "inverse-primary": "#88d898",
+                        "surface-container": "#eeeef0",
+                        "on-surface-variant": "#404940",
+                        "secondary-container": "#9ff979",
+                        "surface-bright": "#f9f9fc",
+                        "on-secondary-fixed-variant": "#185200",
+                        "on-error": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "tertiary": "#735c00",
+                        "primary": "#00441d",
+                        "surface-dim": "#dadadc",
+                        "tertiary-container": "#cca830",
+                        "surface-container-high": "#e8e8ea",
+                        "tertiary-fixed": "#ffe088",
+                        "error": "#ba1a1a",
+                        "outline": "#707a6f",
+                        "background": "#f9f9fc",
+                        "secondary": "#226d00",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface": "#1a1c1e",
+                        "on-secondary-fixed": "#052100",
+                        "secondary-fixed-dim": "#84db60",
+                        "on-secondary-container": "#257400",
+                        "primary-fixed": "#a3f5b2",
+                        "on-background": "#1a1c1e",
+                        "inverse-on-surface": "#f0f0f3",
+                        "surface-container-low": "#f3f3f6",
+                        "on-primary-fixed": "#00210b",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-fixed-variant": "#574500",
+                        "primary-container": "#005e2b",
+                        "surface-tint": "#196c37",
+                        "surface": "#f9f9fc",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-container": "#4f3e00",
+                        "outline-variant": "#bfc9bd",
+                        "on-primary-fixed-variant": "#005225",
+                        "on-tertiary-fixed": "#241a00",
+                        "tertiary-fixed-dim": "#e9c349",
+                        "surface-container-highest": "#e2e2e5",
+                        "surface-variant": "#e2e2e5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "md": "24px",
+                        "xl": "64px",
+                        "lg": "40px",
+                        "margin-mobile": "16px",
+                        "base": "8px",
+                        "margin-desktop": "48px",
+                        "xs": "4px",
+                        "sm": "12px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Manrope"],
+                        "display-lg": ["Hanken Grotesk"],
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "body-md": ["Manrope"],
+                        "title-md": ["Hanken Grotesk"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "label-sm": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "title-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "600" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased pt-[88px]">
+
+<!-- TopNavBar -->
+<nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-desktop py-4 bg-surface/90 backdrop-blur-md shadow-sm border-b border-outline-variant">
+    <div class="flex items-center gap-base">
+        <!-- Brand Logo -->
+        <a class="text-title-md font-title-md font-bold text-primary flex items-center gap-2" href="index.html">
+            <img src="Nairapot.png" alt="Nairapot logo" class="h-8"/>
+            Nairapot Admin
+        </a>
+    </div>
+    <div class="flex items-center gap-sm">
+        <a class="inline-flex items-center justify-center font-label-sm text-label-sm text-primary hover:bg-surface-container-low transition-all px-4 py-2 rounded-lg" href="index.html">Back to Site</a>
+    </div>
+</nav>
+
+<!-- Stats Overview -->
+<section class="py-xl px-margin-mobile md:px-margin-desktop bg-surface-container-lowest">
+    <div class="max-w-[1280px] mx-auto">
+        <h1 class="font-headline-lg text-headline-lg text-on-surface mb-lg">Admin Dashboard</h1>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-md">
+            <div class="bg-surface p-md rounded-xl border border-[#E0EADF] shadow-sm">
+                <div class="flex items-center gap-sm mb-sm">
+                    <span class="material-symbols-outlined text-primary">account_balance_wallet</span>
+                    <span class="font-title-md text-title-md text-on-surface">Total Active Pots</span>
+                </div>
+                <p id="totalActivePots" class="font-display-lg text-display-lg text-primary font-bold">0</p>
+            </div>
+            <div class="bg-surface p-md rounded-xl border border-[#E0EADF] shadow-sm">
+                <div class="flex items-center gap-sm mb-sm">
+                    <span class="material-symbols-outlined text-secondary">payments</span>
+                    <span class="font-title-md text-title-md text-on-surface">Total Revenue</span>
+                </div>
+                <p id="totalRevenue" class="font-display-lg text-display-lg text-secondary font-bold">₦0</p>
+            </div>
+            <div class="bg-surface p-md rounded-xl border border-[#E0EADF] shadow-sm">
+                <div class="flex items-center gap-sm mb-sm">
+                    <span class="material-symbols-outlined text-tertiary">group</span>
+                    <span class="font-title-md text-title-md text-on-surface">Total Participants</span>
+                </div>
+                <p id="totalParticipants" class="font-display-lg text-display-lg text-tertiary font-bold">0</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Launch Pot Form -->
+<section class="py-xl px-margin-mobile md:px-margin-desktop bg-surface">
+    <div class="max-w-[1280px] mx-auto">
+        <h2 class="font-headline-lg text-headline-lg text-on-surface mb-lg">Launch New Pot</h2>
+        <form id="launchPotForm" class="bg-surface-container-lowest p-md rounded-xl border border-[#E0EADF] shadow-sm grid grid-cols-1 md:grid-cols-2 gap-md">
+            <div class="space-y-sm">
+                <label class="font-label-sm text-label-sm text-on-surface-variant" for="itemName">Item Name</label>
+                <input id="itemName" type="text" class="w-full px-4 py-3 border border-outline-variant rounded-xl bg-surface-container focus:ring-2 focus:ring-secondary transition-all outline-none" placeholder="e.g. iPhone 15 Pro" required />
+            </div>
+            <div class="space-y-sm">
+                <label class="font-label-sm text-label-sm text-on-surface-variant" for="ticketPrice">Ticket Price</label>
+                <input id="ticketPrice" type="number" min="0" class="w-full px-4 py-3 border border-outline-variant rounded-xl bg-surface-container focus:ring-2 focus:ring-secondary transition-all outline-none" placeholder="5000" required />
+            </div>
+            <div class="space-y-sm">
+                <label class="font-label-sm text-label-sm text-on-surface-variant" for="totalSpots">Total Spots</label>
+                <input id="totalSpots" type="number" min="1" class="w-full px-4 py-3 border border-outline-variant rounded-xl bg-surface-container focus:ring-2 focus:ring-secondary transition-all outline-none" placeholder="200" required />
+            </div>
+            <div class="space-y-sm">
+                <label class="font-label-sm text-label-sm text-on-surface-variant" for="imageUrl">Image URL</label>
+                <input id="imageUrl" type="url" class="w-full px-4 py-3 border border-outline-variant rounded-xl bg-surface-container focus:ring-2 focus:ring-secondary transition-all outline-none" placeholder="https://example.com/image.jpg" required />
+            </div>
+            <div class="md:col-span-2 text-right">
+                <button id="launchPotButton" type="submit" class="inline-flex items-center justify-center gap-2 bg-primary text-on-primary px-6 py-3 rounded-xl font-bold hover:bg-primary-container transition-all">Launch Pot</button>
+            </div>
+        </form>
+        <p id="formStatus" class="mt-sm text-center font-body-md text-body-md text-secondary"></p>
+    </div>
+</section>
+
+<!-- Management Table -->
+<section class="py-xl px-margin-mobile md:px-margin-desktop bg-surface-container-lowest">
+    <div class="max-w-[1280px] mx-auto">
+        <h2 class="font-headline-lg text-headline-lg text-on-surface mb-lg">Current Pots</h2>
+        <div class="bg-surface p-md rounded-xl border border-[#E0EADF] shadow-sm overflow-x-auto">
+            <table id="potsTable" class="w-full text-left">
+                <thead>
+                    <tr class="border-b border-outline-variant">
+                        <th class="font-label-sm text-label-sm text-on-surface-variant py-3 px-4">Item Name</th>
+                        <th class="font-label-sm text-label-sm text-on-surface-variant py-3 px-4">Ticket Price</th>
+                        <th class="font-label-sm text-label-sm text-on-surface-variant py-3 px-4">Total Spots</th>
+                        <th class="font-label-sm text-label-sm text-on-surface-variant py-3 px-4">Spots Filled</th>
+                        <th class="font-label-sm text-label-sm text-on-surface-variant py-3 px-4">Image URL</th>
+                    </tr>
+                </thead>
+                <tbody id="potsTableBody">
+                    <!-- Rows will be populated here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<script>
+    // Security Gate
+    const urlParams = new URLSearchParams(window.location.search);
+    const adminKey = urlParams.get('admin_key');
+    if (adminKey !== 'nairapot_admin_2024') {
+        window.location.href = 'index.html';
+    }
+
+    // Supabase Setup
+    const supabaseUrl = 'https://jcqcvedbhoqobmfrscrh.supabase.co';
+    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpjcWN2ZWRiaG9xb2JtZnJzY3JoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk4NjExMjksImV4cCI6MjA1NTQzNzEyOX0.7LjmH3b3bEWwLJqJEXR4nh3c1DHMpyYrBbHQs_5noQg';
+    const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+    // Load Stats
+    async function loadStats() {
+        try {
+            const { data: pots, error } = await supabase.from('pots').select('*');
+            if (error) throw error;
+
+            const totalActivePots = pots.filter(pot => pot.spots_filled < pot.total_spots).length;
+            const totalRevenue = pots.reduce((sum, pot) => sum + (pot.ticket_price * pot.spots_filled), 0);
+            const totalParticipants = pots.reduce((sum, pot) => sum + pot.spots_filled, 0);
+
+            document.getElementById('totalActivePots').textContent = totalActivePots;
+            document.getElementById('totalRevenue').textContent = `₦${totalRevenue.toLocaleString()}`;
+            document.getElementById('totalParticipants').textContent = totalParticipants;
+        } catch (err) {
+            console.error('Error loading stats:', err);
+        }
+    }
+
+    // Load Pots Table
+    async function loadPotsTable() {
+        try {
+            const { data: pots, error } = await supabase.from('pots').select('*');
+            if (error) throw error;
+
+            const tbody = document.getElementById('potsTableBody');
+            tbody.innerHTML = '';
+
+            pots.forEach(pot => {
+                const row = document.createElement('tr');
+                row.className = 'border-b border-outline-variant';
+                row.innerHTML = `
+                    <td class="py-3 px-4 font-body-md text-body-md text-on-surface">${pot.item_name}</td>
+                    <td class="py-3 px-4 font-body-md text-body-md text-on-surface">₦${pot.ticket_price.toLocaleString()}</td>
+                    <td class="py-3 px-4 font-body-md text-body-md text-on-surface">${pot.total_spots}</td>
+                    <td class="py-3 px-4 font-body-md text-body-md text-on-surface">${pot.spots_filled}</td>
+                    <td class="py-3 px-4 font-body-md text-body-md text-on-surface"><a href="${pot.image_url}" target="_blank" class="text-primary hover:underline">View Image</a></td>
+                `;
+                tbody.appendChild(row);
+            });
+        } catch (err) {
+            console.error('Error loading pots table:', err);
+        }
+    }
+
+    // Launch Pot Form
+    document.getElementById('launchPotForm').addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const statusEl = document.getElementById('formStatus');
+        const button = document.getElementById('launchPotButton');
+
+        const itemName = document.getElementById('itemName').value.trim();
+        const ticketPrice = Number(document.getElementById('ticketPrice').value);
+        const totalSpots = Number(document.getElementById('totalSpots').value);
+        const imageUrl = document.getElementById('imageUrl').value.trim();
+
+        if (!itemName || !ticketPrice || !totalSpots || !imageUrl) {
+            statusEl.textContent = 'Please fill out all fields.';
+            return;
+        }
+
+        button.disabled = true;
+        statusEl.textContent = 'Launching pot...';
+
+        try {
+            const { error } = await supabase.from('pots').insert([{
+                item_name: itemName,
+                ticket_price: ticketPrice,
+                total_spots: totalSpots,
+                spots_filled: 0,
+                image_url: imageUrl
+            }]);
+
+            if (error) throw error;
+
+            statusEl.textContent = 'Pot launched successfully!';
+            document.getElementById('launchPotForm').reset();
+            loadStats();
+            loadPotsTable();
+        } catch (err) {
+            statusEl.textContent = 'Error launching pot. Check console.';
+            console.error(err);
+        } finally {
+            button.disabled = false;
+        }
+    });
+
+    // Initialize
+    window.addEventListener('DOMContentLoaded', () => {
+        loadStats();
+        loadPotsTable();
+    });
+</script>
+</body>
+</html>
