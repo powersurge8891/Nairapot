@@ -195,11 +195,8 @@
       throw new Error('Admin access required');
     }
 
-    var supabase;
-    var supabaseUrl = 'https://jcqcvedbhoqobmfrscrh.supabase.co';
-    var supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpjcWN2ZWRiaG9xb2JtZnJzY3JoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk4NjExMjksImV4cCI6MjA1NTQzNzEyOX0.7LjmH3b3bEWwLJqJEXR4nh3c1DHMpyYrBbHQs_5noQg';
-    supabase = window.__nairapot_supabase || window.supabase.createClient(supabaseUrl, supabaseKey);
-    window.__nairapot_supabase = supabase;
+    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpjcWN2ZWRiaG9xb2JtZnJzY3JoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg1MDg3MTgsImV4cCI6MjA5NDA4NDcxOH0.a2ciDyC-qdCfgAIXXf2Jx8aZAyAIhN2lFcK36cV9oQg';
+    var supabase = window.supabase.createClient('https://jcqcvedbhoqobmfrscrh.supabase.co', supabaseKey);
 
     async function loadPots() {
       try {
@@ -236,7 +233,6 @@
 
     document.getElementById('createPotForm').addEventListener('submit', async function (event) {
       event.preventDefault();
-      event.stopImmediatePropagation();
       const statusEl = document.getElementById('formStatus');
       const button = document.getElementById('createPotButton');
       const itemName = document.getElementById('itemName').value.trim();
@@ -279,7 +275,7 @@
 
         statusEl.textContent = 'Pot successfully created.';
         document.getElementById('createPotForm').reset();
-        loadPots();
+        await loadPots();
       } catch (error) {
         const message = (error && error.message) ? error.message : JSON.stringify(error) || 'Unknown error';
         statusEl.textContent = 'Unable to create pot: ' + message;
