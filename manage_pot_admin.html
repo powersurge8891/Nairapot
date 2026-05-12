@@ -187,16 +187,18 @@
 </div>
 
 <script>
+  var supabase = window.supabase.createClient('https://jcqcvedbhoqobmfrscrh.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpjcWN2ZWRiaG9xb2JtZnJzY3JoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg1MDg3MTgsImV4cCI6MjA5NDA4NDcxOH0.a2ciDyC-qdCfgAIXXf2Jx8aZAyAIhN2lFcK36cV9oQg');
   function initializeAdmin() {
     const urlParams = new URLSearchParams(window.location.search);
     const adminKey = urlParams.get('admin_key');
+    if (!adminKey) {
+      window.location.href = 'index.html';
+      return;
+    }
     if (adminKey !== 'nairapot_admin_2024') {
       document.body.innerHTML = '<div class="min-h-screen flex items-center justify-center p-8 bg-background text-on-background"><div class="max-w-xl rounded-3xl border border-outline bg-white p-10 shadow-lg text-center"><h1 class="font-headline-lg text-headline-lg text-primary mb-4">Admin access required</h1><p class="font-body-md text-body-md text-on-surface-variant">Please use the correct admin URL key to access this page.</p></div></div>';
-      throw new Error('Admin access required');
+      return;
     }
-
-    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpjcWN2ZWRiaG9xb2JtZnJzY3JoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg1MDg3MTgsImV4cCI6MjA5NDA4NDcxOH0.a2ciDyC-qdCfgAIXXf2Jx8aZAyAIhN2lFcK36cV9oQg';
-    var supabase = window.supabase.createClient('https://jcqcvedbhoqobmfrscrh.supabase.co', supabaseKey);
 
     async function loadPots() {
       try {
