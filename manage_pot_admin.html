@@ -196,7 +196,8 @@
 <script>
   const supabaseUrl = 'https://jcqcvedbhoqobmfrscrh.supabase.co';
   const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpjcWN2ZWRiaG9xb2JtZnJzY3JoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk4NjExMjksImV4cCI6MjA1NTQzNzEyOX0.7LjmH3b3bEWwLJqJEXR4nh3c1DHMpyYrBbHQs_5noQg';
-  const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+  window.supabase = window.supabase || window.supabase.createClient(supabaseUrl, supabaseKey);
+  var supabase = window.supabase;
 
   async function loadPots() {
     try {
@@ -265,6 +266,19 @@
     }
   });
 
+  function preserveAdminKeyLinks() {
+    const adminKey = new URLSearchParams(window.location.search).get('admin_key');
+    if (!adminKey) return;
+    document.querySelectorAll('aside a').forEach((link) => {
+      const href = link.getAttribute('href');
+      if (!href) return;
+      const url = new URL(href, window.location.origin);
+      url.searchParams.set('admin_key', adminKey);
+      link.setAttribute('href', `${url.pathname}${url.search}`);
+    });
+  }
+
+  window.addEventListener('DOMContentLoaded', preserveAdminKeyLinks);
   window.addEventListener('DOMContentLoaded', loadPots);
 </script>
 </body>

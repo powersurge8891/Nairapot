@@ -200,5 +200,19 @@
     </section>
   </main>
 </div>
+<script>
+  function preserveAdminKeyLinks() {
+    const adminKey = new URLSearchParams(window.location.search).get('admin_key');
+    if (!adminKey) return;
+    document.querySelectorAll('aside a').forEach((link) => {
+      const href = link.getAttribute('href');
+      if (!href) return;
+      const url = new URL(href, window.location.origin);
+      url.searchParams.set('admin_key', adminKey);
+      link.setAttribute('href', `${url.pathname}${url.search}`);
+    });
+  }
+  window.addEventListener('DOMContentLoaded', preserveAdminKeyLinks);
+</script>
 </body>
 </html>

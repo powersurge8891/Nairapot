@@ -133,58 +133,50 @@
       <div class="flex items-center gap-3">
         <img src="Nairapot.png" alt="Nairapot logo" class="h-8"/>
         <div>
-          <p class="text-label-sm text-on-surface-variant uppercase">Manage Pots</p>
-          <h1 class="font-headline-lg text-headline-lg text-primary">Create a New Pot</h1>
+          <p class="text-label-sm text-on-surface-variant uppercase">User Management</p>
+          <h1 class="font-headline-lg text-headline-lg text-primary">Manage Profiles</h1>
         </div>
       </div>
       <a href="index.html" class="font-label-sm text-primary hover:text-primary-container">Back to site</a>
     </header>
 
     <section class="pt-20">
-      <div class="grid grid-cols-1 xl:grid-cols-3 gap-md mb-xl">
-        <div class="xl:col-span-2 bg-white p-md rounded-3xl border border-[#E0EADF] shadow-sm">
-          <h2 class="font-title-md text-title-md text-primary mb-4">Launch New Pot</h2>
-          <form id="createPotForm" class="grid grid-cols-1 lg:grid-cols-2 gap-md">
-            <div class="space-y-sm">
-              <label class="font-label-sm text-label-sm text-on-surface-variant" for="itemName">Item Name</label>
-              <input id="itemName" type="text" class="w-full px-4 py-3 border border-outline-variant rounded-xl bg-surface-container focus:ring-2 focus:ring-secondary transition-all outline-none" placeholder="iPhone 15 Pro" required />
-            </div>
-            <div class="space-y-sm">
-              <label class="font-label-sm text-label-sm text-on-surface-variant" for="ticketPrice">Ticket Price</label>
-              <input id="ticketPrice" type="number" min="0" class="w-full px-4 py-3 border border-outline-variant rounded-xl bg-surface-container focus:ring-2 focus:ring-secondary transition-all outline-none" placeholder="5000" required />
-            </div>
-            <div class="space-y-sm">
-              <label class="font-label-sm text-label-sm text-on-surface-variant" for="totalSpots">Total Spots</label>
-              <input id="totalSpots" type="number" min="1" class="w-full px-4 py-3 border border-outline-variant rounded-xl bg-surface-container focus:ring-2 focus:ring-secondary transition-all outline-none" placeholder="200" required />
-            </div>
-            <div class="space-y-sm">
-              <label class="font-label-sm text-label-sm text-on-surface-variant" for="potImage">Pot Image</label>
-              <input id="potImage" type="file" accept="image/*" class="w-full text-sm text-on-surface border border-outline-variant rounded-xl bg-surface-container focus:ring-2 focus:ring-secondary transition-all outline-none" required />
-            </div>
-            <div class="lg:col-span-2 text-right">
-              <button id="createPotButton" type="submit" class="inline-flex items-center justify-center gap-2 bg-primary text-on-primary px-6 py-3 rounded-xl font-bold hover:bg-primary-container transition-all">Create Pot</button>
-            </div>
-          </form>
-          <p id="formStatus" class="mt-sm text-body-md text-secondary"></p>
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-md mb-xl">
+        <div class="bg-white p-md rounded-3xl border border-[#E0EADF] shadow-sm">
+          <p class="text-label-sm text-on-surface-variant uppercase tracking-[0.16em] mb-2">Total Users</p>
+          <h2 id="totalUsers" class="font-display-lg text-display-lg text-primary">0</h2>
+          <p class="text-body-md text-on-surface-variant mt-2">Profiles in Supabase</p>
         </div>
         <div class="bg-white p-md rounded-3xl border border-[#E0EADF] shadow-sm">
-          <p class="text-label-sm text-on-surface-variant uppercase tracking-[0.16em] mb-4">Instructions</p>
-          <p class="text-body-md text-on-surface-variant">Use this form to add new live pots directly into Supabase. After creation, the active pot table below will update automatically.</p>
+          <p class="text-label-sm text-on-surface-variant uppercase tracking-[0.16em] mb-2">Verified</p>
+          <h2 id="verifiedUsers" class="font-display-lg text-display-lg text-secondary">0</h2>
+          <p class="text-body-md text-on-surface-variant mt-2">Verified profiles</p>
+        </div>
+        <div class="bg-white p-md rounded-3xl border border-[#E0EADF] shadow-sm">
+          <p class="text-label-sm text-on-surface-variant uppercase tracking-[0.16em] mb-2">Recent Signups</p>
+          <h2 id="recentUsers" class="font-display-lg text-display-lg text-tertiary">0</h2>
+          <p class="text-body-md text-on-surface-variant mt-2">Joined last 7 days</p>
         </div>
       </div>
 
       <div class="bg-white p-md rounded-3xl border border-[#E0EADF] shadow-sm overflow-x-auto">
+        <div class="flex items-center justify-between mb-4">
+          <div>
+            <p class="text-label-sm text-on-surface-variant uppercase tracking-[0.16em]">Profiles</p>
+            <h2 class="font-title-md text-title-md text-primary mt-2">Active Users</h2>
+          </div>
+        </div>
         <table class="min-w-full text-left">
           <thead class="bg-surface-container-low text-on-surface-variant text-label-sm uppercase tracking-[0.16em]">
             <tr>
-              <th class="px-4 py-3">Item</th>
-              <th class="px-4 py-3">Price</th>
-              <th class="px-4 py-3">Filled</th>
-              <th class="px-4 py-3">Spots</th>
-              <th class="px-4 py-3">Image</th>
+              <th class="px-4 py-3">Name</th>
+              <th class="px-4 py-3">Email</th>
+              <th class="px-4 py-3">Status</th>
+              <th class="px-4 py-3">Joined</th>
+              <th class="px-4 py-3">Actions</th>
             </tr>
           </thead>
-          <tbody id="potsTableBody"></tbody>
+          <tbody id="profilesTableBody"></tbody>
         </table>
       </div>
     </section>
@@ -196,74 +188,67 @@
   const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpjcWN2ZWRiaG9xb2JtZnJzY3JoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk4NjExMjksImV4cCI6MjA1NTQzNzEyOX0.7LjmH3b3bEWwLJqJEXR4nh3c1DHMpyYrBbHQs_5noQg';
   const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
-  async function loadPots() {
+  function preserveAdminKeyLinks() {
+    const adminKey = new URLSearchParams(window.location.search).get('admin_key');
+    if (!adminKey) return;
+    document.querySelectorAll('aside a').forEach((link) => {
+      const href = link.getAttribute('href');
+      if (!href) return;
+      const url = new URL(href, window.location.origin);
+      url.searchParams.set('admin_key', adminKey);
+      link.setAttribute('href', `${url.pathname}${url.search}`);
+    });
+  }
+
+  async function loadProfiles() {
     try {
-      const { data: pots, error } = await supabase.from('pots').select('*');
+      const { data: profiles, error } = await supabase.from('profiles').select('*');
       if (error) throw error;
-      const tbody = document.getElementById('potsTableBody');
+
+      const totalUsers = profiles?.length || 0;
+      const verifiedUsers = (profiles || []).filter((profile) => profile.email_confirmed_at || profile.verified || profile.is_verified).length || 0;
+      const oneWeekAgo = new Date();
+      oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+      const recentUsers = (profiles || []).filter((profile) => {
+        const createdAt = new Date(profile.created_at || profile.inserted_at || null);
+        return createdAt instanceof Date && !isNaN(createdAt) && createdAt >= oneWeekAgo;
+      }).length;
+
+      document.getElementById('totalUsers').textContent = totalUsers;
+      document.getElementById('verifiedUsers').textContent = verifiedUsers;
+      document.getElementById('recentUsers').textContent = recentUsers;
+
+      const tbody = document.getElementById('profilesTableBody');
       tbody.innerHTML = '';
-      (pots || []).forEach(pot => {
+      (profiles || []).slice(0, 20).forEach((profile) => {
+        const name = profile.full_name || profile.username || profile.name || profile.email || 'User';
+        const email = profile.email || 'N/A';
+        const status = profile.user_role || profile.status || (profile.email_confirmed_at || profile.verified || profile.is_verified ? 'Verified' : 'Pending');
+        const joined = profile.created_at || profile.inserted_at || 'Unknown';
+
+        const joinedDate = new Date(joined);
+        const joinedText = joinedDate instanceof Date && !isNaN(joinedDate) ? joinedDate.toLocaleDateString() : joined;
+
         const row = document.createElement('tr');
         row.className = 'border-b border-surface-container-high hover:bg-surface-container-lowest transition-colors';
         row.innerHTML = `
-          <td class="px-4 py-4 font-medium text-on-surface">${pot.item_name}</td>
-          <td class="px-4 py-4 text-on-surface">₦${Number(pot.ticket_price || 0).toLocaleString()}</td>
-          <td class="px-4 py-4 text-on-surface">${pot.spots_filled}</td>
-          <td class="px-4 py-4 text-on-surface">${pot.total_spots}</td>
-          <td class="px-4 py-4 text-primary hover:underline"><a href="${pot.image_url}" target="_blank">View</a></td>
+          <td class="px-4 py-4 font-medium text-on-surface">${name}</td>
+          <td class="px-4 py-4 text-on-surface">${email}</td>
+          <td class="px-4 py-4 text-on-surface">${status}</td>
+          <td class="px-4 py-4 text-on-surface">${joinedText}</td>
+          <td class="px-4 py-4 text-primary hover:underline"><a href="mailto:${email}">Message</a></td>
         `;
         tbody.appendChild(row);
       });
     } catch (error) {
-      console.error('Failed to load pots:', error);
+      console.error('Failed to load profiles:', error);
     }
   }
 
-  document.getElementById('createPotForm').addEventListener('submit', async (event) => {
-    event.preventDefault();
-    const statusEl = document.getElementById('formStatus');
-    const button = document.getElementById('createPotButton');
-    const itemName = document.getElementById('itemName').value.trim();
-    const ticketPrice = Number(document.getElementById('ticketPrice').value);
-    const totalSpots = Number(document.getElementById('totalSpots').value);
-    const potImage = document.getElementById('potImage').files[0];
-
-    if (!itemName || !ticketPrice || !totalSpots || !potImage) {
-      statusEl.textContent = 'Please complete every field before launching.';
-      return;
-    }
-    button.disabled = true;
-    statusEl.textContent = 'Uploading image...';
-
-    try {
-      const fileName = `${Date.now()}_${potImage.name}`;
-      const { data: uploadData, error: uploadError } = await supabase.storage
-        .from('pot-images')
-        .upload(fileName, potImage, { cacheControl: '3600', upsert: false });
-      if (uploadError) throw uploadError;
-
-      const { data: publicData, error: publicError } = await supabase.storage
-        .from('pot-images')
-        .getPublicUrl(fileName);
-      if (publicError) throw publicError;
-      const imageUrl = publicData?.publicUrl;
-      if (!imageUrl) throw new Error('Unable to get public URL for uploaded image.');
-
-      statusEl.textContent = 'Saving pot...';
-      const { error } = await supabase.from('pots').insert([{ item_name: itemName, ticket_price: ticketPrice, total_spots: totalSpots, spots_filled: 0, image_url: imageUrl }]);
-      if (error) throw error;
-      statusEl.textContent = 'Pot successfully created.';
-      document.getElementById('createPotForm').reset();
-      loadPots();
-    } catch (error) {
-      statusEl.textContent = 'Unable to create pot. Check console.';
-      console.error('Create pot failed:', error);
-    } finally {
-      button.disabled = false;
-    }
+  window.addEventListener('DOMContentLoaded', () => {
+    preserveAdminKeyLinks();
+    loadProfiles();
   });
-
-  window.addEventListener('DOMContentLoaded', loadPots);
 </script>
 </body>
 </html>
