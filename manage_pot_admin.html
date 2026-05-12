@@ -107,14 +107,6 @@
   </style>
 </head>
 <body class="bg-background text-on-background font-body-md antialiased">
-<script>
-  const urlParams = new URLSearchParams(window.location.search);
-  const adminKey = urlParams.get('admin_key');
-  if (adminKey !== 'nairapot_admin_2024') {
-    document.body.innerHTML = '<div class="min-h-screen flex items-center justify-center p-8 bg-background text-on-background"><div class="max-w-xl rounded-3xl border border-outline bg-white p-10 shadow-lg text-center"><h1 class="font-headline-lg text-headline-lg text-primary mb-4">Admin access required</h1><p class="font-body-md text-body-md text-on-surface-variant">Please use the correct admin URL key to access this page.</p></div></div>';
-    throw new Error('Admin access required');
-  }
-</script>
 <div class="min-h-screen bg-background">
   <aside class="fixed left-0 top-0 h-full w-64 bg-surface-container-low border-r border-outline-variant p-md shadow-sm">
     <a href="admin_dashboard_overview.html?admin_key=nairapot_admin_2024" class="flex items-center gap-3 mb-xl">
@@ -195,6 +187,13 @@
 </div>
 
 <script>
+  const urlParams = new URLSearchParams(window.location.search);
+  const adminKey = urlParams.get('admin_key');
+  if (adminKey !== 'nairapot_admin_2024') {
+    document.body.innerHTML = '<div class="min-h-screen flex items-center justify-center p-8 bg-background text-on-background"><div class="max-w-xl rounded-3xl border border-outline bg-white p-10 shadow-lg text-center"><h1 class="font-headline-lg text-headline-lg text-primary mb-4">Admin access required</h1><p class="font-body-md text-body-md text-on-surface-variant">Please use the correct admin URL key to access this page.</p></div></div>';
+    throw new Error('Admin access required');
+  }
+
   const supabaseUrl = 'https://jcqcvedbhoqobmfrscrh.supabase.co';
   const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpjcWN2ZWRiaG9xb2JtZnJzY3JoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk4NjExMjksImV4cCI6MjA1NTQzNzEyOX0.7LjmH3b3bEWwLJqJEXR4nh3c1DHMpyYrBbHQs_5noQg';
   const supabaseClient = window.__nairapot_supabase || window.supabase.createClient(supabaseUrl, supabaseKey);
@@ -226,7 +225,7 @@
 
   document.getElementById('createPotForm').addEventListener('submit', async (event) => {
     event.preventDefault();
-    event.stopPropagation();
+    event.stopImmediatePropagation();
     const statusEl = document.getElementById('formStatus');
     const button = document.getElementById('createPotButton');
     const itemName = document.getElementById('itemName').value.trim();
@@ -272,7 +271,6 @@
   });
 
   function preserveAdminKeyLinks() {
-    const adminKey = new URLSearchParams(window.location.search).get('admin_key');
     if (!adminKey) return;
     document.querySelectorAll('aside a').forEach((link) => {
       const href = link.getAttribute('href');
