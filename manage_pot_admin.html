@@ -111,7 +111,8 @@
   const urlParams = new URLSearchParams(window.location.search);
   const adminKey = urlParams.get('admin_key');
   if (adminKey !== 'nairapot_admin_2024') {
-    window.location.href = 'index.html';
+    document.body.innerHTML = '<div class="min-h-screen flex items-center justify-center p-8 bg-background text-on-background"><div class="max-w-xl rounded-3xl border border-outline bg-white p-10 shadow-lg text-center"><h1 class="font-headline-lg text-headline-lg text-primary mb-4">Admin access required</h1><p class="font-body-md text-body-md text-on-surface-variant">Please use the correct admin URL key to access this page.</p></div></div>';
+    throw new Error('Admin access required');
   }
 </script>
 <div class="min-h-screen bg-background">
@@ -225,6 +226,7 @@
 
   document.getElementById('createPotForm').addEventListener('submit', async (event) => {
     event.preventDefault();
+    event.stopPropagation();
     const statusEl = document.getElementById('formStatus');
     const button = document.getElementById('createPotButton');
     const itemName = document.getElementById('itemName').value.trim();
@@ -260,7 +262,9 @@
       document.getElementById('createPotForm').reset();
       loadPots();
     } catch (error) {
-      statusEl.textContent = 'Unable to create pot. Check console.';
+      const message = error?.message || JSON.stringify(error) || 'Unknown error';
+      statusEl.textContent = `Unable to create pot: ${message}`;
+      alert(`Create pot failed: ${message}`);
       console.error('Create pot failed:', error);
     } finally {
       button.disabled = false;
