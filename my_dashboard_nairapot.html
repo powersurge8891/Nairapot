@@ -5,6 +5,7 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Nairapot - Dashboard</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@600;700&amp;family=Manrope:wght@400;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
@@ -125,6 +126,7 @@
 </nav>
 <div class="flex items-center gap-sm">
 <button class="bg-primary-container text-on-primary-container px-md py-2 rounded-xl font-label-sm text-label-sm transition-all hover:scale-95">Join a Pot</button>
+<button id="signOutBtn" class="bg-surface-container text-primary-container px-md py-2 rounded-xl font-label-sm text-label-sm transition-all hover:bg-surface-container-high">Log Out</button>
 <div class="w-10 h-10 rounded-full border-2 border-primary-fixed overflow-hidden">
 <img alt="Profile" class="w-full h-full object-cover" data-alt="A professional portrait of a confident Nigerian young adult male with a warm, welcoming smile. The lighting is bright and high-end, characteristic of a modern corporate fintech application. The background is a clean, softly blurred office interior with green plants, harmonizing with the brand's Deep Green and Bright Green color palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3kBACZ8MxDNg9EZI0bpL5WuCvjgilRVFG7SH5mgUruKbSffEB_ar9OnfjxNyG5ooWpCmgH-2ll2IGhCZrHclZHoVXKBT0rFaWhgnKc3pHR6AlYKHrQEvVdcSVKsuUHYZWzWPc-wGRLU_mb_wyolXu6A4Yr4tJN3HalPBX0SuthivN2zUpjXaH99GXPFf0MWaJQXwHDWNk14sW12l0ALuNkVF7V_dJ0Zk-SdCrGz2l5LCm7iL9VG05SaFO11of3NDLse3NN8RS21nJ"/>
 </div>
@@ -165,7 +167,7 @@
 <!-- Header Section -->
 <section class="flex flex-col md:flex-row justify-between items-start md:items-end gap-md">
 <div>
-<h1 class="font-display-lg text-display-lg text-primary">Welcome back, Adewale</h1>
+<h1 class="font-display-lg text-display-lg text-primary">Welcome back, <span id="welcomeName">Adewale</span></h1>
 <p class="text-on-surface-variant font-body-lg">Here's what's happening with your pots today.</p>
 </div>
 </section>
@@ -420,6 +422,38 @@
   </div>
 </div>
 <script>
+  const supabaseUrl = 'https://jcqcvedbhoqobmfrscrh.supabase.co';
+  const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpjcWN2ZWRiaG9xb2JtZnJzY3JoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg1MDg3MTgsImV4cCI6MjA5NDA4NDcxOH0.a2ciDyC-qdCfgAIXXf2Jx8aZAyAIhN2lFcK36cV9oQg';
+  const supabase = window.__nairapot_supabase || (window.__nairapot_supabase = window.supabase.createClient(supabaseUrl, supabaseKey));
+
+  async function checkDashboardSession() {
+    try {
+      const { data: { session }, error } = await supabase.auth.getSession();
+      if (error) {
+        console.error('Auth session error:', error);
+      }
+      if (!session?.user) {
+        window.location.href = 'login_to_nairapot/login.html';
+        return;
+      }
+
+      const user = session.user;
+      const displayName = user.user_metadata?.full_name || user.user_metadata?.name || user.email?.split('@')[0] || 'Member';
+      const welcomeEl = document.getElementById('welcomeName');
+      if (welcomeEl) {
+        welcomeEl.textContent = displayName;
+      }
+    } catch (error) {
+      console.error('Dashboard session check failed:', error);
+      window.location.href = 'login_to_nairapot/login.html';
+    }
+  }
+
+  async function signOut() {
+    await supabase.auth.signOut();
+    window.location.href = 'login_to_nairapot/login.html';
+  }
+
   function animateValue(element, start, end, duration, format) {
     const range = end - start;
     const startTime = performance.now();
@@ -447,8 +481,15 @@
   }
 
   window.addEventListener('DOMContentLoaded', function () {
+    checkDashboardSession();
+
     const spotsEl = document.getElementById('activeSpotsValue');
     const contributionsEl = document.getElementById('totalContributionsValue');
+    const signOutBtn = document.getElementById('signOutBtn');
+
+    if (signOutBtn) {
+      signOutBtn.addEventListener('click', signOut);
+    }
 
     if (spotsEl) {
       animateValue(spotsEl, 0, 5, 900);

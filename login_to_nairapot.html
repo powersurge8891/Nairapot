@@ -274,6 +274,7 @@
     }
 
     if (data?.session?.user) {
+      localStorage.setItem('nairapotLoginSuccess', '1');
       window.location.href = 'my_dashboard_nairapot.html';
     } else {
       setStatus('Signed in, redirecting...');
