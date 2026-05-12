@@ -110,9 +110,16 @@
 <script>
   const urlParams = new URLSearchParams(window.location.search);
   const adminKey = urlParams.get('admin_key');
-  if (adminKey !== 'nairapot_admin_2024') {
+  if (!adminKey) {
     window.location.href = 'index.html';
+    return;
   }
+  if (adminKey !== 'nairapot_admin_2024') {
+    document.body.innerHTML = '<div class="min-h-screen flex items-center justify-center p-8 bg-background text-on-background"><div class="max-w-xl rounded-3xl border border-outline bg-white p-10 shadow-lg text-center"><h1 class="font-headline-lg text-headline-lg text-primary mb-4">Admin access required</h1><p class="font-body-md text-body-md text-on-surface-variant">Please use the correct admin URL key to access this page.</p></div></div>';
+    return;
+  }
+  var supabase = window.__nairapot_supabase || window.supabase.createClient('https://jcqcvedbhoqobmfrscrh.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpjcWN2ZWRiaG9xb2JtZnJzY3JoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg1MDg3MTgsImV4cCI6MjA5NDA4NDcxOH0.a2ciDyC-qdCfgAIXXf2Jx8aZAyAIhN2lFcK36cV9oQg');
+  window.__nairapot_supabase = supabase;
 </script>
 <div class="min-h-screen bg-background">
   <aside class="fixed left-0 top-0 h-full w-64 bg-surface-container-low border-r border-outline-variant p-md shadow-sm">
@@ -121,10 +128,10 @@
       <span class="font-title-md text-title-md font-bold text-primary">Nairapot Admin</span>
     </a>
     <nav class="flex flex-col gap-2">
-      <a class="px-4 py-3 rounded-xl text-on-surface-variant hover:text-primary hover:bg-surface-container-high" href="admin_dashboard_overview.html?admin_key=nairapot_admin_2024">Overview</a>
-      <a class="px-4 py-3 rounded-xl text-on-surface-variant hover:text-primary hover:bg-surface-container-high" href="manage_pot_admin.html?admin_key=nairapot_admin_2024">Manage Pots</a>
-      <a class="px-4 py-3 rounded-xl text-on-surface-variant hover:text-primary hover:bg-surface-container-high" href="user_admin_manager.html?admin_key=nairapot_admin_2024">Users</a>
-      <a class="px-4 py-3 rounded-xl bg-primary text-on-primary font-semibold" href="admin_transaction_history.html?admin_key=nairapot_admin_2024">Transactions</a>
+      <a class="px-4 py-3 rounded-xl text-on-surface-variant hover:text-primary hover:bg-surface-container-high" href="admin_dashboard_overview.html">Overview</a>
+      <a class="px-4 py-3 rounded-xl text-on-surface-variant hover:text-primary hover:bg-surface-container-high" href="manage_pot_admin.html">Manage Pots</a>
+      <a class="px-4 py-3 rounded-xl text-on-surface-variant hover:text-primary hover:bg-surface-container-high" href="user_admin_manager.html">Users</a>
+      <a class="px-4 py-3 rounded-xl bg-primary text-on-primary font-semibold" href="admin_transaction_history.html">Transactions</a>
     </nav>
   </aside>
 
@@ -144,12 +151,12 @@
       <div class="grid grid-cols-1 md:grid-cols-2 gap-md mb-xl">
         <div class="bg-white p-md rounded-3xl border border-[#E0EADF] shadow-sm">
           <p class="text-label-sm text-on-surface-variant uppercase tracking-[0.16em] mb-2">Total Volume</p>
-          <h2 class="font-display-lg text-display-lg text-primary">₦45,230,000</h2>
+          <h2 id="totalVolume" class="font-display-lg text-display-lg text-primary">₦0</h2>
           <p class="text-body-md text-on-surface-variant mt-2">Transaction volume this month.</p>
         </div>
         <div class="bg-white p-md rounded-3xl border border-[#E0EADF] shadow-sm">
           <p class="text-label-sm text-on-surface-variant uppercase tracking-[0.16em] mb-2">Pending</p>
-          <h2 class="font-display-lg text-display-lg text-secondary">42</h2>
+          <h2 id="pendingCount" class="font-display-lg text-display-lg text-secondary">0</h2>
           <p class="text-body-md text-on-surface-variant mt-2">Pending withdrawals and payouts.</p>
         </div>
       </div>
@@ -212,7 +219,41 @@
       link.setAttribute('href', `${url.pathname}${url.search}`);
     });
   }
-  window.addEventListener('DOMContentLoaded', preserveAdminKeyLinks);
+
+  async function loadTransactions() {
+    try {
+      const { data: transactions, error } = await supabase.from('transactions').select('*');
+      if (error) throw error;
+
+      const totalVolume = (transactions || []).reduce((sum, t) => sum + Number(t.amount || 0), 0);
+      const pendingCount = (transactions || []).filter(t => t.status === 'pending').length;
+
+      document.getElementById('totalVolume').textContent = `₦${totalVolume.toLocaleString()}`;
+      document.getElementById('pendingCount').textContent = pendingCount;
+
+      const tbody = document.querySelector('tbody');
+      tbody.innerHTML = '';
+      (transactions || []).slice(0, 20).forEach(transaction => {
+        const row = document.createElement('tr');
+        row.className = 'border-b border-surface-container-high hover:bg-surface-container-lowest transition-colors';
+        row.innerHTML = `
+          <td class="px-4 py-4 font-medium text-on-surface">${transaction.transaction_id || transaction.id || 'N/A'}</td>
+          <td class="px-4 py-4 text-on-surface">${transaction.user_name || transaction.user_id || 'N/A'}</td>
+          <td class="px-4 py-4 font-semibold text-on-surface">₦${Number(transaction.amount || 0).toLocaleString()}</td>
+          <td class="px-4 py-4 text-${transaction.status === 'success' ? 'secondary' : transaction.status === 'pending' ? 'tertiary' : 'error'}">${transaction.status || 'N/A'}</td>
+          <td class="px-4 py-4 text-on-surface-variant">${transaction.created_at ? new Date(transaction.created_at).toLocaleDateString() : 'N/A'}</td>
+        `;
+        tbody.appendChild(row);
+      });
+    } catch (error) {
+      console.error('Failed to load transactions:', error);
+    }
+  }
+
+  window.addEventListener('DOMContentLoaded', () => {
+    preserveAdminKeyLinks();
+    loadTransactions();
+  });
 </script>
 </body>
 </html>

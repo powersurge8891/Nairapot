@@ -122,10 +122,10 @@
       <span class="font-title-md text-title-md font-bold text-primary">Nairapot Admin</span>
     </a>
     <nav class="flex flex-col gap-2">
-      <a class="px-4 py-3 rounded-xl bg-primary text-on-primary font-semibold" href="admin_dashboard_overview.html?admin_key=nairapot_admin_2024">Overview</a>
-      <a class="px-4 py-3 rounded-xl text-on-surface-variant hover:text-primary hover:bg-surface-container-high" href="manage_pot_admin.html?admin_key=nairapot_admin_2024">Manage Pots</a>
-      <a class="px-4 py-3 rounded-xl text-on-surface-variant hover:text-primary hover:bg-surface-container-high" href="user_admin_manager.html?admin_key=nairapot_admin_2024">Users</a>
-      <a class="px-4 py-3 rounded-xl text-on-surface-variant hover:text-primary hover:bg-surface-container-high" href="admin_transaction_history.html?admin_key=nairapot_admin_2024">Transactions</a>
+      <a class="px-4 py-3 rounded-xl bg-primary text-on-primary font-semibold" href="admin_dashboard_overview.html">Overview</a>
+      <a class="px-4 py-3 rounded-xl text-on-surface-variant hover:text-primary hover:bg-surface-container-high" href="manage_pot_admin.html">Manage Pots</a>
+      <a class="px-4 py-3 rounded-xl text-on-surface-variant hover:text-primary hover:bg-surface-container-high" href="user_admin_manager.html">Users</a>
+      <a class="px-4 py-3 rounded-xl text-on-surface-variant hover:text-primary hover:bg-surface-container-high" href="admin_transaction_history.html">Transactions</a>
     </nav>
   </aside>
 
@@ -205,18 +205,20 @@
 
   async function loadOverview() {
     try {
-      const [{ data: profiles, error: profilesError }, { data: pots, error: potsError }] = await Promise.all([
+      const [{ data: profiles, error: profilesError }, { data: pots, error: potsError }, { data: transactions, error: transactionsError }] = await Promise.all([
         supabase.from('profiles').select('*'),
-        supabase.from('pots').select('*')
+        supabase.from('pots').select('*'),
+        supabase.from('transactions').select('*')
       ]);
 
       if (profilesError) throw profilesError;
       if (potsError) throw potsError;
+      if (transactionsError) throw transactionsError;
 
       const totalUsers = profiles?.length || 0;
       const totalPots = pots?.length || 0;
       const openPots = pots?.filter(p => p.spots_filled < p.total_spots).length || 0;
-      const totalRevenue = pots?.reduce((sum, pot) => sum + Number(pot.ticket_price || 0) * Number(pot.spots_filled || 0), 0) || 0;
+      const totalRevenue = (transactions || []).reduce((sum, t) => sum + Number(t.amount || 0), 0);
 
       document.getElementById('totalUsers').textContent = totalUsers;
       document.getElementById('totalPots').textContent = totalPots;
