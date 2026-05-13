@@ -304,7 +304,8 @@
     }
   }
 
-  async function signUp() {
+  async function signUp(event) {
+    event.preventDefault();
     console.log('Signup process started');
     const email = document.getElementById('email').value.trim();
     const password = document.getElementById('password').value;
@@ -314,18 +315,25 @@
     }
 
     setStatus('Creating account...');
-    const { data, error } = await supabase.auth.signUp({
-      email,
-      password
-    });
+    console.log('Final signup check:', email, password);
+    try {
+      const { data, error } = await supabase.auth.signUp({
+        email,
+        password
+      });
+      console.log('Supabase Response:', { data, error });
 
-    if (error) {
-      setStatus(error.message || 'Sign up failed.', true);
-      return;
+      if (error) {
+        setStatus(error.message || 'Sign up failed.', true);
+        return;
+      }
+
+      setStatus('Account created. Check your email to confirm.', false);
+      alert('Account created successfully. Please check your email to confirm your address.');
+    } catch (err) {
+      console.error('Signup error:', err);
+      setStatus('An unexpected error occurred during signup.', true);
     }
-
-    setStatus('Account created. Check your email to confirm.', false);
-    alert('Account created successfully. Please check your email to confirm your address.');
   }
 
   function toggleAuthMode(event) {
@@ -338,7 +346,7 @@
   async function handleAuthFormSubmit(event) {
     event.preventDefault();
     if (isSignupMode) {
-      await signUp();
+      await signUp(event);
     } else {
       await signIn(event);
     }
