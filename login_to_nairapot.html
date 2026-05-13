@@ -123,10 +123,10 @@
 </div>
 <!-- Branding Overaly -->
 <div class="relative z-10 px-margin-mobile md:px-xl text-on-primary text-center md:text-left max-w-2xl">
-<div class="flex items-center gap-2 mb-base justify-center md:justify-start">
+<a href="../index.html" class="flex items-center gap-2 mb-base justify-center md:justify-start text-title-md font-title-md font-bold text-primary">
 <span class="material-symbols-outlined text-secondary-fixed text-4xl" style="font-variation-settings: 'FILL' 1;">savings</span>
-<span class="font-title-md text-headline-lg font-extrabold tracking-tight">Nairapot</span>
-</div>
+<span class="text-headline-lg font-extrabold tracking-tight">Nairapot</span>
+</a>
 <h1 class="font-display-lg text-display-lg mb-md leading-tight">Grow faster together.</h1>
 <p class="font-body-lg text-body-lg text-primary-fixed-dim/90 mb-xl max-w-lg">Join the community driving collective financial growth. Simple, secure, and built for your future.</p>
 <!-- Social Proof Snippet -->
@@ -146,8 +146,10 @@
 <div class="w-full max-w-md">
 <!-- Mobile Logo -->
 <div class="flex md:hidden items-center gap-2 mb-xl">
-<span class="material-symbols-outlined text-primary text-3xl">savings</span>
-<span class="font-title-md text-title-md font-bold text-primary">Nairapot</span>
+<a href="../index.html" class="flex items-center gap-2 text-primary">
+  <span class="material-symbols-outlined text-primary text-3xl">savings</span>
+  <span class="font-title-md text-title-md font-bold text-primary">Nairapot</span>
+</a>
 </div>
 <div class="mb-xl">
 <h2 class="font-headline-lg text-headline-lg text-on-surface mb-xs">Welcome back</h2>
@@ -225,7 +227,7 @@
 <script>
   const supabaseUrl = 'https://jcqcvedbhoqobmfrscrh.supabase.co';
   const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpjcWN2ZWRiaG9xb2JtZnJzY3JoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg1MDg3MTgsImV4cCI6MjA5NDA4NDcxOH0.a2ciDyC-qdCfgAIXXf2Jx8aZAyAIhN2lFcK36cV9oQg';
-  const supabase = window.__nairapot_supabase || (window.__nairapot_supabase = window.supabase.createClient(supabaseUrl, supabaseKey));
+  const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
   function setStatus(message, isError = false) {
     const statusText = document.getElementById('loginStatus');
@@ -283,6 +285,7 @@
 
   async function signUp(event) {
     event.preventDefault();
+    console.log('Signup process started');
     const email = document.getElementById('email').value.trim();
     const password = document.getElementById('password').value;
     if (!email || !password) {
