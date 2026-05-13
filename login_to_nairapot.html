@@ -210,7 +210,7 @@
 <div class="mt-xl text-center">
 <p class="font-body-md text-on-surface-variant">
                         New to Nairapot? 
-                        <a id="createAccountLink" class="text-secondary font-bold hover:underline ml-1 transition-all" href="#">Create an account</a>
+                        <button type="button" id="createAccountBtn" class="text-secondary font-bold hover:underline ml-1 transition-all">Create an account</button>
 </p>
 </div>
 </div>
@@ -319,12 +319,12 @@
   window.addEventListener('DOMContentLoaded', function () {
     checkSession();
     const loginForm = document.getElementById('loginForm');
-    const createAccountLink = document.getElementById('createAccountLink');
+    const createAccountBtn = document.getElementById('createAccountBtn');
     if (loginForm) {
       loginForm.addEventListener('submit', signIn);
     }
-    if (createAccountLink) {
-      createAccountLink.addEventListener('click', signUp);
+    if (createAccountBtn) {
+      createAccountBtn.addEventListener('click', signUp);
     }
   });
 </script>
