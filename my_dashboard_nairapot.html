@@ -332,6 +332,19 @@
 </div>
 </div>
 </div>
+<div class="bg-surface-container-lowest border border-[#E0EADF] p-xl rounded-xl shadow-organic">
+  <h3 class="font-headline-lg text-headline-lg text-primary mb-md">Profile summary</h3>
+  <dl class="grid grid-cols-1 md:grid-cols-2 gap-md">
+    <div>
+      <dt class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">Member since</dt>
+      <dd class="mt-2 font-body-md text-body-md text-on-surface">Loading...</dd>
+    </div>
+    <div>
+      <dt class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">Account status</dt>
+      <dd class="mt-2 font-body-md text-body-md text-on-surface">Active</dd>
+    </div>
+  </dl>
+</div>
 </section>
 <section id="transactions-section" class="hidden">
 <!-- Past Wins & Activity -->
@@ -499,10 +512,10 @@
   const supabase = window.__nairapot_supabase || (window.__nairapot_supabase = window.supabase.createClient(supabaseUrl, supabaseKey));
 
   function formatNaira(amount) {
-    if (amount == null || amount === '') return '₦0';
+    if (amount == null || amount === '') return '₦0.00';
     const value = Number(amount);
-    if (Number.isNaN(value)) return '₦0';
-    return '₦' + value.toLocaleString('en-NG', { maximumFractionDigits: 0 });
+    if (Number.isNaN(value)) return '₦0.00';
+    return '₦' + value.toLocaleString('en-NG', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   }
 
   async function checkDashboardSession() {
@@ -552,6 +565,13 @@
       const profileWalletBalance = document.getElementById('profileWalletBalance');
       if (profileWalletBalance) {
         profileWalletBalance.textContent = walletValue;
+      }
+      const profileMemberSince = document.getElementById('profileMemberSince');
+      if (profileMemberSince) {
+        const createdAt = user?.created_at ? new Date(user.created_at) : null;
+        profileMemberSince.textContent = createdAt
+          ? createdAt.toLocaleDateString('en-NG', { year: 'numeric', month: 'long', day: 'numeric' })
+          : 'Not available';
       }
     } catch (error) {
       console.error('Dashboard session check failed:', error);
