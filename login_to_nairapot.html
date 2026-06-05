@@ -206,13 +206,32 @@
 </button>
 </div>
 </form>
-<!-- Footer Link -->
-<div class="mt-xl text-center">
-<p class="font-body-md text-on-surface-variant">
-                        New to Nairapot? 
-                        <button type="button" id="createAccountBtn" class="text-secondary font-bold hover:underline ml-1 transition-all">Create an account</button>
-</p>
-</div>
+<!-- Sign-up Form -->
+<form id="signupForm" class="space-y-md mt-xl border-t border-outline-variant pt-xl">
+  <div class="space-y-md">
+    <div class="text-center">
+      <p class="font-label-sm text-label-sm uppercase tracking-widest text-secondary-fixed mb-sm">New to Nairapot?</p>
+      <h3 class="font-headline-lg text-headline-lg text-on-surface mb-sm">Create your account</h3>
+      <p class="text-on-surface-variant">Sign up with your details to get started.</p>
+    </div>
+    <div class="space-y-xs">
+      <label class="font-label-sm text-label-sm text-on-surface-variant px-1" for="signup-name">Full Name</label>
+      <input class="w-full px-4 py-3 bg-surface-container-low border border-outline-variant rounded-xl focus:ring-2 focus:ring-secondary focus:border-secondary transition-all outline-none" id="signup-name" placeholder="e.g. Ada Okafor" type="text"/>
+    </div>
+    <div class="space-y-xs">
+      <label class="font-label-sm text-label-sm text-on-surface-variant px-1" for="signup-email">Email</label>
+      <input class="w-full px-4 py-3 bg-surface-container-low border border-outline-variant rounded-xl focus:ring-2 focus:ring-secondary focus:border-secondary transition-all outline-none" id="signup-email" placeholder="e.g. alex@nairapot.com" type="email"/>
+    </div>
+    <div class="space-y-xs">
+      <label class="font-label-sm text-label-sm text-on-surface-variant px-1" for="signup-password">Password</label>
+      <input class="w-full px-4 py-3 bg-surface-container-low border border-outline-variant rounded-xl focus:ring-2 focus:ring-secondary focus:border-secondary transition-all outline-none" id="signup-password" placeholder="••••••••" type="password"/>
+    </div>
+    <button id="createAccountBtn" class="w-full py-4 bg-secondary text-on-secondary font-bold rounded-xl shadow-lg shadow-secondary-container/20 hover:bg-secondary-fixed hover:-translate-y-0.5 active:scale-95 transition-all" type="submit">
+      Create Account
+    </button>
+    <p id="signupStatus" class="text-center text-label-sm text-secondary-fixed-dim/80 mt-4 min-h-[22px]"></p>
+  </div>
+</form>
 </div>
 </section>
 </main>
@@ -229,8 +248,8 @@
   const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpjcWN2ZWRiaG9xb2JtZnJzY3JoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg1MDg3MTgsImV4cCI6MjA5NDA4NDcxOH0.a2ciDyC-qdCfgAIXXf2Jx8aZAyAIhN2lFcK36cV9oQg';
   const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
-  function setStatus(message, isError = false) {
-    const statusText = document.getElementById('loginStatus');
+  function setStatus(message, isError = false, targetId = 'loginStatus') {
+    const statusText = document.getElementById(targetId);
     if (!statusText) return;
     statusText.textContent = message;
     statusText.className = isError ? 'text-center text-label-sm text-error mt-4 min-h-[22px]' : 'text-center text-label-sm text-secondary-fixed-dim/80 mt-4 min-h-[22px]';
@@ -287,44 +306,50 @@
   async function signUp(event) {
     event.preventDefault();
     console.log('Signup process started');
-    const email = document.getElementById('email').value.trim();
-    const password = document.getElementById('password').value;
-    if (!email || !password) {
-      setStatus('Please enter an email and password to create an account.', true);
+    const fullName = document.getElementById('signup-name').value.trim();
+    const email = document.getElementById('signup-email').value.trim();
+    const password = document.getElementById('signup-password').value;
+    if (!fullName || !email || !password) {
+      setStatus('Please enter your full name, email, and password to create an account.', true, 'signupStatus');
       return;
     }
 
-    setStatus('Creating account...');
-    console.log('Final signup check:', email, password);
+    setStatus('Creating account...', false, 'signupStatus');
+    console.log('Final signup check:', fullName, email, password ? '****' : '');
     try {
       const { data, error } = await supabase.auth.signUp({
         email,
-        password
+        password,
+        options: {
+          data: {
+            full_name: fullName
+          }
+        }
       });
       console.log('Supabase Response:', { data, error });
 
       if (error) {
-        setStatus(error.message || 'Sign up failed.', true);
+        setStatus(error.message || 'Sign up failed.', true, 'signupStatus');
         return;
       }
 
-      setStatus('Account created. Check your email to confirm.', false);
+      setStatus('Account created. Check your email to confirm.', false, 'signupStatus');
       alert('Account created successfully. Please check your email to confirm your address.');
     } catch (err) {
       console.error('Signup error:', err);
-      setStatus('An unexpected error occurred during signup.', true);
+      setStatus('An unexpected error occurred during signup.', true, 'signupStatus');
     }
   }
 
   window.addEventListener('DOMContentLoaded', function () {
     checkSession();
     const loginForm = document.getElementById('loginForm');
-    const createAccountBtn = document.getElementById('createAccountBtn');
+    const signupForm = document.getElementById('signupForm');
     if (loginForm) {
       loginForm.addEventListener('submit', signIn);
     }
-    if (createAccountBtn) {
-      createAccountBtn.addEventListener('click', signUp);
+    if (signupForm) {
+      signupForm.addEventListener('submit', signUp);
     }
   });
 </script>
