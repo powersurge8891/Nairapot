@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Nairapot - Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@600;700&amp;family=Manrope:wght@400;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "tertiary-fixed": "#ffe088",
+                "on-tertiary": "#ffffff",
+                "on-error": "#ffffff",
+                "surface-dim": "#dadadc",
+                "surface-container-highest": "#e2e2e5",
+                "error-container": "#ffdad6",
+                "on-tertiary-fixed": "#241a00",
+                "primary-container": "#005e2b",
+                "background": "#f9f9fc",
+                "on-secondary-container": "#257400",
+                "on-tertiary-container": "#4f3e00",
+                "surface-container": "#eeeef0",
+                "surface-bright": "#f9f9fc",
+                "tertiary": "#735c00",
+                "inverse-surface": "#2f3133",
+                "surface": "#f9f9fc",
+                "error": "#ba1a1a",
+                "primary-fixed": "#a3f5b2",
+                "primary-fixed-dim": "#88d898",
+                "on-surface": "#1a1c1e",
+                "surface-container-high": "#e8e8ea",
+                "secondary-container": "#9ff979",
+                "on-background": "#1a1c1e",
+                "surface-tint": "#196c37",
+                "surface-container-lowest": "#ffffff",
+                "on-primary-fixed-variant": "#005225",
+                "on-secondary-fixed": "#052100",
+                "secondary": "#226d00",
+                "secondary-fixed-dim": "#84db60",
+                "surface-container-low": "#f3f3f6",
+                "on-primary-container": "#85d595",
+                "on-tertiary-fixed-variant": "#574500",
+                "surface-variant": "#e2e2e5",
+                "inverse-primary": "#88d898",
+                "on-primary-fixed": "#00210b",
+                "tertiary-fixed-dim": "#e9c349",
+                "on-secondary-fixed-variant": "#185200",
+                "tertiary-container": "#cca830",
+                "outline": "#707a6f",
+                "inverse-on-surface": "#f0f0f3",
+                "on-primary": "#ffffff",
+                "on-error-container": "#93000a",
+                "primary": "#00441d",
+                "on-surface-variant": "#404940",
+                "on-secondary": "#ffffff",
+                "secondary-fixed": "#9ff979",
+                "outline-variant": "#bfc9bd"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+            },
+            "spacing": {
+                "lg": "40px",
+                "margin-mobile": "16px",
+                "gutter": "24px",
+                "margin-desktop": "48px",
+                "xl": "64px",
+                "xs": "4px",
+                "sm": "12px",
+                "md": "24px",
+                "base": "8px"
+            },
+            "fontFamily": {
+                "headline-lg-mobile": ["Hanken Grotesk"],
+                "body-md": ["Manrope"],
+                "title-md": ["Hanken Grotesk"],
+                "label-sm": ["Manrope"],
+                "headline-lg": ["Hanken Grotesk"],
+                "body-lg": ["Manrope"],
+                "display-lg": ["Hanken Grotesk"]
+            },
+            "fontSize": {
+                "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .shadow-organic {
+            box-shadow: 0 10px 30px -12px rgba(0, 94, 43, 0.08);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md antialiased min-h-screen">
+<!-- TopNavBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-desktop py-4 bg-surface/90 backdrop-blur-md border-b border-outline-variant shadow-sm">
+<div class="flex items-center gap-base">
+<a class="text-title-md font-title-md font-bold text-primary" href="index.html">Nairapot</a>
+</div>
+<nav class="hidden md:flex items-center gap-md">
+<a class="font-label-sm text-label-sm text-primary font-bold border-b-2 border-primary pb-1" href="my_dashboard_nairapot.html">Dashboard</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="index.html#how-it-works">How it Works</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="index.html#potsContainer">Active Pots</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="winners_gallery_nairapot.html">Winners</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="index.html#community">Community</a>
+</nav>
+<div class="flex items-center gap-sm">
+<button class="bg-primary-container text-on-primary-container px-md py-2 rounded-xl font-label-sm text-label-sm transition-all hover:scale-95">Join a Pot</button>
+<button id="logoutBtn" class="bg-surface-container text-primary-container px-md py-2 rounded-xl font-label-sm text-label-sm transition-all hover:bg-surface-container-high">Log Out</button>
+<div class="w-10 h-10 rounded-full border-2 border-primary-fixed overflow-hidden">
+<img alt="Profile" class="w-full h-full object-cover" data-alt="A professional portrait of a confident Nigerian young adult male with a warm, welcoming smile. The lighting is bright and high-end, characteristic of a modern corporate fintech application. The background is a clean, softly blurred office interior with green plants, harmonizing with the brand's Deep Green and Bright Green color palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3kBACZ8MxDNg9EZI0bpL5WuCvjgilRVFG7SH5mgUruKbSffEB_ar9OnfjxNyG5ooWpCmgH-2ll2IGhCZrHclZHoVXKBT0rFaWhgnKc3pHR6AlYKHrQEvVdcSVKsuUHYZWzWPc-wGRLU_mb_wyolXu6A4Yr4tJN3HalPBX0SuthivN2zUpjXaH99GXPFf0MWaJQXwHDWNk14sW12l0ALuNkVF7V_dJ0Zk-SdCrGz2l5LCm7iL9VG05SaFO11of3NDLse3NN8RS21nJ"/>
+</div>
+</div>
+</header>
+<div class="pt-24 pb-xl px-margin-desktop max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-[280px_1fr] gap-xl">
+<!-- Sidebar Navigation -->
+<aside class="hidden md:flex flex-col gap-md sticky top-32 h-fit">
+<div class="p-sm bg-surface-container-low rounded-xl border border-outline-variant/30">
+<nav class="flex flex-col gap-xs">
+<a class="flex items-center gap-sm p-sm bg-secondary-container text-on-secondary-container rounded-lg font-title-md" href="#" data-section="dashboard">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="text-label-sm">Dashboard</span>
+</a>
+<a class="flex items-center gap-sm p-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all font-title-md" href="#" data-section="profile">
+<span class="material-symbols-outlined">person</span>
+<span class="text-label-sm">Profile</span>
+</a>
+<a class="flex items-center gap-sm p-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all font-title-md" href="#" data-section="transactions">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="text-label-sm">Transactions</span>
+</a>
+<a class="flex items-center gap-sm p-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all font-title-md" href="#" data-section="settings">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-label-sm">Settings</span>
+</a>
+</nav>
+</div>
+<div class="relative overflow-hidden rounded-xl bg-primary-container p-md text-on-primary-container shadow-organic">
+<p class="font-label-sm text-label-sm mb-xs opacity-80">Referral Bonus</p>
+<h4 class="font-headline-lg text-headline-lg-mobile text-on-primary mb-sm">₦5,000</h4>
+<p class="font-label-sm text-label-sm mb-md">Invite friends and earn rewards for every join.</p>
+<button class="w-full bg-secondary-container text-on-secondary-container py-2 rounded-lg font-label-sm transition-all hover:bg-secondary-fixed">Share Link</button>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex flex-col gap-xl">
+<section id="dashboard-section">
+<!-- Header Section -->
+<section class="flex flex-col md:flex-row justify-between items-start md:items-end gap-md">
+<div>
+<h1 class="font-display-lg text-display-lg text-primary">Welcome back, <span id="welcomeName">Adewale</span></h1>
+<p class="text-on-surface-variant font-body-lg">Here's what's happening with your pots today.</p>
+</div>
+</section>
+<!-- Wallet Bento -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-md">
+<div class="md:col-span-2 bg-surface-container-lowest border border-[#E0EADF] p-xl rounded-xl shadow-organic flex flex-col md:flex-row justify-between items-center gap-lg">
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">account_balance_wallet</span>
+                            Wallet Balance
+                        </span>
+<h2 id="walletBalanceValue" class="font-display-lg text-display-lg text-primary mt-base">₦150,000.00</h2>
+<div class="mt-sm flex gap-xs">
+<span class="text-secondary font-bold text-label-sm flex items-center">
+<span class="material-symbols-outlined text-[16px]">trending_up</span>
+                                +12% this month
+                            </span>
+</div>
+</div>
+<div class="flex flex-col gap-sm w-full md:w-auto">
+<button class="bg-primary text-on-primary px-xl py-3 rounded-xl font-title-md flex items-center justify-center gap-sm transition-all hover:translate-y-[-2px] shadow-md">
+<span class="material-symbols-outlined">add_circle</span>
+                            Top Up
+                        </button>
+<button class="bg-surface-container text-on-surface px-xl py-3 rounded-xl font-title-md flex items-center justify-center gap-sm border border-outline-variant transition-all hover:bg-surface-container-high">
+<span class="material-symbols-outlined">payments</span>
+                            Withdraw
+                        </button>
+</div>
+</div>
+<div class="bg-tertiary-fixed text-on-tertiary-fixed p-xl rounded-xl shadow-organic flex flex-col justify-between relative overflow-hidden">
+<span class="material-symbols-outlined absolute -right-4 -top-4 text-[120px] opacity-10">workspace_premium</span>
+<div>
+<p class="font-label-sm text-label-sm opacity-80 uppercase tracking-widest">Total Wins</p>
+<h3 class="font-headline-lg text-headline-lg mt-base">₦45,200</h3>
+</div>
+<a class="font-label-sm text-label-sm flex items-center gap-xs mt-lg font-bold" href="#">
+                        View Win History
+                        <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</section>
+<!-- Quick Stats Section -->
+<section class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<div class="bg-surface-container-lowest border border-[#E0EADF] p-xl rounded-xl shadow-organic">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">Active Spots</span>
+<h2 id="activeSpotsValue" class="font-display-lg text-display-lg text-primary mt-4">0</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-3">Current live spots open across your active pots.</p>
+</div>
+<div class="bg-surface-container-lowest border border-[#E0EADF] p-xl rounded-xl shadow-organic">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">Total Contributions</span>
+<h2 id="totalContributionsValue" class="font-display-lg text-display-lg text-primary mt-4">₦0</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-3">Total amount contributed so far across all pots.</p>
+</div>
+</section>
+<!-- Active Pots Section -->
+<section id="activePotsSection">
+<div class="flex justify-between items-center mb-md">
+<h3 class="font-headline-lg text-headline-lg text-primary">My Active Pots</h3>
+<a class="text-secondary font-bold font-label-sm hover:underline" href="#">Browse All Pots</a>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-md">
+<!-- Pot Card 1 -->
+<div class="bg-surface-container-lowest border border-[#E0EADF] p-md rounded-xl shadow-organic hover:border-primary-fixed transition-all group">
+<div class="flex justify-between items-start mb-md">
+<div class="flex gap-md">
+<div class="w-12 h-12 rounded-xl bg-primary-fixed/30 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[32px]">savings</span>
+</div>
+<div>
+<h4 class="font-title-md text-title-md">Lagos Real Estate Pot</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Ends in 4 days</p>
+</div>
+</div>
+<span class="bg-secondary-container text-on-secondary-container text-label-sm px-sm py-1 rounded-full font-bold">Active</span>
+</div>
+<div class="space-y-base mb-md">
+<div class="flex justify-between text-label-sm">
+<span class="text-on-surface-variant">Progress to Draw</span>
+<span class="text-primary font-bold">85%</span>
+</div>
+<div class="w-full h-2 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-primary to-secondary w-[85%] rounded-full"></div>
+</div>
+</div>
+<div class="flex justify-between items-center pt-md border-t border-outline-variant/30">
+<div class="flex -space-x-2">
+<img alt="User 1" class="w-8 h-8 rounded-full border-2 border-surface-container-lowest object-cover" data-alt="A portrait of a smiling Nigerian woman with braided hair, lit with warm natural sunlight against a minimalist modern backdrop. She represents a community member participating in a financial pot, conveying trust, inclusivity, and shared prosperity. High-quality commercial photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqBwSY8qq4QLKVcQ1wddK1o6_QhQBRtaexHJ-KZU0ERngofAjbNxL4n7xncTzCOtEfFGvEjbvO4P5xTpKyItTQ1E59Lz_JQk2VLibePfSV4nnlXTuPjli8U_b_5fXL_cqIfm9MJTVvSjkZzyPbbIn5KTGdLTW_dVKH0ExrcPr45PdS6CVBICdpSrGXJZ1sqokp1TKcHJB1qfqbYPfn5exAD87gR2urEe78Alz1pPWw60-cusSI19xZZTEePvCIBCEbDcZdG7G0mA6I"/>
+<img alt="User 2" class="w-8 h-8 rounded-full border-2 border-surface-container-lowest object-cover" data-alt="A profile photo of a cheerful African man in professional attire, laughing naturally. The lighting is soft and flattering, highlighting healthy skin tones. The aesthetic is clean and modern, fitting for a premium fintech dashboard user avatar. Vibrant green and gold accents are subtly implied in the environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-DCZS4zoccimkMNNJJLO6Ls6CYUGChiwEoGNv_-_6ZOLS8ORip-ON4lHH22UvPUqJKbbxGKCsi-rmz9RFPt59iGEmFcA3wncagmID_B8RtwtLgFxRl4JYR77GQiW6Vm4UK9YWGEl0fGG_XxLPyJ0wRH2BdsxZTIGPodvosp32bRjQ9f_5fQBF8M7hqtjKcc1T59qHfmgLqOXOYEtMgk0LxpyDaLCj43NfUvqyHOAmPl2UMnBOhwGoW52riR-BizRSFmSFNctI0sml"/>
+<div class="w-8 h-8 rounded-full border-2 border-surface-container-lowest bg-surface-container-high flex items-center justify-center text-[10px] font-bold text-on-surface-variant">+24</div>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Pot Value: <span class="text-primary font-bold">₦1.2M</span></p>
+</div>
+</div>
+<!-- Pot Card 2 -->
+<div class="bg-surface-container-lowest border border-[#E0EADF] p-md rounded-xl shadow-organic hover:border-primary-fixed transition-all">
+<div class="flex justify-between items-start mb-md">
+<div class="flex gap-md">
+<div class="w-12 h-12 rounded-xl bg-tertiary-fixed/30 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-[32px]">flight</span>
+</div>
+<div>
+<h4 class="font-title-md text-title-md">Holiday Getaway Pot</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Ends in 12 days</p>
+</div>
+</div>
+<span class="bg-secondary-container text-on-secondary-container text-label-sm px-sm py-1 rounded-full font-bold">Active</span>
+</div>
+<div class="space-y-base mb-md">
+<div class="flex justify-between text-label-sm">
+<span class="text-on-surface-variant">Progress to Draw</span>
+<span class="text-primary font-bold">42%</span>
+</div>
+<div class="w-full h-2 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-primary to-secondary w-[42%] rounded-full"></div>
+</div>
+</div>
+<div class="flex justify-between items-center pt-md border-t border-outline-variant/30">
+<div class="flex -space-x-2">
+<img alt="User 3" class="w-8 h-8 rounded-full border-2 border-surface-container-lowest object-cover" data-alt="Close-up portrait of a young African man with a calm and confident expression. The shot is captured with high-end camera equipment, using soft, directional lighting that creates elegant highlights. The background is a crisp, off-white studio wall, reflecting a minimalist and professional corporate fintech identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUFBkG7CwPtjMKMflczqgm94hotuFWJiApD7wYOqY3Q8talIfckr9xd7QPO1sajwdKHnFbG1ogBkIMu_3rIEu01u3b_xSySl9YS9km1Kms-SdX4si7F1U7YYvEUff6P1RFl7xC2Q3vzy2qkJ7WZEU9xyYsi6_3nn7nRZ0jsdirCj9pwO6O1yO_g5X6wv7olyYXiwxLC-14_BdKTwWEUKy8tfPVgd6p6IBIdGDwXdU0fc31zmou-iva6jdUNd20sTqM2qkWjEB6YZDW"/>
+<div class="w-8 h-8 rounded-full border-2 border-surface-container-lowest bg-surface-container-high flex items-center justify-center text-[10px] font-bold text-on-surface-variant">+112</div>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Pot Value: <span class="text-primary font-bold">₦4.5M</span></p>
+</div>
+</div>
+</div>
+</section>
+<section id="profile-section" class="hidden">
+<div class="flex flex-col gap-xl">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-md">
+<div>
+<h1 class="font-display-lg text-display-lg text-primary">My Profile</h1>
+<p class="text-on-surface-variant font-body-lg">Manage your account information and wallet details.</p>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-md">
+<div class="bg-surface-container-lowest border border-[#E0EADF] p-xl rounded-xl shadow-organic">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">Name</p>
+<h2 id="profileFullName" class="font-display-lg text-display-lg text-primary mt-4">Loading...</h2>
+</div>
+<div class="bg-surface-container-lowest border border-[#E0EADF] p-xl rounded-xl shadow-organic">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">Wallet Balance</p>
+<h2 id="profileWalletBalance" class="font-display-lg text-display-lg text-primary mt-4">₦0</h2>
+</div>
+<div class="bg-surface-container-lowest border border-[#E0EADF] p-xl rounded-xl shadow-organic">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">Member Since</p>
+<p id="profileMemberSince" class="font-body-md text-body-md text-on-surface-variant mt-4">Not available</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-[#E0EADF] p-xl rounded-xl shadow-organic">
+<h3 class="font-headline-lg text-headline-lg text-primary mb-md">Account details</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Email</p>
+<p id="profileEmail" class="font-body-md text-body-md text-on-surface mt-2">Loading...</p>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Full name</p>
+<p id="profileNameDetail" class="font-body-md text-body-md text-on-surface mt-2">Loading...</p>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-[#E0EADF] p-xl rounded-xl shadow-organic">
+  <h3 class="font-headline-lg text-headline-lg text-primary mb-md">Profile summary</h3>
+  <dl class="grid grid-cols-1 md:grid-cols-2 gap-md">
+    <div>
+      <dt class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">Member since</dt>
+      <dd class="mt-2 font-body-md text-body-md text-on-surface">Loading...</dd>
+    </div>
+    <div>
+      <dt class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">Account status</dt>
+      <dd class="mt-2 font-body-md text-body-md text-on-surface">Active</dd>
+    </div>
+  </dl>
+</div>
+</section>
+<section id="transactions-section" class="hidden">
+<!-- Past Wins & Activity -->
+<section class="grid grid-cols-1 lg:grid-cols-3 gap-xl">
+<div class="lg:col-span-2">
+<h3 class="font-headline-lg text-headline-lg text-primary mb-md">Recent Transactions</h3>
+<div class="bg-surface-container-lowest border border-[#E0EADF] rounded-xl overflow-hidden shadow-organic">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low font-label-sm text-label-sm text-on-surface-variant">
+<th class="px-md py-sm">Description</th>
+<th class="px-md py-sm">Date</th>
+<th class="px-md py-sm">Amount</th>
+<th class="px-md py-sm">Status</th>
+</tr>
+</thead>
+<tbody class="text-body-md">
+<tr class="border-b border-outline-variant/30 hover:bg-surface-container-low transition-colors">
+<td class="px-md py-md flex items-center gap-sm">
+<span class="w-8 h-8 rounded-lg bg-secondary-container/50 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[18px]">add</span>
+</span>
+                                        Wallet Top-up
+                                    </td>
+<td class="px-md py-md text-on-surface-variant">Oct 24, 2023</td>
+<td class="px-md py-md font-bold text-primary">+₦50,000</td>
+<td class="px-md py-md"><span class="text-[10px] px-2 py-1 bg-primary-fixed/40 text-primary-container rounded uppercase font-bold">Success</span></td>
+</tr>
+<tr class="border-b border-outline-variant/30 hover:bg-surface-container-low transition-colors">
+<td class="px-md py-md flex items-center gap-sm">
+<span class="w-8 h-8 rounded-lg bg-tertiary-fixed/50 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">stars</span>
+</span>
+                                        Pot Contribution (Lagos Real Estate)
+                                    </td>
+<td class="px-md py-md text-on-surface-variant">Oct 22, 2023</td>
+<td class="px-md py-md font-bold text-error">-₦5,000</td>
+<td class="px-md py-md"><span class="text-[10px] px-2 py-1 bg-primary-fixed/40 text-primary-container rounded uppercase font-bold">Success</span></td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-md py-md flex items-center gap-sm">
+<span class="w-8 h-8 rounded-lg bg-secondary-container/50 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[18px]">workspace_premium</span>
+</span>
+                                        Pot Win (Startup Seed Pot)
+                                    </td>
+<td class="px-md py-md text-on-surface-variant">Oct 15, 2023</td>
+<td class="px-md py-md font-bold text-primary">+₦15,200</td>
+<td class="px-md py-md"><span class="text-[10px] px-2 py-1 bg-primary-fixed/40 text-primary-container rounded uppercase font-bold">Success</span></td>
+</tr>
+</tbody>
+</table>
+<div class="p-md text-center">
+<button class="font-label-sm text-label-sm text-secondary font-bold">View Full Transaction History</button>
+</div>
+</div>
+</div>
+<div id="winnersSection" class="flex flex-col gap-md">
+<h3 class="font-headline-lg text-headline-lg text-primary mb-md">Past Wins</h3>
+<div class="bg-surface-container-lowest border border-[#E0EADF] p-md rounded-xl shadow-organic">
+<div class="flex flex-col gap-md">
+<div class="flex gap-sm items-center">
+<div class="w-12 h-12 rounded-full overflow-hidden shrink-0 border-2 border-tertiary-fixed-dim">
+<img alt="Winner 1" class="w-full h-full object-cover" data-alt="A portrait of a joyful Nigerian man celebrating a financial win, his face radiating genuine happiness. The lighting is warm and golden, symbolizing success and reward. He is dressed in a smart-casual outfit against a clean, modern background with a hint of architectural detail. The image perfectly captures the 'winning' emotion of the Nairapot platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDctaAE8Ibe_9DyOPaZoOq-XorlurUNuyXBnEOuYPtYJfocpx6ZCxMq-rhdy-LkVtKiEKIaeet7cuDgqQxUiHLzseHx8ayy_XIdEOssBVvP7sxSM8flVruy-9mHQO-eJvO90Gj9e9At_RFiDQHZz0RjgN0HIlvvx-4ytYSrBUGDlwNljGS7YLKUvxzM7sj1cs9tbjevzeVBUrPPS2GHEsd03EuCUIxTXMxtdaclIxhGDgX5KN2Fbs--FAaxrnnMdjr_SdMEHfZP1I4L"/>
+</div>
+<div class="flex-1">
+<p class="font-title-md text-on-surface">Chidi O. won <span class="text-secondary font-bold">₦250k</span></p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Education Support Pot • 2 days ago</p>
+</div>
+</div>
+<div class="flex gap-sm items-center">
+<div class="w-12 h-12 rounded-full overflow-hidden shrink-0 border-2 border-tertiary-fixed-dim">
+<img alt="Winner 2" class="w-full h-full object-cover" data-alt="Portrait of a young Nigerian woman smiling warmly, her expression conveying a sense of achievement and security. The lighting is high-key and optimistic, with a focus on clean, professional aesthetics. The color palette is natural with subtle green and gold highlights in the background, matching the Nairapot brand style for community success stories." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHKYhIdZDB_mQYRDJ5V8qQT5LrVu2s-xLwk3HBnUJvs_Krk0O0NSnss3pdqPK6rwXpXSjGcCb977h6ZYMhWKoSBssd56D03HWmZStaX2RSpWjZNQrEbELtCU14IuUUjs3FbkXqrgF-J2PuX07MzaqMwFDOWOZgak_A9qLlNNMN64SJ3hwRu8ReQo7Zwfef5t_79YvAuBxOp5FZWZ8jk1vSCaL5Ed3_ncbAgun7R9_4I0kBC3jlr7DBOmcZjOv3iSHBp0lV5GfVcTFp"/>
+</div>
+<div class="flex-1">
+<p class="font-title-md text-on-surface">Folake A. won <span class="text-secondary font-bold">₦1.2M</span></p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">SME Growth Pot • 1 week ago</p>
+</div>
+</div>
+</div>
+<button class="w-full mt-lg bg-surface-container-high text-on-surface py-2 rounded-lg font-label-sm transition-all hover:bg-surface-variant">See Hall of Fame</button>
+</div>
+<!-- Promo Card -->
+<div class="bg-gradient-to-br from-primary to-primary-container p-xl rounded-xl text-on-primary-fixed shadow-organic relative group">
+<span class="material-symbols-outlined text-[64px] absolute bottom-4 right-4 opacity-10 group-hover:scale-110 transition-transform">rocket_launch</span>
+<h4 class="font-headline-lg text-headline-lg mb-sm">Grow Together</h4>
+<p class="font-body-md text-body-md mb-lg opacity-90">Join the 'Festive Season Pot' with a minimum of ₦1,000 and stand a chance to win ₦5M.</p>
+<button class="bg-tertiary-fixed text-on-tertiary-fixed px-lg py-2 rounded-lg font-bold text-label-sm hover:scale-95 transition-all">Join Now</button>
+</div>
+</div>
+</section>
+</section>
+<section id="settings-section" class="hidden">
+<div class="flex flex-col gap-xl">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-md">
+<div>
+<h1 class="font-display-lg text-display-lg text-primary">Settings</h1>
+<p class="text-on-surface-variant font-body-lg">Update your preferences and account options.</p>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<div class="bg-surface-container-lowest border border-[#E0EADF] p-xl rounded-xl shadow-organic">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">Notifications</p>
+<div class="mt-md space-y-md">
+<label class="flex items-center justify-between gap-3">
+<span class="font-body-md">Email alerts</span>
+<input type="checkbox" class="w-5 h-5 text-primary border-outline-variant rounded" disabled/>
+</label>
+<label class="flex items-center justify-between gap-3">
+<span class="font-body-md">App notifications</span>
+<input type="checkbox" class="w-5 h-5 text-primary border-outline-variant rounded" disabled/>
+</label>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-[#E0EADF] p-xl rounded-xl shadow-organic">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">Security</p>
+<div class="mt-md space-y-md">
+<button class="w-full bg-primary text-on-primary py-3 rounded-xl font-bold">Change password</button>
+<button class="w-full bg-surface-container text-primary py-3 rounded-xl border border-outline-variant">Manage devices</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+</div>
+<!-- Footer -->
+<footer class="w-full px-margin-desktop py-xl flex flex-col md:flex-row justify-between items-start gap-lg bg-primary text-on-primary">
+<div class="flex flex-col gap-md max-w-sm">
+<span class="text-headline-lg font-headline-lg text-on-primary">Nairapot</span>
+<p class="font-body-md text-body-md text-primary-fixed-dim/80">© 2024 Nairapot. Empowering communities through collective growth. Licensed and regulated for your security.</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-xl">
+<div class="flex flex-col gap-sm">
+<span class="font-bold text-label-sm uppercase tracking-widest opacity-60">Platform</span>
+<a class="font-label-sm text-label-sm text-primary-fixed-dim/80 hover:text-primary-fixed transition-colors hover:underline" href="#">How it Works</a>
+<a class="font-label-sm text-label-sm text-primary-fixed-dim/80 hover:text-primary-fixed transition-colors hover:underline" href="#">Active Pots</a>
+<a class="font-label-sm text-label-sm text-primary-fixed-dim/80 hover:text-primary-fixed transition-colors hover:underline" href="#">Winners</a>
+</div>
+<div class="flex flex-col gap-sm">
+<span class="font-bold text-label-sm uppercase tracking-widest opacity-60">Company</span>
+<a class="font-label-sm text-label-sm text-primary-fixed-dim/80 hover:text-primary-fixed transition-colors hover:underline" href="#">Terms of Service</a>
+<a class="font-label-sm text-label-sm text-primary-fixed-dim/80 hover:text-primary-fixed transition-colors hover:underline" href="#">Privacy Policy</a>
+<a class="font-label-sm text-label-sm text-primary-fixed-dim/80 hover:text-primary-fixed transition-colors hover:underline" href="#">Contact Support</a>
+</div>
+<div class="flex flex-col gap-sm">
+<span class="font-bold text-label-sm uppercase tracking-widest opacity-60">Help</span>
+<a class="font-label-sm text-label-sm text-primary-fixed-dim/80 hover:text-primary-fixed transition-colors hover:underline" href="#">FAQs</a>
+<a class="font-label-sm text-label-sm text-primary-fixed-dim/80 hover:text-primary-fixed transition-colors hover:underline" href="#">Partnerships</a>
+</div>
+</div>
+</footer>
+<div id="successToast" class="fixed bottom-6 right-6 z-50 hidden max-w-sm rounded-3xl border border-outline-variant bg-surface p-4 shadow-xl shadow-black/10 text-on-surface transition-transform duration-300">
+  <div class="flex items-start gap-3">
+    <span class="material-symbols-outlined text-primary text-3xl">check_circle</span>
+    <div>
+      <p class="font-title-md text-title-md font-bold">Logged in successfully</p>
+      <p class="font-body-md text-body-md text-on-surface-variant">Welcome back to your dashboard.</p>
+    </div>
+  </div>
+</div>
+<script>
+  const supabaseUrl = 'https://jcqcvedbhoqobmfrscrh.supabase.co';
+  const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpjcWN2ZWRiaG9xb2JtZnJzY3JoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg1MDg3MTgsImV4cCI6MjA5NDA4NDcxOH0.a2ciDyC-qdCfgAIXXf2Jx8aZAyAIhN2lFcK36cV9oQg';
+
+  if (typeof supabase === 'undefined' || typeof supabase.auth === 'undefined') {
+    window.supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+  }
+
+  function formatNaira(amount) {
+    if (amount == null || amount === '') return '₦0.00';
+    const value = Number(amount);
+    if (Number.isNaN(value)) return '₦0.00';
+    return '₦' + value.toLocaleString('en-NG', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }
+
+  async function checkUserSession() {
+    try {
+      const {
+        data: { session },
+        error
+      } = await supabase.auth.getSession();
+      if (error) throw error;
+      if (!session?.user) {
+        window.location.href = 'login_to_nairapot.html';
+        return false;
+      }
+      return true;
+    } catch (error) {
+      console.error('Session guard failed:', error);
+      window.location.href = 'login_to_nairapot.html';
+      return false;
+    }
+  }
+
+  async function checkDashboardSession() {
+    try {
+      const { data: { user }, error } = await supabase.auth.getUser();
+      if (error) throw error;
+      if (!user) {
+        window.location.href = 'login_to_nairapot.html';
+        return;
+      }
+
+      const { data: profile, error: profileError } = await supabase.from('profiles').select('full_name, wallet_balance').eq('id', user.id).single();
+      if (profileError) {
+        console.error('Profile fetch error:', profileError);
+      }
+
+      const displayName = profile?.full_name || user.user_metadata?.full_name || user.email?.split('@')[0] || 'Member';
+      const walletValue = formatNaira(profile?.wallet_balance);
+
+      const welcomeEl = document.getElementById('welcomeName');
+      if (welcomeEl) welcomeEl.textContent = displayName;
+
+      const profileFullName = document.getElementById('profileFullName');
+      if (profileFullName) profileFullName.textContent = displayName;
+
+      const profileNameDetail = document.getElementById('profileNameDetail');
+      if (profileNameDetail) profileNameDetail.textContent = displayName;
+
+      const profileEmail = document.getElementById('profileEmail');
+      if (profileEmail) profileEmail.textContent = user.email || 'Not available';
+
+      const walletEl = document.getElementById('walletBalanceValue');
+      if (walletEl) walletEl.textContent = walletValue;
+
+      const profileWalletBalance = document.getElementById('profileWalletBalance');
+      if (profileWalletBalance) profileWalletBalance.textContent = walletValue;
+
+      const profileMemberSince = document.getElementById('profileMemberSince');
+      if (profileMemberSince) {
+        const createdAt = user?.created_at ? new Date(user.created_at) : null;
+        profileMemberSince.textContent = createdAt
+          ? createdAt.toLocaleDateString('en-NG', { year: 'numeric', month: 'long', day: 'numeric' })
+          : 'Not available';
+      }
+
+      setActiveSection('dashboard-section');
+    } catch (error) {
+      console.error('Dashboard session check failed:', error);
+      window.location.href = 'login_to_nairapot.html';
+    }
+  }
+
+  async function handleLogout(event) {
+    if (event) {
+      event.preventDefault();
+    }
+
+    try {
+      const { error } = await supabase.auth.signOut();
+      if (error) throw error;
+      window.location.href = 'login_to_nairapot.html';
+    } catch (error) {
+      console.error('Sign out failed:', error);
+    }
+  }
+
+  function setActiveSection(sectionId) {
+    const sectionIds = ['dashboard-section', 'profile-section', 'transactions-section', 'settings-section'];
+    sectionIds.forEach(id => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.classList.toggle('hidden', id !== sectionId);
+    });
+
+    document.querySelectorAll('[data-section]').forEach(link => {
+      if (link.dataset.section === sectionId.replace('-section', '')) {
+        link.classList.add('bg-secondary-container', 'text-on-secondary-container');
+      } else {
+        link.classList.remove('bg-secondary-container', 'text-on-secondary-container');
+      }
+    });
+  }
+
+  function animateValue(element, start, end, duration, formatter = value => value) {
+    if (!element) return;
+    const range = end - start;
+    const startTime = performance.now();
+
+    function update(currentTime) {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const value = Math.round(start + range * progress);
+      element.textContent = formatter(value);
+      if (progress < 1) {
+        requestAnimationFrame(update);
+      }
+    }
+
+    requestAnimationFrame(update);
+  }
+
+  function showSuccessToast() {
+    const toast = document.getElementById('successToast');
+    if (!toast) return;
+    toast.classList.remove('hidden');
+    setTimeout(() => toast.classList.add('hidden'), 3000);
+  }
+
+  window.addEventListener('DOMContentLoaded', async function () {
+    const logoutButton = document.getElementById('logoutBtn');
+    if (logoutButton) {
+      logoutButton.addEventListener('click', async function (event) {
+        await handleLogout(event);
+      });
+    }
+
+    document.querySelectorAll('[data-section]').forEach(link => {
+      link.addEventListener('click', function (event) {
+        event.preventDefault();
+        const targetSection = this.dataset.section;
+        if (!targetSection) return;
+        setActiveSection(`${targetSection}-section`);
+      });
+    });
+
+    document.querySelectorAll('[data-nav-target]').forEach(link => {
+      link.addEventListener('click', function (event) {
+        event.preventDefault();
+        const target = this.dataset.navTarget;
+        if (!target) return;
+        switch (target) {
+          case 'top':
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            break;
+          case 'activePots':
+            document.getElementById('activePotsSection')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            break;
+          case 'winners':
+            document.getElementById('winnersSection')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            break;
+          case 'community':
+            document.querySelector('footer')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            break;
+          default:
+            break;
+        }
+      });
+    });
+
+    const sessionValid = await checkUserSession();
+    if (!sessionValid) {
+      return;
+    }
+
+    setActiveSection('dashboard-section');
+    checkDashboardSession();
+  });
+</script>
+</body></html>
