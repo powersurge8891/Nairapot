@@ -118,11 +118,11 @@
 <a class="text-title-md font-title-md font-bold text-primary" href="index.html">Nairapot</a>
 </div>
 <nav class="hidden md:flex items-center gap-md">
-<a class="font-label-sm text-label-sm text-primary font-bold border-b-2 border-primary pb-1" href="my_dashboard_nairapot.html">Dashboard</a>
-<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="index.html#how-it-works">How it Works</a>
-<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="index.html#potsContainer">Active Pots</a>
-<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="winners_gallery_nairapot.html">Winners</a>
-<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="index.html#community">Community</a>
+<a class="nav-link font-label-sm text-label-sm text-primary font-bold border-b-2 border-primary pb-1" href="my_dashboard_nairapot.html" data-nav-link="dashboard">Dashboard</a>
+<a class="nav-link font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="index.html#how-it-works" data-nav-link="how-it-works">How it Works</a>
+<a class="nav-link font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="browse_pots_nairapot.html" data-nav-link="pots">Active Pots</a>
+<a class="nav-link font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="winners_gallery_nairapot.html" data-nav-link="winners">Winners</a>
+<a class="nav-link font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="index.html#community" data-nav-link="community">Community</a>
 </nav>
 <div class="flex items-center gap-sm">
 <a href="index.html#potsContainer" class="inline-flex items-center justify-center bg-primary-container text-on-primary-container px-md py-2 rounded-xl font-label-sm text-label-sm transition-all hover:scale-95">Join a Pot</a>
@@ -646,6 +646,18 @@
     setTimeout(() => toast.classList.add('hidden'), 3000);
   }
 
+  function setActiveNavLink(activeLink) {
+    document.querySelectorAll('.nav-link').forEach(link => {
+      if (link === activeLink) {
+        link.classList.add('text-primary', 'font-bold', 'border-b-2', 'border-primary', 'pb-1');
+        link.classList.remove('text-on-surface-variant', 'hover:text-primary');
+      } else {
+        link.classList.remove('text-primary', 'font-bold', 'border-b-2', 'border-primary', 'pb-1');
+        link.classList.add('text-on-surface-variant', 'hover:text-primary');
+      }
+    });
+  }
+
   window.addEventListener('DOMContentLoaded', async function () {
     const logoutButton = document.getElementById('logoutBtn');
     if (logoutButton) {
@@ -653,6 +665,13 @@
         await handleLogout(event);
       });
     }
+
+    // Header navigation active state listener
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', function (event) {
+        setActiveNavLink(this);
+      });
+    });
 
     document.querySelectorAll('[data-section]').forEach(link => {
       link.addEventListener('click', function (event) {
