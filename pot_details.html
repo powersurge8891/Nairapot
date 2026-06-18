@@ -32,14 +32,14 @@
 <main class="pt-[112px] pb-xl px-margin-mobile md:px-margin-desktop max-w-[1280px] mx-auto">
   <div class="grid grid-cols-1 lg:grid-cols-12 gap-lg items-start">
     <section class="lg:col-span-8">
-      <div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md mb-md shadow-sm overflow-hidden flex items-center justify-center h-80 md:h-[420px] lg:h-[520px]">
-        <img id="itemImage" class="max-w-full max-h-full object-contain transform hover:scale-105 transition-transform duration-500" src="" alt="Pot item image" />
+      <div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md mb-md shadow-sm overflow-hidden flex items-center justify-center h-[400px] md:h-[420px] lg:h-[520px]">
+        <img id="productImage" class="max-w-full max-h-full object-contain transform hover:scale-105 transition-transform duration-500" src="" alt="Pot item image" />
       </div>
       <div class="mb-lg">
         <div class="flex justify-between items-end mb-sm">
           <div>
             <span id="itemCategory" class="inline-block px-3 py-1 bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm rounded-full mb-base"></span>
-            <h1 id="itemTitle" class="font-headline-lg text-headline-lg text-primary">Item Title</h1>
+            <h1 id="potTitle" class="font-headline-lg text-headline-lg text-primary">Item Title</h1>
           </div>
           <div class="text-right">
             <p class="font-label-sm text-label-sm text-on-surface-variant">Pot Status</p>
@@ -57,7 +57,7 @@
       <div class="grid grid-cols-2 md:grid-cols-4 gap-md mb-lg">
         <div class="p-md bg-surface-container-low border border-outline-variant rounded-xl flex flex-col items-center text-center">
           <span class="font-label-sm text-label-sm text-on-surface-variant">Unit Price</span>
-          <span id="ticketPrice" class="font-title-md text-title-md text-primary font-bold">₦0</span>
+          <span id="potPrice" class="font-title-md text-title-md text-primary font-bold">₦0</span>
         </div>
         <div class="p-md bg-surface-container-low border border-outline-variant rounded-xl flex flex-col items-center text-center">
           <span class="font-label-sm text-label-sm text-on-surface-variant">Description</span>
@@ -144,12 +144,12 @@
   }
 
   function renderPotDetails(data) {
-    document.getElementById('itemTitle').textContent = data.itemTitle;
+    document.getElementById('potTitle').textContent = data.itemTitle;
     document.getElementById('itemCategory').textContent = data.itemCategory;
-    document.getElementById('itemImage').src = data.itemImage;
-    document.getElementById('itemImage').alt = data.imageAlt;
+    document.getElementById('productImage').src = data.itemImage;
+    document.getElementById('productImage').alt = data.imageAlt;
     document.getElementById('itemDescription').textContent = data.description;
-    document.getElementById('ticketPrice').textContent = formatCurrency(data.ticketPrice);
+    document.getElementById('potPrice').textContent = formatCurrency(data.ticketPrice);
     document.getElementById('sidebarTicketPrice').textContent = formatCurrency(data.ticketPrice);
     document.getElementById('itemStatus').textContent = data.potStatus;
     document.getElementById('spotsInfo').textContent = `${data.spotsJoined} joined`;
