@@ -117,7 +117,8 @@
 <a class="font-body-md text-on-surface-variant hover:text-primary transition-colors px-4 py-2" href="index.html#community">Community</a>
 </div>
 <div class="flex items-center gap-sm">
-<button class="hidden sm:block text-primary font-label-sm px-4 py-2 hover:bg-surface-container-low transition-all">Login</button>
+<a class="hidden md:inline-flex items-center justify-center font-label-sm text-label-sm text-primary hover:bg-surface-container-low transition-all px-4 py-2 rounded-lg" href="login_to_nairapot.html">Login</a>
+<a id="header-dashboard-btn" class="hidden md:inline-flex items-center justify-center font-label-sm text-label-sm text-primary hover:bg-surface-container-low transition-all px-4 py-2 rounded-lg" href="my_dashboard_nairapot.html" style="display: none;">Dashboard</a>
 <button class="bg-primary-container text-on-primary-container font-label-sm px-6 py-2.5 rounded-full shadow-md active:scale-95 duration-150 ease-in-out">Join a Pot</button>
 </div>
 </nav>
@@ -340,4 +341,43 @@
 </div>
 </div>
 </footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  var supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpjcWN2ZWRiaG9xb2JtZnJzY3JoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg1MDg3MTgsImV4cCI6MjA5NDA4NDcxOH0.a2ciDyC-qdCfgAIXXf2Jx8aZAyAIhN2lFcK36cV9oQg';
+  var supabase = window.__nairapot_supabase || window.supabase.createClient('https://jcqcvedbhoqobmfrscrh.supabase.co', supabaseKey);
+  window.__nairapot_supabase = supabase;
+
+  function updateHeaderForSession(isAuthenticated) {
+    const loginButton = document.querySelector('a[href="login_to_nairapot.html"]');
+    const dashboardButton = document.getElementById('header-dashboard-btn');
+    if (loginButton) {
+      loginButton.style.display = isAuthenticated ? 'none' : 'inline-flex';
+    }
+    if (dashboardButton) {
+      dashboardButton.style.display = isAuthenticated ? 'inline-flex' : 'none';
+    }
+  }
+
+  async function initializeHeader() {
+    try {
+      const {
+        data: { session },
+        error
+      } = await supabase.auth.getSession();
+      if (error) {
+        console.error('Supabase session check failed:', error);
+        updateHeaderForSession(false);
+        return;
+      }
+      updateHeaderForSession(Boolean(session?.user));
+    } catch (error) {
+      console.error('Header session initialization failed:', error);
+      updateHeaderForSession(false);
+    }
+  }
+
+  window.addEventListener('DOMContentLoaded', async function () {
+    await initializeHeader();
+  });
+</script>
 </body></html>
